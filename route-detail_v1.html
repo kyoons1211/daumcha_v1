@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>노선 상세 — 다음차</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header class="header fixed-top" id="header">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <a class="logo d-flex align-items-center" href="index_v1.html">
+                <img src="assets/img/icon.svg" style="height:25px; width:auto; margin-right:12px;" />
+                <img src="assets/img/logo.svg" style="height:25px; width:auto;" />
+            </a>
+            <nav class="navbar" id="navbar">
+                <ul>
+                    <li><a href="index_v1.html">홈</a></li>
+                    <li><a href="service_v1.html">서비스 소개</a></li>
+                    <li><a href="forward_v1.html">순방향 길찾기</a></li>
+                    <li><a href="reverse_v1.html">역방향 길찾기</a></li>
+                    <li class="dropdown"><a href="#"><span>수단별 안내</span> </a>
+                        <ul>
+                            <li><a href="bus_v1.html">버스 안내</a></li>
+                            <li><a href="subway_v1.html">지하철 안내</a></li>
+                            <li><a href="train_v1.html">기차 안내</a></li>
+                            <li><a class="active" href="route-detail_v1.html">노선 상세</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="tips_v1.html">이용 팁</a></li>
+                    <li><a href="faq_v1.html">FAQ</a></li>
+                </ul>
+
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="index_v1.html">홈</a></li>
+                    <li>노선 상세</li>
+                </ol>
+                <h2>노선 상세</h2>
+            </div>
+        </section>
+        <section class="inner-page py-5">
+            <div class="container">
+                <!-- 외부 사이트 연결 -->
+                <div class="d-flex flex-wrap gap-3 mb-4">
+                    <a class="d-flex align-items-center gap-2 px-4 py-2 text-decoration-none"
+                        href="https://www.letskorail.com"
+                        style="background:#fff3e0;color:#e67e22;border:1px solid #e67e2240" target="_blank">
+
+                        <span class="fw-semibold small">코레일 예매</span>
+
+                    </a>
+                    <a class="d-flex align-items-center gap-2 px-4 py-2 text-decoration-none"
+                        href="https://www.kobus.co.kr"
+                        style="background:#e8f5e9;color:#00bf63;border:1px solid #00bf6340" target="_blank">
+
+                        <span class="fw-semibold small">고속버스 예매</span>
+
+                    </a>
+                    <a class="d-flex align-items-center gap-2 px-4 py-2 text-decoration-none"
+                        href="https://www.seoulmetro.co.kr"
+                        style="background:#f3e8ff;color:#9b59b6;border:1px solid #9b59b640" target="_blank">
+
+                        <span class="fw-semibold small">서울교통공사</span>
+
+                    </a>
+                </div>
+                <!-- 노선선택 탭 -->
+                <ul class="nav nav-pills mb-4 flex-wrap gap-2" id="routeTab">
+                    <li class="nav-item">
+                        <button class="nav-link active px-3" onclick="showRoute('express',this)">
+                            고속버스
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link px-3" onclick="showRoute('bus380',this)">
+                            380번 버스
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link px-3" onclick="showRoute('train_up',this)">
+                            기차 (평택→서울)
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link px-3" onclick="showRoute('train_down',this)">
+                            기차 (서울→평택)
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link px-3" onclick="showRoute('arex',this)">
+                            공항철도
+                        </button>
+                    </li>
+                </ul>
+                <!-- 고속버스 탭 -->
+                <div id="route-express">
+                    <div class="card p-4 mb-3">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+
+                            <div>
+                                <div class="fw-bold">안성터미널 → 서울고속버스터미널</div>
+                                <div class="text-muted small">고속버스 · 약 70분</div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered text-center" style="font-size:12px">
+                                <thead style="background:#f2fbf6">
+                                    <tr>
+                                        <th>안성터미널<br /><small class="text-muted">+0분</small></th>
+                                        <th>안성회관<br /><small class="text-muted">+10분</small></th>
+                                        <th>안성한경<br /><small class="text-muted">+13분</small></th>
+                                        <th>안성중대<br /><small class="text-muted">+17분</small></th>
+                                        <th>안성대림<br /><small class="text-muted">+20분</small></th>
+                                        <th>안성공도<br /><small class="text-muted">+23분</small></th>
+                                        <th>안성풍림<br /><small class="text-muted">+25분</small></th>
+                                        <th style="background:#e6faf1">서울고속<br /><small class="text-muted">+70분</small>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="express-table"></tbody>
+                            </table>
+                        </div>
+                        <div class="text-muted mt-2" style="font-size:11px">※ 안성터미널 출발 기준 · 평일 가상 데이터</div>
+                    </div>
+                </div>
+                <!-- 380번 버스 -->
+                <div id="route-bus380" style="display:none">
+                    <div class="card p-4 mb-3">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+
+                            <div>
+                                <div class="fw-bold">대학9길 → 평택역 방면</div>
+                                <div class="text-muted small">380번 버스 · 평일 기준</div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered text-center" style="font-size:12px">
+                                <thead style="background:#f2fff6">
+                                    <tr>
+                                        <th>대학9길<br /><small class="text-muted">+0분</small></th>
+                                        <th>스타필드<br /><small class="text-muted">+20분</small></th>
+                                        <th>평택시외터미널<br /><small class="text-muted">+40분</small></th>
+                                        <th style="background:#e6faf1">평택역<br /><small class="text-muted">+45분</small>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bus380-table"></tbody>
+                            </table>
+                        </div>
+                        <div class="text-muted mt-2" style="font-size:11px">※ 대학9길 출발 기준 · 평일 가상 데이터</div>
+                    </div>
+                </div>
+                <!-- 기차 상행 -->
+                <div id="route-train_up" style="display:none">
+                    <div class="card p-4 mb-3">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+
+                            <div>
+                                <div class="fw-bold">평택역 → 서울역</div>
+                                <div class="text-muted small">무궁화·ITX-새마을·ITX-마음</div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered text-center" style="font-size:12px">
+                                <thead style="background:#fff8f0">
+                                    <tr>
+                                        <th>열차</th>
+                                        <th>평택 출발</th>
+                                        <th>서울 도착</th>
+                                        <th>소요</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="train-up-table"></tbody>
+                            </table>
+                        </div>
+                        <div class="text-muted mt-2" style="font-size:11px">※ 평일 가상 데이터 · 실제 운행정보 코레일에서 확인</div>
+                    </div>
+                </div>
+                <!-- 기차 하행 -->
+                <div id="route-train_down" style="display:none">
+                    <div class="card p-4 mb-3">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+
+                            <div>
+                                <div class="fw-bold">서울역 → 평택역</div>
+                                <div class="text-muted small">무궁화·ITX-새마을·ITX-마음</div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered text-center" style="font-size:12px">
+                                <thead style="background:#fff8f0">
+                                    <tr>
+                                        <th>열차</th>
+                                        <th>서울 출발</th>
+                                        <th>평택 도착</th>
+                                        <th>소요</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="train-down-table"></tbody>
+                            </table>
+                        </div>
+                        <div class="text-muted mt-2" style="font-size:11px">※ 평일 가상 데이터 · 실제 운행정보 코레일에서 확인</div>
+                    </div>
+                </div>
+                <!-- 공항철도 -->
+                <div id="route-arex" style="display:none">
+                    <div class="card p-4 mb-3">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+
+                            <div>
+                                <div class="fw-bold">서울역 → 김포공항</div>
+                                <div class="text-muted small">공항철도 · 평일 기준</div>
+                            </div>
+                        </div>
+                        <div class="table-responsive" style="max-height:500px;overflow-y:auto">
+                            <table class="table table-sm table-bordered text-center" style="font-size:12px">
+                                <thead style="background:#f0f8ff;position:sticky;top:0">
+                                    <tr>
+                                        <th>서울역 출발</th>
+                                        <th>김포공항 도착</th>
+                                        <th>소요</th>
+                                        <th>종류</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="arex-table"></tbody>
+                            </table>
+                        </div>
+                        <div class="text-muted mt-2" style="font-size:11px">※ 평일 가상 데이터</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            function addMin(t, m) {
+                const [h, n] = t.split(":").map(Number);
+                const total = h * 60 + n + m;
+                return String(Math.floor(total / 60) % 24).padStart(2, "0") + ":" + String(total % 60).padStart(2, "0");
+            }
+            function diffMin(a, b) {
+                const [ah, am] = a.split(":").map(Number);
+                const [bh, bm] = b.split(":").map(Number);
+                return (bh * 60 + bm) - (ah * 60 + am);
+            }
+            function trainBadge(type) {
+                const c = type === "무궁화" ? "#8e44ad" : type === "ITX-새마을" ? "#2980b9" : "#27ae60";
+                return `<span class="box" style="background:${c};color:#fff;">${type}</span>`;
+            }
+
+            // 데이터
+            const expressTimes = ["06:10", "06:35", "07:00", "07:20", "07:30", "07:50", "08:30", "09:00", "09:40", "10:30", "10:50", "11:30", "11:50", "12:30", "13:10", "13:40", "14:10", "14:30", "15:10", "15:40", "16:10", "16:30", "16:50", "17:10", "17:50", "18:40", "19:10", "19:40", "20:00", "20:20", "20:40", "21:40", "22:50"];
+            const bus380Times = ["05:51", "06:21", "06:58", "07:38", "08:10", "08:41", "09:02", "09:25", "09:55", "10:35", "11:21", "11:41", "12:13", "12:53", "13:17", "13:51", "14:29", "15:06", "15:33", "15:59", "16:32", "17:02", "17:34", "18:57", "19:18", "19:46", "20:14", "20:45", "21:22", "21:53", "22:31"];
+            const trainUp = [
+                { dep: "06:39", arr: "07:40", type: "무궁화" }, { dep: "07:15", arr: "08:19", type: "ITX-새마을" },
+                { dep: "07:39", arr: "08:47", type: "무궁화" }, { dep: "09:16", arr: "10:10", type: "무궁화" },
+                { dep: "09:34", arr: "10:34", type: "ITX-마음" }, { dep: "10:20", arr: "11:15", type: "무궁화" },
+                { dep: "11:17", arr: "12:11", type: "무궁화" }, { dep: "11:37", arr: "12:36", type: "무궁화" },
+                { dep: "12:17", arr: "13:14", type: "ITX-새마을" }, { dep: "12:30", arr: "13:22", type: "ITX-새마을" },
+                { dep: "12:55", arr: "13:50", type: "ITX-새마을" }, { dep: "14:26", arr: "15:24", type: "무궁화" },
+                { dep: "14:35", arr: "15:32", type: "ITX-마음" }, { dep: "16:10", arr: "17:01", type: "ITX-새마을" },
+                { dep: "17:13", arr: "18:10", type: "무궁화" }, { dep: "17:22", arr: "18:15", type: "ITX-마음" },
+                { dep: "18:26", arr: "19:25", type: "무궁화" }, { dep: "19:19", arr: "20:25", type: "ITX-새마을" },
+                { dep: "20:05", arr: "21:08", type: "무궁화" }, { dep: "20:56", arr: "21:47", type: "ITX-마음" },
+                { dep: "21:36", arr: "22:26", type: "ITX-마음" }, { dep: "22:52", arr: "23:53", type: "무궁화" }
+            ];
+            const trainDown = [
+                { dep: "05:54", arr: "06:50", type: "ITX-새마을" }, { dep: "06:13", arr: "07:04", type: "ITX-새마을" },
+                { dep: "06:37", arr: "07:36", type: "무궁화" }, { dep: "07:02", arr: "07:52", type: "ITX-마음" },
+                { dep: "07:16", arr: "08:14", type: "무궁화" }, { dep: "07:54", arr: "08:52", type: "무궁화" },
+                { dep: "08:49", arr: "09:40", type: "ITX-새마을" }, { dep: "09:08", arr: "09:58", type: "ITX-새마을" },
+                { dep: "10:23", arr: "11:13", type: "ITX-새마을" }, { dep: "12:02", arr: "12:53", type: "ITX-마음" },
+                { dep: "12:21", arr: "13:15", type: "ITX-마음" }, { dep: "13:04", arr: "13:59", type: "무궁화" },
+                { dep: "13:53", arr: "14:43", type: "ITX-새마을" }, { dep: "14:04", arr: "15:00", type: "무궁화" },
+                { dep: "14:49", arr: "15:41", type: "무궁화" }, { dep: "15:39", arr: "16:30", type: "ITX-마음" },
+                { dep: "16:54", arr: "17:49", type: "ITX-새마을" }, { dep: "17:02", arr: "17:57", type: "무궁화" },
+                { dep: "17:28", arr: "18:26", type: "ITX-마음" }, { dep: "17:54", arr: "18:54", type: "무궁화" },
+                { dep: "18:36", arr: "19:41", type: "무궁화" }, { dep: "19:31", arr: "20:32", type: "ITX-새마을" },
+                { dep: "20:09", arr: "21:12", type: "무궁화" }, { dep: "22:24", arr: "23:19", type: "무궁화" }
+            ];
+            const arexPairs = [
+                { dep: "05:20", arr: "05:43", direct: false }, { dep: "05:40", arr: "06:02", direct: false }, { dep: "05:49", arr: "06:12", direct: false },
+                { dep: "06:00", arr: "06:16", direct: true }, { dep: "06:02", arr: "06:24", direct: false }, { dep: "06:11", arr: "06:34", direct: false },
+                { dep: "06:23", arr: "06:46", direct: false }, { dep: "06:34", arr: "06:56", direct: false }, { dep: "06:41", arr: "07:05", direct: false },
+                { dep: "06:45", arr: "07:01", direct: true }, { dep: "06:48", arr: "07:10", direct: false }, { dep: "06:54", arr: "07:16", direct: false },
+                { dep: "07:00", arr: "07:23", direct: false }, { dep: "07:05", arr: "07:28", direct: false }, { dep: "07:09", arr: "07:32", direct: false },
+                { dep: "07:16", arr: "07:40", direct: false }, { dep: "07:20", arr: "07:36", direct: true }, { dep: "07:22", arr: "07:45", direct: false },
+                { dep: "07:27", arr: "07:50", direct: false }, { dep: "07:32", arr: "07:55", direct: false }, { dep: "07:37", arr: "08:00", direct: false },
+                { dep: "07:43", arr: "08:05", direct: false }, { dep: "07:47", arr: "08:10", direct: false }, { dep: "07:51", arr: "08:14", direct: false },
+                { dep: "07:55", arr: "08:18", direct: false }, { dep: "08:02", arr: "08:26", direct: false }, { dep: "08:06", arr: "08:22", direct: true },
+                { dep: "08:08", arr: "08:30", direct: false }, { dep: "08:13", arr: "08:35", direct: false }, { dep: "08:16", arr: "08:39", direct: false },
+                { dep: "08:20", arr: "08:43", direct: false }, { dep: "08:23", arr: "08:46", direct: false }, { dep: "08:26", arr: "08:49", direct: false },
+                { dep: "08:30", arr: "08:52", direct: false }, { dep: "08:33", arr: "08:55", direct: false }, { dep: "08:36", arr: "08:59", direct: false },
+                { dep: "08:41", arr: "09:03", direct: false }, { dep: "08:44", arr: "09:07", direct: false }, { dep: "08:51", arr: "09:15", direct: false },
+                { dep: "08:55", arr: "09:11", direct: true }, { dep: "08:57", arr: "09:19", direct: false }, { dep: "09:01", arr: "09:23", direct: false },
+                { dep: "09:04", arr: "09:27", direct: false }, { dep: "09:09", arr: "09:32", direct: false }, { dep: "09:14", arr: "09:37", direct: false },
+                { dep: "09:18", arr: "09:41", direct: false }, { dep: "09:24", arr: "09:46", direct: false }, { dep: "09:30", arr: "09:53", direct: false },
+                { dep: "09:34", arr: "09:57", direct: false }, { dep: "09:41", arr: "10:05", direct: false }, { dep: "09:45", arr: "10:01", direct: true },
+                { dep: "09:47", arr: "10:09", direct: false }, { dep: "09:52", arr: "10:14", direct: false }, { dep: "09:58", arr: "10:21", direct: false },
+                { dep: "10:04", arr: "10:26", direct: false }, { dep: "10:09", arr: "10:31", direct: false }, { dep: "10:15", arr: "10:39", direct: false },
+                { dep: "10:20", arr: "10:36", direct: true }, { dep: "10:22", arr: "10:44", direct: false }, { dep: "10:27", arr: "10:50", direct: false },
+                { dep: "10:32", arr: "10:55", direct: false }, { dep: "10:37", arr: "11:00", direct: false }, { dep: "10:45", arr: "11:07", direct: false },
+                { dep: "10:52", arr: "11:16", direct: false }, { dep: "10:56", arr: "11:12", direct: true }, { dep: "10:58", arr: "11:20", direct: false },
+                { dep: "11:03", arr: "11:25", direct: false }, { dep: "11:08", arr: "11:31", direct: false }, { dep: "11:14", arr: "11:36", direct: false },
+                { dep: "11:20", arr: "11:43", direct: false }, { dep: "11:24", arr: "11:47", direct: false }, { dep: "11:31", arr: "11:55", direct: false },
+                { dep: "11:35", arr: "11:51", direct: true }, { dep: "11:38", arr: "12:01", direct: false }, { dep: "11:43", arr: "12:06", direct: false },
+                { dep: "11:49", arr: "12:11", direct: false }, { dep: "11:55", arr: "12:18", direct: false }, { dep: "11:59", arr: "12:22", direct: false },
+                { dep: "12:06", arr: "12:30", direct: false }, { dep: "12:10", arr: "12:26", direct: true }, { dep: "12:14", arr: "12:37", direct: false },
+                { dep: "12:20", arr: "12:42", direct: false }, { dep: "12:25", arr: "12:47", direct: false }, { dep: "12:31", arr: "12:54", direct: false },
+                { dep: "12:39", arr: "13:01", direct: false }, { dep: "12:45", arr: "13:09", direct: false }, { dep: "12:50", arr: "13:06", direct: true },
+                { dep: "12:52", arr: "13:14", direct: false }, { dep: "12:58", arr: "13:21", direct: false }, { dep: "13:04", arr: "13:27", direct: false },
+                { dep: "13:11", arr: "13:34", direct: false }, { dep: "13:19", arr: "13:42", direct: false }, { dep: "13:25", arr: "13:49", direct: false },
+                { dep: "13:30", arr: "13:46", direct: true }, { dep: "13:31", arr: "13:54", direct: false }, { dep: "13:38", arr: "14:01", direct: false },
+                { dep: "13:44", arr: "14:06", direct: false }, { dep: "13:50", arr: "14:12", direct: false }, { dep: "13:59", arr: "14:21", direct: false },
+                { dep: "14:06", arr: "14:30", direct: false }, { dep: "14:10", arr: "14:26", direct: true }, { dep: "14:15", arr: "14:37", direct: false },
+                { dep: "14:22", arr: "14:44", direct: false }, { dep: "14:28", arr: "14:51", direct: false }, { dep: "14:36", arr: "14:58", direct: false },
+                { dep: "14:45", arr: "15:09", direct: false }, { dep: "14:50", arr: "15:06", direct: true }, { dep: "14:53", arr: "15:15", direct: false },
+                { dep: "14:59", arr: "15:21", direct: false }, { dep: "15:04", arr: "15:27", direct: false }, { dep: "15:10", arr: "15:32", direct: false },
+                { dep: "15:16", arr: "15:38", direct: false }, { dep: "15:19", arr: "15:42", direct: false }, { dep: "15:26", arr: "15:50", direct: false },
+                { dep: "15:30", arr: "15:46", direct: true }, { dep: "15:36", arr: "15:58", direct: false }, { dep: "15:42", arr: "16:04", direct: false },
+                { dep: "15:48", arr: "16:10", direct: false }, { dep: "15:56", arr: "16:18", direct: false }, { dep: "15:59", arr: "16:22", direct: false },
+                { dep: "16:06", arr: "16:30", direct: false }, { dep: "16:10", arr: "16:26", direct: true }, { dep: "16:13", arr: "16:35", direct: false },
+                { dep: "16:19", arr: "16:41", direct: false }, { dep: "16:24", arr: "16:47", direct: false }, { dep: "16:29", arr: "16:52", direct: false },
+                { dep: "16:36", arr: "16:58", direct: false }, { dep: "16:39", arr: "17:02", direct: false }, { dep: "16:45", arr: "17:09", direct: false },
+                { dep: "16:50", arr: "17:06", direct: true }, { dep: "16:53", arr: "17:15", direct: false }, { dep: "16:58", arr: "17:21", direct: false },
+                { dep: "17:04", arr: "17:26", direct: false }, { dep: "17:10", arr: "17:33", direct: false }, { dep: "17:14", arr: "17:37", direct: false },
+                { dep: "17:21", arr: "17:45", direct: false }, { dep: "17:25", arr: "17:41", direct: true }, { dep: "17:27", arr: "17:50", direct: false },
+                { dep: "17:33", arr: "17:56", direct: false }, { dep: "17:39", arr: "18:02", direct: false }, { dep: "17:45", arr: "18:08", direct: false },
+                { dep: "17:49", arr: "18:11", direct: false }, { dep: "17:56", arr: "18:20", direct: false }, { dep: "18:00", arr: "18:16", direct: true },
+                { dep: "18:01", arr: "18:24", direct: false }, { dep: "18:05", arr: "18:28", direct: false }, { dep: "18:09", arr: "18:31", direct: false },
+                { dep: "18:13", arr: "18:35", direct: false }, { dep: "18:18", arr: "18:40", direct: false }, { dep: "18:22", arr: "18:44", direct: false },
+                { dep: "18:27", arr: "18:50", direct: false }, { dep: "18:32", arr: "18:54", direct: false }, { dep: "18:36", arr: "18:59", direct: false },
+                { dep: "18:41", arr: "19:03", direct: false }, { dep: "18:44", arr: "19:06", direct: false }, { dep: "18:51", arr: "19:15", direct: false },
+                { dep: "18:55", arr: "19:11", direct: true }, { dep: "18:57", arr: "19:19", direct: false }, { dep: "19:01", arr: "19:24", direct: false },
+                { dep: "19:06", arr: "19:28", direct: false }, { dep: "19:11", arr: "19:34", direct: false }, { dep: "19:17", arr: "19:39", direct: false },
+                { dep: "19:21", arr: "19:44", direct: false }, { dep: "19:25", arr: "19:48", direct: false }, { dep: "19:32", arr: "19:56", direct: false },
+                { dep: "19:36", arr: "19:52", direct: true }, { dep: "19:38", arr: "20:00", direct: false }, { dep: "19:42", arr: "20:05", direct: false },
+                { dep: "19:47", arr: "20:09", direct: false }, { dep: "19:51", arr: "20:14", direct: false }, { dep: "19:55", arr: "20:18", direct: false },
+                { dep: "19:59", arr: "20:22", direct: false }, { dep: "20:06", arr: "20:30", direct: false }, { dep: "20:10", arr: "20:26", direct: true },
+                { dep: "20:14", arr: "20:36", direct: false }, { dep: "20:20", arr: "20:42", direct: false }, { dep: "20:26", arr: "20:49", direct: false },
+                { dep: "20:34", arr: "20:57", direct: false }, { dep: "20:41", arr: "21:05", direct: false }, { dep: "20:45", arr: "21:01", direct: true },
+                { dep: "20:48", arr: "21:10", direct: false }, { dep: "20:53", arr: "21:15", direct: false }, { dep: "20:59", arr: "21:21", direct: false },
+                { dep: "21:06", arr: "21:28", direct: false }, { dep: "21:12", arr: "21:34", direct: false }, { dep: "21:19", arr: "21:42", direct: false },
+                { dep: "21:26", arr: "21:50", direct: false }, { dep: "21:30", arr: "21:46", direct: true }, { dep: "21:34", arr: "21:56", direct: false },
+                { dep: "21:40", arr: "22:03", direct: false }, { dep: "21:47", arr: "22:09", direct: false }, { dep: "21:54", arr: "22:16", direct: false },
+                { dep: "22:01", arr: "22:23", direct: false }, { dep: "22:09", arr: "22:32", direct: false }, { dep: "22:16", arr: "22:40", direct: false },
+                { dep: "22:20", arr: "22:36", direct: true }, { dep: "22:22", arr: "22:45", direct: false }, { dep: "22:32", arr: "22:54", direct: false },
+                { dep: "22:40", arr: "23:02", direct: false }, { dep: "22:49", arr: "23:12", direct: false }, { dep: "23:00", arr: "23:16", direct: true },
+                { dep: "23:01", arr: "23:24", direct: false }, { dep: "23:10", arr: "23:32", direct: false }, { dep: "23:17", arr: "23:40", direct: false },
+                { dep: "23:26", arr: "23:48", direct: false }, { dep: "23:40", arr: "00:02", direct: false }, { dep: "23:50", arr: "00:12", direct: false },
+                { dep: "00:00", arr: "00:22", direct: false }
+            ];
+
+            // 표 JS로 구현
+            window.onload = function () {
+                // 고속버스
+                const expTb = document.getElementById("express-table");
+                expressTimes.forEach(t => {
+                    const offsets = [0, 10, 13, 17, 20, 23, 25, 70];
+                    const cells = offsets.map((o, i) => {
+                        const [h, m] = t.split(":").map(Number);
+                        const tot = h * 60 + m + o;
+                        const time = String(Math.floor(tot / 60) % 24).padStart(2, "0") + ":" + String(tot % 60).padStart(2, "0");
+                        return i === 7 ? `<td style="background:#f2fbf6;font-weight:600;">${time}</td>` : `<td>${time}</td>`;
+                    });
+                    expTb.innerHTML += `<tr>${cells.join("")}</tr>`;
+                });
+
+                // 380번
+                const b380Tb = document.getElementById("bus380-table");
+                bus380Times.forEach(t => {
+                    const offsets = [0, 20, 40, 45];
+                    const cells = offsets.map((o, i) => {
+                        const [h, m] = t.split(":").map(Number);
+                        const tot = h * 60 + m + o;
+                        const time = String(Math.floor(tot / 60) % 24).padStart(2, "0") + ":" + String(tot % 60).padStart(2, "0");
+                        return i === 3 ? `<td style="background:#f2fbf6;font-weight:600;">${time}</td>` : `<td>${time}</td>`;
+                    });
+                    b380Tb.innerHTML += `<tr>${cells.join("")}</tr>`;
+                });
+
+                // 기차 상행
+                const tuTb = document.getElementById("train-up-table");
+                trainUp.forEach(p => {
+                    const [ah, am] = p.dep.split(":").map(Number);
+                    const [bh, bm] = p.arr.split(":").map(Number);
+                    const dur = (bh * 60 + bm) - (ah * 60 + am);
+                    tuTb.innerHTML += `<tr><td>${trainBadge(p.type)}</td><td>${p.dep}</td><td>${p.arr}</td><td>${dur}분</td></tr>`;
+                });
+
+                // 기차 하행
+                const tdTb = document.getElementById("train-down-table");
+                trainDown.forEach(p => {
+                    const [ah, am] = p.dep.split(":").map(Number);
+                    const [bh, bm] = p.arr.split(":").map(Number);
+                    const dur = (bh * 60 + bm) - (ah * 60 + am);
+                    tdTb.innerHTML += `<tr><td>${trainBadge(p.type)}</td><td>${p.dep}</td><td>${p.arr}</td><td>${dur}분</td></tr>`;
+                });
+
+                // 공항철도
+                const arexTb = document.getElementById("arex-table");
+                arexPairs.forEach(p => {
+                    const [ah, am] = p.dep.split(":").map(Number);
+                    const [bh, bm] = p.arr.split(":").map(Number);
+                    let dur = (bh * 60 + bm) - (ah * 60 + am);
+                    if (dur < 0) dur += 1440;
+                    const badge = p.direct
+                        ? `<span class="box" style="background:#3498db;color:#fff;">직통</span>`
+                        : `<span class="box bg-light text-dark border">일반</span>`;
+                    const row = p.direct ? `style="background:#f0f8ff;"` : "";
+                    arexTb.innerHTML += `<tr ${row}><td>${p.dep}</td><td>${p.arr}</td><td>${dur}분</td><td>${badge}</td></tr>`;
+                });
+            };
+
+            function showRoute(id, btn) {
+                ["express", "bus380", "train_up", "train_down", "arex"].forEach(r => {
+                    document.getElementById("route-" + r).style.display = "none";
+                });
+                document.getElementById("route-" + id).style.display = "block";
+                document.querySelectorAll("#routeTab .nav-link").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+            }
+        </script>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer class="footer" id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-5 col-md-12 footer-info">
+                        <a class="logo d-flex align-items-center" href="index_v1.html">
+                            <img src="assets/img/icon.svg" style="height:25px; width:auto; margin-right:12px;" /><img
+                                src="assets/img/logo.svg" style="height:25px; width:auto;" />
+                        </a>
+                        <p>시간표 기반으로 대기시간과 최적 출발 시각을 안내하는 교통 정보 서비스</p>
+                        <div class="mt-2">
+                            <a class="me-2" href="https://www.letskorail.com" target="_blank">코레일</a>
+                            <a class="me-2" href="https://www.kobus.co.kr" target="_blank">고속버스</a>
+                            <a class="me-2" href="https://www.bustago.or.kr" target="_blank">시외버스</a>
+                            <a href="https://www.seoulmetro.co.kr" target="_blank">서울교통공사</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>바로가기</h4>
+                        <ul>
+                            <li> <a href="index_v1.html">홈</a></li>
+                            <li> <a href="service_v1.html">서비스 소개</a></li>
+                            <li> <a href="forward_v1.html">순방향 길찾기</a></li>
+                            <li> <a href="reverse_v1.html">역방향 길찾기</a></li>
+                            <li> <a href="faq_v1.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>서비스</h4>
+                        <ul>
+                            <li> <a href="bus_v1.html">버스 안내</a></li>
+                            <li> <a href="subway_v1.html">지하철 안내</a></li>
+                            <li> <a href="train_v1.html">기차 안내</a></li>
+                            <li> <a href="tips_v1.html">이용 팁</a></li>
+                            <li> <a href="#">노선 상세</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                        <h4>문의</h4>
+                        <p>
+                            표준웹테크놀로지 수업<br />
+                            기말 프로젝트<br /><br />
+                            <strong>학번:</strong> 20255274<br />
+                            <strong>이름:</strong> 강윤서<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                © Copyright <strong><span>다음차</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a class="back-to-top d-flex align-items-center justify-content-center" href="#"></a>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

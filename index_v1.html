@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>홈 — 다음차</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header class="header fixed-top" id="header">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <a class="logo d-flex align-items-center" href="index_v1.html">
+                <img src="assets/img/icon.svg" style="height:25px; width:auto; margin-right:12px;" />
+                <img src="assets/img/logo.svg" style="height:25px; width:auto;" />
+            </a>
+            <nav class="navbar" id="navbar">
+                <ul>
+                    <li><a href="index_v1.html">홈</a></li>
+                    <li><a href="service_v1.html">서비스 소개</a></li>
+                    <li><a href="forward_v1.html">순방향 길찾기</a></li>
+                    <li><a href="reverse_v1.html">역방향 길찾기</a></li>
+                    <li class="dropdown"><a href="#"><span>수단별 안내</span> </a>
+                        <ul>
+                            <li><a href="bus_v1.html">버스 안내</a></li>
+                            <li><a href="subway_v1.html">지하철 안내</a></li>
+                            <li><a href="train_v1.html">기차 안내</a></li>
+                            <li><a href="route-detail_v1.html">노선 상세</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="tips_v1.html">이용 팁</a></li>
+                    <li><a href="faq_v1.html">FAQ</a></li>
+                </ul>
+
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Hero ======= -->
+    <section class="hero d-flex align-items-center" id="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 d-flex flex-column justify-content-center">
+                    <h1>다음 차, 언제 와?</h1>
+                    <h2>출발 시각을 입력하면 환승 대기시간을,<br />마감 시각을 입력하면 최적 출발 시각을 알려드립니다.</h2>
+                    <div>
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a class="btn-get-started d-inline-flex align-items-center justify-content-center"
+                                href="forward_v1.html">
+                                <span>순방향 길찾기</span>
+
+                            </a>
+                            <a class="btn-get-started d-inline-flex align-items-center justify-content-center"
+                                href="reverse_v1.html"
+                                style="background:#ffffff;border:2px solid #ffffff;color:#00bf63;">
+                                <span>역방향 길찾기</span>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <main id="main">
+        <!-- ======= 핵심 기능 ======= -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-4 mb-5">
+                    <!-- 순방향 -->
+                    <div class="col-lg-6">
+                        <div class="card p-4">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+
+                                <div>
+                                    <div class="fw-bold">순방향 길찾기</div>
+                                    <div class="text-muted small">출발 시각 → 다음 차량 · 대기시간</div>
+                                </div>
+                            </div>
+                            <p class="text-muted small mb-3">지금 몇 시인지 입력하면 다음에 오는 차량과 대기시간을 알려드립니다.</p>
+                            <a class="btn btn-success" href="forward_v1.html">바로가기 </a>
+                        </div>
+                    </div>
+                    <!-- 역방향 -->
+                    <div class="col-lg-6">
+                        <div class="card p-4">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+
+                                <div>
+                                    <div class="fw-bold">역방향 길찾기</div>
+                                    <div class="text-muted small">도착 마감 시각 → 출발 시각 역산</div>
+                                </div>
+                            </div>
+                            <p class="text-muted small mb-3">언제까지 도착해야 하는지 입력하면 몇 시에 출발해야 하는지 역산합니다.</p>
+                            <a class="btn btn-primary" href="reverse_v1.html">바로가기 </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 수단별 안내 -->
+                <div class="fw-semibold mb-3">수단별 안내</div>
+                <div class="row g-3">
+                    <div class="col-lg-3 col-md-6">
+                        <a class="text-decoration-none" href="bus_v1.html">
+                            <div class="card p-3 d-flex flex-row align-items-center gap-3">
+
+                                <div>
+                                    <div class="fw-semibold small">버스 안내</div>
+                                    <div class="text-muted" style="font-size:12px">고속버스 · 380번</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <a class="text-decoration-none" href="subway_v1.html">
+                            <div class="card p-3 d-flex flex-row align-items-center gap-3">
+
+                                <div>
+                                    <div class="fw-semibold small">지하철 안내</div>
+                                    <div class="text-muted" style="font-size:12px">9호선 급행</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <a class="text-decoration-none" href="train_v1.html">
+                            <div class="card p-3 d-flex flex-row align-items-center gap-3">
+
+                                <div>
+                                    <div class="fw-semibold small">기차 안내</div>
+                                    <div class="text-muted" style="font-size:12px">평택역 ↔ 서울역</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <a class="text-decoration-none" href="route-detail_v1.html">
+                            <div class="card p-3 d-flex flex-row align-items-center gap-3">
+
+                                <div>
+                                    <div class="fw-semibold small">노선 상세</div>
+                                    <div class="text-muted" style="font-size:12px">전체 시간표</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ======= 서비스 소개 바로가기 ======= -->
+        <section class="py-4" style="background:#f8f9fa">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                    <div>
+                        <div class="fw-semibold mb-1">다음차가 처음이신가요?</div>
+                        <div class="text-muted small">서비스 소개, 이용 팁, FAQ를 확인해보세요.</div>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-outline-success" href="service_v1.html">서비스 소개</a>
+                        <a class="btn btn-outline-success" href="tips_v1.html">이용 팁</a>
+                        <a class="btn btn-outline-success" href="faq_v1.html">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer class="footer" id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-5 col-md-12 footer-info">
+                        <a class="logo d-flex align-items-center" href="index_v1.html">
+                            <img src="assets/img/icon.svg" style="height:25px; width:auto; margin-right:12px;" />
+                            <img src="assets/img/logo.svg" style="height:25px; width:auto;" />
+                        </a>
+                        <p>시간표 기반으로 대기시간과 최적 출발 시각을 안내하는 교통 정보 서비스</p>
+                        <div class="mt-2">
+                            <a class="me-2" href="https://www.letskorail.com" target="_blank">코레일</a>
+                            <a class="me-2" href="https://www.kobus.co.kr" target="_blank">고속버스</a>
+                            <a class="me-2" href="https://www.bustago.or.kr" target="_blank">시외버스</a>
+                            <a href="https://www.seoulmetro.co.kr" target="_blank">서울교통공사</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>바로가기</h4>
+                        <ul>
+                            <li> <a href="index_v1.html">홈</a></li>
+                            <li> <a href="service_v1.html">서비스 소개</a></li>
+                            <li> <a href="forward_v1.html">순방향 길찾기</a></li>
+                            <li> <a href="reverse_v1.html">역방향 길찾기</a></li>
+                            <li> <a href="faq_v1.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>서비스</h4>
+                        <ul>
+                            <li> <a href="bus_v1.html">버스 안내</a></li>
+                            <li> <a href="subway_v1.html">지하철 안내</a></li>
+                            <li> <a href="train_v1.html">기차 안내</a></li>
+                            <li> <a href="tips_v1.html">이용 팁</a></li>
+                            <li> <a href="#">노선 상세</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                        <h4>문의</h4>
+                        <p>
+                            표준웹테크놀로지 수업<br />
+                            기말 프로젝트<br /><br />
+                            <strong>학번:</strong> 20255274<br />
+                            <strong>이름:</strong> 강윤서<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                © Copyright <strong><span>다음차</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a class="back-to-top d-flex align-items-center justify-content-center" href="#"></a>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

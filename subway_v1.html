@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>지하철 안내 — 다음차</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header class="header fixed-top" id="header">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <a class="logo d-flex align-items-center" href="index_v1.html">
+                <img src="assets/img/icon.svg" style="height:30px; width:auto; margin-right:14px;" />
+                <img src="assets/img/logo.svg" style="height:30px; width:auto;" />
+            </a>
+            <nav class="navbar" id="navbar">
+                <ul>
+                    <li><a href="index_v1.html">홈</a></li>
+                    <li><a href="service_v1.html">서비스 소개</a></li>
+                    <li><a href="forward_v1.html">순방향 길찾기</a></li>
+                    <li><a href="reverse_v1.html">역방향 길찾기</a></li>
+                    <li class="dropdown"><a href="#"><span>수단별 안내</span> </a>
+                        <ul>
+                            <li><a href="bus_v1.html">버스 안내</a></li>
+                            <li><a class="active" href="subway_v1.html">지하철 안내</a></li>
+                            <li><a href="train_v1.html">기차 안내</a></li>
+                            <li><a href="route-detail_v1.html">노선 상세</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="tips_v1.html">이용 팁</a></li>
+                    <li><a href="faq_v1.html">FAQ</a></li>
+                </ul>
+
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <main id="main">
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="index_v1.html">홈</a></li>
+                    <li>수단별 안내</li>
+                    <li>지하철 안내</li>
+                </ol>
+                <h2>지하철 안내</h2>
+            </div>
+        </section>
+        <section class="inner-page py-5">
+            <div class="container">
+                <!-- 노선 개요 -->
+                <div class="card p-4 mb-4">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+
+                        <div>
+                            <h5 class="mb-0 fw-bold">서울 지하철 9호선 급행</h5>
+                            <span class="text-muted small">김포공항 ↔ 중앙보훈병원 · 급행 정차역 12개</span>
+                        </div>
+                    </div>
+                    <!-- 역 순서 -->
+                    <div class="p-3 mb-3" style="background:#f8f0ff">
+                        <div class="small fw-semibold mb-2">급행 정차역 (개화 방면 →)</div>
+                        <div class="d-flex flex-wrap align-items-center gap-1">
+                            김포공항
+
+                            마곡나루
+
+                            당산
+
+                            여의도
+
+                            노량진
+
+                            동작
+
+                            고속터미널
+
+                            봉은사
+
+                            종합운동장
+
+                            올림픽공원
+
+                            중앙보훈병원
+                        </div>
+                    </div>
+                    <!-- 역간 소요시간 -->
+                    <div class="small fw-semibold mb-2">역간 소요시간 (급행 기준)</div>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered text-center" style="font-size:13px">
+                            <thead style="background:#f8f0ff">
+                                <tr>
+                                    <th>구간</th>
+                                    <th>소요</th>
+                                    <th>구간</th>
+                                    <th>소요</th>
+                                    <th>구간</th>
+                                    <th>소요</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>김포공항 → 마곡나루</td>
+                                    <td><strong>7분</strong></td>
+                                    <td>마곡나루 → 당산</td>
+                                    <td><strong>12분</strong></td>
+                                    <td>당산 → 여의도</td>
+                                    <td><strong>4분</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>여의도 → 노량진</td>
+                                    <td><strong>4분</strong></td>
+                                    <td>노량진 → 동작</td>
+                                    <td><strong>4분</strong></td>
+                                    <td>동작 → 고속터미널</td>
+                                    <td><strong>5분</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>고속터미널 → 봉은사</td>
+                                    <td><strong>5분</strong></td>
+                                    <td>봉은사 → 종합운동장</td>
+                                    <td><strong>3분</strong></td>
+                                    <td>종합운동장 → 올림픽공원</td>
+                                    <td><strong>6분</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>올림픽공원 → 중앙보훈병원</td>
+                                    <td><strong>5분</strong></td>
+                                    <td class="text-muted" colspan="4">김포공항 → 중앙보훈병원 총 <strong>55분</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--  2단 구조 시간표 -->
+                <div class="row g-4 mb-4">
+                    <!-- 중앙보훈병원 방면 -->
+                    <div class="col-lg-6">
+                        <div class="card p-4">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+
+                                <span class="fw-semibold">중앙보훈병원 방면</span>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered text-center mb-0" style="font-size:12px">
+                                    <thead style="background:#f8f0ff">
+                                        <tr>
+                                            <th style="min-width:90px">역명</th>
+                                            <th>첫차</th>
+                                            <th>막차</th>
+                                            <th>배차</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-start fw-semibold">김포공항</td>
+                                            <td>05:35</td>
+                                            <td>00:49</td>
+                                            <td>7~12분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">마곡나루</td>
+                                            <td>05:30</td>
+                                            <td>00:54</td>
+                                            <td>7~12분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">당산</td>
+                                            <td>05:40</td>
+                                            <td>00:46</td>
+                                            <td>7~12분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">여의도</td>
+                                            <td>05:30</td>
+                                            <td>00:50</td>
+                                            <td>4~8분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">노량진</td>
+                                            <td>05:34</td>
+                                            <td>00:55</td>
+                                            <td>5~10분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">동작</td>
+                                            <td>05:30</td>
+                                            <td>00:48</td>
+                                            <td>5~10분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">고속터미널</td>
+                                            <td>05:36</td>
+                                            <td>00:54</td>
+                                            <td>4~8분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">봉은사</td>
+                                            <td>05:38</td>
+                                            <td>00:54</td>
+                                            <td>4~8분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">종합운동장</td>
+                                            <td>05:40</td>
+                                            <td>00:57</td>
+                                            <td>4~8분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">올림픽공원</td>
+                                            <td>05:40</td>
+                                            <td>00:58</td>
+                                            <td>4~8분</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-muted mt-2" style="font-size:11px">※ 평일 기준 가상 데이터</div>
+                        </div>
+                    </div>
+                    <!-- 개화 방면 -->
+                    <div class="col-lg-6">
+                        <div class="card p-4">
+                            <div class="d-flex align-items-center gap-2 mb-3">
+
+                                <span class="fw-semibold">개화 방면</span>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-bordered text-center mb-0" style="font-size:12px">
+                                    <thead style="background:#f8f0ff">
+                                        <tr>
+                                            <th style="min-width:90px">역명</th>
+                                            <th>첫차</th>
+                                            <th>막차</th>
+                                            <th>배차</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-start fw-semibold">중앙보훈병원</td>
+                                            <td>05:30</td>
+                                            <td>00:30</td>
+                                            <td>7~12분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">올림픽공원</td>
+                                            <td>05:35</td>
+                                            <td>00:35</td>
+                                            <td>7~12분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">종합운동장</td>
+                                            <td>05:40</td>
+                                            <td>00:40</td>
+                                            <td>7~12분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">봉은사</td>
+                                            <td>05:42</td>
+                                            <td>00:42</td>
+                                            <td>4~8분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">고속터미널</td>
+                                            <td>05:45</td>
+                                            <td>00:45</td>
+                                            <td>4~8분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">동작</td>
+                                            <td>05:48</td>
+                                            <td>00:48</td>
+                                            <td>5~10분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">노량진</td>
+                                            <td>05:52</td>
+                                            <td>00:52</td>
+                                            <td>5~10분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">여의도</td>
+                                            <td>05:55</td>
+                                            <td>00:55</td>
+                                            <td>4~8분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">당산</td>
+                                            <td>05:58</td>
+                                            <td>00:58</td>
+                                            <td>7~12분</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start fw-semibold">마곡나루</td>
+                                            <td>06:05</td>
+                                            <td>01:05</td>
+                                            <td>7~12분</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-muted mt-2" style="font-size:11px">※ 평일 기준 가상 데이터</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script> // 버스와 동일한 탭 전환 함수 넣음
+            function showSubTab(id, btn) {
+                document.getElementById("tab-boohun").style.display = "none";
+                document.getElementById("tab-gaehwa").style.display = "none";
+                document.getElementById("tab-" + id).style.display = "block";
+                document.querySelectorAll("#subwayTab .nav-link").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+            }
+        </script>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer class="footer" id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-5 col-md-12 footer-info">
+                        <a class="logo d-flex align-items-center" href="index_v1.html">
+                            <img src="assets/img/icon.svg" style="height:25px; width:auto; margin-right:12px;" />
+                            <img src="assets/img/logo.svg" style="height:25px; width:auto;" />
+                        </a>
+                        <p>시간표 기반으로 대기시간과 최적 출발 시각을 안내하는 교통 정보 서비스</p>
+                        <div class="mt-2">
+                            <a class="me-2" href="https://www.letskorail.com" target="_blank">코레일</a>
+                            <a class="me-2" href="https://www.kobus.co.kr" target="_blank">고속버스</a>
+                            <a class="me-2" href="https://www.bustago.or.kr" target="_blank">시외버스</a>
+                            <a href="https://www.seoulmetro.co.kr" target="_blank">서울교통공사</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>바로가기</h4>
+                        <ul>
+                            <li> <a href="index_v1.html">홈</a></li>
+                            <li> <a href="service_v1.html">서비스 소개</a></li>
+                            <li> <a href="forward_v1.html">순방향 길찾기</a></li>
+                            <li> <a href="reverse_v1.html">역방향 길찾기</a></li>
+                            <li> <a href="faq_v1.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>서비스</h4>
+                        <ul>
+                            <li> <a href="bus_v1.html">버스 안내</a></li>
+                            <li> <a href="subway_v1.html">지하철 안내</a></li>
+                            <li> <a href="train_v1.html">기차 안내</a></li>
+                            <li> <a href="tips_v1.html">이용 팁</a></li>
+                            <li> <a href="#">노선 상세</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                        <h4>문의</h4>
+                        <p>
+                            표준웹테크놀로지 수업<br />
+                            기말 프로젝트<br /><br />
+                            <strong>학번:</strong> 20255274<br />
+                            <strong>이름:</strong> 강윤서<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                © Copyright <strong><span>다음차</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <a class="back-to-top d-flex align-items-center justify-content-center" href="#"></a>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

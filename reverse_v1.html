@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>역방향 길찾기 — 다음차</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header class="header fixed-top" id="header">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <a class="logo d-flex align-items-center" href="index_v1.html">
+                <img src="assets/img/icon.svg" style="height:25px; width:auto; margin-right:12px;" />
+                <img src="assets/img/logo.svg" style="height:25px; width:auto;" />
+            </a>
+            <nav class="navbar" id="navbar">
+                <ul>
+                    <li><a href="index_v1.html">홈</a></li>
+                    <li><a href="service_v1.html">서비스 소개</a></li>
+                    <li><a href="forward_v1.html">순방향 길찾기</a></li>
+                    <li><a class="active" href="reverse_v1.html">역방향 길찾기</a></li>
+                    <li class="dropdown"><a href="#"><span>수단별 안내</span> </a>
+                        <ul>
+                            <li><a href="bus_v1.html">버스 안내</a></li>
+                            <li><a href="subway_v1.html">지하철 안내</a></li>
+                            <li><a href="train_v1.html">기차 안내</a></li>
+                            <li><a href="route-detail_v1.html">노선 상세</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="tips_v1.html">이용 팁</a></li>
+                    <li><a href="faq_v1.html">FAQ</a></li>
+                </ul>
+
+            </nav>
+        </div>
+    </header>
+    <main id="main">
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="index_v1.html">홈</a></li>
+                    <li>역방향 길찾기</li>
+                </ol>
+                <h2>역방향 길찾기</h2>
+            </div>
+        </section>
+        <section class="inner-page py-5">
+            <div class="container">
+                <!-- 입력 폼: 가로 배치 -->
+                <div class="card p-4 mb-4">
+                    <h5 class="fw-bold mb-1">도착 마감 시각 입력</h5>
+                    <p class="text-muted small mb-4">언제까지 도착해야 하는지 입력하면 몇 시에 출발해야 하는지 알려드립니다.</p>
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-3">
+                            <label class="form-label fw-semibold">출발지</label>
+                            <input class="form-control" id="r-dep" list="r-dep-list" placeholder="출발지 입력" type="text" />
+                            <datalist id="r-dep-list">
+                                <option value="안성중대">
+                                <option value="대학9길">
+                                <option value="안성터미널">
+                                <option value="안성회관">
+                                <option value="안성한경">
+                                <option value="안성대림">
+                                <option value="안성공도">
+                                <option value="안성풍림">
+                                <option value="내리하나로마트">
+                                <option value="스타필드.용이푸르지오2차앞">
+                                <option value="평택시외버스터미널">
+                                <option value="평택역">
+                                <option value="서울역">
+                                <option value="개화">
+                                <option value="김포공항">
+                                <option value="마곡나루">
+                                <option value="당산">
+                                <option value="여의도">
+                                <option value="노량진">
+                                <option value="동작">
+                                <option value="고속터미널">
+                                <option value="봉은사">
+                                <option value="종합운동장">
+                                <option value="올림픽공원">
+                                <option value="중앙보훈병원">
+                                <option value="서울고속버스터미널">
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                            </datalist>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label fw-semibold">도착지</label>
+                            <input class="form-control" id="r-arr" list="r-arr-list" placeholder="도착지 입력" type="text" />
+                            <datalist id="r-arr-list">
+                                <option value="김포공항">
+                                <option value="서울고속버스터미널">
+                                <option value="서울역">
+                                <option value="평택역">
+                                <option value="안성터미널">
+                                <option value="안성중대">
+                                <option value="대학9길">
+                                <option value="내리하나로마트">
+                                <option value="개화">
+                                <option value="마곡나루">
+                                <option value="당산">
+                                <option value="여의도">
+                                <option value="노량진">
+                                <option value="동작">
+                                <option value="고속터미널">
+                                <option value="봉은사">
+                                <option value="종합운동장">
+                                <option value="올림픽공원">
+                                <option value="중앙보훈병원">
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                                </option>
+                            </datalist>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label fw-semibold">도착 마감 시각</label>
+                            <input class="form-control" id="r-deadline" type="time" value="10:00" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label fw-semibold">여유 시간</label>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-success flex-fill buf-btn active" data-min="0"
+                                    onclick="selectBuf(this)">없음</button>
+                                <button class="btn btn-outline-success flex-fill buf-btn" data-min="10"
+                                    onclick="selectBuf(this)">10분</button>
+                                <button class="btn btn-outline-success flex-fill buf-btn" data-min="20"
+                                    onclick="selectBuf(this)">20분</button>
+                                <button class="btn btn-outline-success flex-fill buf-btn" data-min="30"
+                                    onclick="selectBuf(this)">30분</button>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-success w-100 py-2" onclick="calcReverse()">
+                                검색
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 결과 -->
+                <div id="r-result">
+                    <div class="card p-5 text-center text-muted">
+
+                        <p class="mt-3 mb-1 fw-semibold">마감 시각을 기준으로 추천 출발 시각을 알려드립니다</p>
+                        <p class="small">도착 마감 시각을 입력하면 늦지 않게 도착하는 출발 시각을 안내합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- ======= Footer ======= -->
+    <footer class="footer" id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-5 col-md-12 footer-info">
+                        <a class="logo d-flex align-items-center" href="index_v1.html">
+                            <img src="assets/img/icon.svg" style="height:25px; width:auto; margin-right:12px;" /><img
+                                src="assets/img/logo.svg" style="height:25px; width:auto;" />
+                        </a>
+                        <p>시간표 기반으로 대기시간과 최적 출발 시각을 안내하는 교통 정보 서비스</p>
+                        <div class="mt-2">
+                            <a class="me-2" href="https://www.letskorail.com" target="_blank">코레일</a>
+                            <a class="me-2" href="https://www.kobus.co.kr" target="_blank">고속버스</a>
+                            <a class="me-2" href="https://www.bustago.or.kr" target="_blank">시외버스</a>
+                            <a href="https://www.seoulmetro.co.kr" target="_blank">서울교통공사</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>바로가기</h4>
+                        <ul>
+                            <li> <a href="index_v1.html">홈</a></li>
+                            <li> <a href="service_v1.html">서비스 소개</a></li>
+                            <li> <a href="forward_v1.html">순방향 길찾기</a></li>
+                            <li> <a href="reverse_v1.html">역방향 길찾기</a></li>
+                            <li> <a href="faq_v1.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>서비스</h4>
+                        <ul>
+                            <li> <a href="bus_v1.html">버스 안내</a></li>
+                            <li> <a href="subway_v1.html">지하철 안내</a></li>
+                            <li> <a href="train_v1.html">기차 안내</a></li>
+                            <li> <a href="tips_v1.html">이용 팁</a></li>
+                            <li> <a href="#">노선 상세</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                        <h4>문의</h4>
+                        <p>표준웹테크놀로지 수업<br />기말 프로젝트<br /><br />
+                            <strong>학번:</strong> 20255274<br /><strong>이름:</strong> 강윤서<br />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">© Copyright <strong><span>다음차</span></strong>. All Rights Reserved</div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+    </footer>
+    <a class="back-to-top d-flex align-items-center justify-content-center" href="#"></a>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+
+        function timeToMin(t) {
+            const [h, m] = t.split(":").map(Number);
+            const base = h * 60 + m;
+            // 00~03시는 다음날 새벽임
+            return (h < 4) ? base + 1440 : base;
+        }
+        function minToTime(m) {
+            const t = ((m % 1440) + 1440) % 1440;
+            return String(Math.floor(t / 60)).padStart(2, "0") + ":" + String(t % 60).padStart(2, "0");
+        }
+        function selectBuf(el) {
+            document.querySelectorAll(".buf-btn").forEach(b => { b.classList.remove("btn-success", "active"); b.classList.add("btn-outline-success"); });
+            el.classList.remove("btn-outline-success"); el.classList.add("btn-success", "active");
+        }
+        function getBuf() {
+            const btn = document.querySelector(".buf-btn.active");
+            return btn ? parseInt(btn.dataset.min) : 0;
+        }
+        function setRevRoute(dep, arr, deadline, buf) {
+            document.getElementById("r-dep").value = dep;
+            document.getElementById("r-arr").value = arr;
+            document.getElementById("r-deadline").value = deadline;
+            document.querySelectorAll(".buf-btn").forEach(b => {
+                b.classList.remove("btn-success", "active"); b.classList.add("btn-outline-success");
+                if (parseInt(b.dataset.min) === buf) { b.classList.remove("btn-outline-success"); b.classList.add("btn-success", "active"); }
+            });
+            calcReverse();
+        }
+
+        // ===== 데이터, 순방향 길찾기와 같은 데이터 입력함 =====
+        const busAnseong = {
+            "안성터미널": { offset: 0 },
+            "안성회관": { offset: 10 },
+            "안성한경": { offset: 13 },
+            "안성중대": { offset: 17 },
+            "안성대림": { offset: 20 },
+            "안성공도": { offset: 23 },
+            "안성풍림": { offset: 25 },
+            "서울고속버스터미널": { offset: 70 }
+        };
+
+        // 안성터미널 출발 시간표
+        const busAnseongTimes = [
+            "06:10", "06:35", "07:00", "07:20", "07:30", "07:50", "08:30", "09:00", "09:40",
+            "10:30", "10:50", "11:30", "11:50", "12:30", "13:10", "13:40", "14:10", "14:30",
+            "15:10", "15:40", "16:10", "16:30", "16:50", "17:10", "17:50", "18:40", "19:10",
+            "19:40", "20:00", "20:20", "20:40", "21:40", "22:50"
+        ];
+
+        // 서울 > 안성 방향 시간표 (역방향)
+        const busSeoulTimes = [
+            "06:05", "06:35", "07:00", "07:40", "08:20", "09:00", "09:20", "10:00", "10:30",
+            "11:00", "11:35", "11:55", "12:30", "13:00", "13:30", "14:00", "14:30", "14:40",
+            "15:20", "16:10", "16:40", "17:00", "17:40", "18:00", "18:40", "19:10", "19:20",
+            "19:50", "20:00", "20:40", "21:30", "22:10", "23:10"
+        ];
+
+        // 서울 출발 > 각 안성 정류장 offset (위에서 기록한 각 정류장간 도착 차이 반영해서 수정)
+        const busSeoulToAnseongStops = {
+            "서울고속버스터미널": { offset: 0 },
+            "안성풍림": { offset: 45 },
+            "안성공도": { offset: 47 },
+            "안성대림": { offset: 50 },
+            "안성중대": { offset: 53 },
+            "안성한경": { offset: 57 },
+            "안성회관": { offset: 60 },
+            "안성터미널": { offset: 70 }
+        };
+
+        // 380번 버스 데이터 (대학9길 > 평택역 방향)
+        const bus380Stops = {
+            "대학9길": { offset: 0 },
+            "스타필드.용이푸르지오2차앞": { offset: 20 },
+            "평택시외버스터미널": { offset: 40 },
+            "평택역": { offset: 45 } // 터미널에서 도보 약 5분 잡음
+        };
+
+        // 대학9길 기준 출발 시간표 (평일)
+        const bus380Times = [
+            "05:51", "06:21", "06:58", "07:38", "08:10", "08:41", "09:02", "09:25", "09:55",
+            "10:35", "11:21", "11:41", "12:13", "12:53", "13:17", "13:51", "14:29", "15:06",
+            "15:33", "15:59", "16:32", "17:02", "17:34", "18:57", "19:18", "19:46", "20:14",
+            "20:45", "21:22", "21:53", "22:31"
+        ];
+
+        // 380번 버스 데이터 (내리하나로마트 > 돈도마을입구 방향)
+        const bus380ReverseTimes = [
+            "07:15", "07:50", "08:15", "09:00", "09:35", "10:02", "10:19", "10:53", "11:36",
+            "12:08", "12:41", "13:05", "13:39", "14:05", "14:38", "15:13", "15:55", "16:25",
+            "16:53", "17:23", "17:54", "18:24", "18:53", "19:27", "20:02", "20:35", "21:06",
+            "21:31", "22:08", "22:38", "23:18", "23:37"
+        ];
+
+        // 기차 시간표 (평택역 <-> 서울역)
+        // 코레일 사이트 참조후 직접 입력
+        const trainPyeongtaekToSeoul = [
+            { dep: "06:39", arr: "07:40", type: "무궁화" },
+            { dep: "07:15", arr: "08:19", type: "ITX-새마을" },
+            { dep: "07:39", arr: "08:47", type: "무궁화" },
+            { dep: "09:16", arr: "10:10", type: "무궁화" },
+            { dep: "09:34", arr: "10:34", type: "ITX-마음" },
+            { dep: "10:20", arr: "11:15", type: "무궁화" },
+            { dep: "11:17", arr: "12:11", type: "무궁화" },
+            { dep: "11:37", arr: "12:36", type: "무궁화" },
+            { dep: "12:17", arr: "13:14", type: "ITX-새마을" },
+            { dep: "12:30", arr: "13:22", type: "ITX-새마을" },
+            { dep: "12:55", arr: "13:50", type: "ITX-새마을" },
+            { dep: "14:26", arr: "15:24", type: "무궁화" },
+            { dep: "14:35", arr: "15:32", type: "ITX-마음" },
+            { dep: "16:10", arr: "17:01", type: "ITX-새마을" },
+            { dep: "17:13", arr: "18:10", type: "무궁화" },
+            { dep: "17:22", arr: "18:15", type: "ITX-마음" },
+            { dep: "18:26", arr: "19:25", type: "무궁화" },
+            { dep: "19:19", arr: "20:25", type: "ITX-새마을" },
+            { dep: "20:05", arr: "21:08", type: "무궁화" },
+            { dep: "20:56", arr: "21:47", type: "ITX-마음" },
+            { dep: "21:36", arr: "22:26", type: "ITX-마음" },
+            { dep: "22:52", arr: "23:53", type: "무궁화" }
+        ];
+
+        const trainSeoulToPyeongtaek = [
+            { dep: "05:54", arr: "06:50", type: "ITX-새마을" },
+            { dep: "06:13", arr: "07:04", type: "ITX-새마을" },
+            { dep: "06:37", arr: "07:36", type: "무궁화" },
+            { dep: "07:02", arr: "07:52", type: "ITX-마음" },
+            { dep: "07:16", arr: "08:14", type: "무궁화" },
+            { dep: "07:54", arr: "08:52", type: "무궁화" },
+            { dep: "08:49", arr: "09:40", type: "ITX-새마을" },
+            { dep: "09:08", arr: "09:58", type: "ITX-새마을" },
+            { dep: "10:23", arr: "11:13", type: "ITX-새마을" },
+            { dep: "12:02", arr: "12:53", type: "ITX-마음" },
+            { dep: "12:21", arr: "13:15", type: "ITX-마음" },
+            { dep: "13:04", arr: "13:59", type: "무궁화" },
+            { dep: "13:53", arr: "14:43", type: "ITX-새마을" },
+            { dep: "14:04", arr: "15:00", type: "무궁화" },
+            { dep: "14:49", arr: "15:41", type: "무궁화" },
+            { dep: "15:39", arr: "16:30", type: "ITX-마음" },
+            { dep: "16:54", arr: "17:49", type: "ITX-새마을" },
+            { dep: "17:02", arr: "17:57", type: "무궁화" },
+            { dep: "17:28", arr: "18:26", type: "ITX-마음" },
+            { dep: "17:54", arr: "18:54", type: "무궁화" },
+            { dep: "18:36", arr: "19:41", type: "무궁화" },
+            { dep: "19:31", arr: "20:32", type: "ITX-새마을" },
+            { dep: "20:09", arr: "21:12", type: "무궁화" },
+            { dep: "22:24", arr: "23:19", type: "무궁화" }
+        ];
+
+        // 공항철도 시간표 (서울역 > 김포공항)
+        // direct: true면 직통열차 / false면 일반열차로 분류
+        const arexPairs = [
+            { dep: "05:20", arr: "05:43", direct: false }, { dep: "05:40", arr: "06:02", direct: false }, { dep: "05:49", arr: "06:12", direct: false },
+            { dep: "06:00", arr: "06:16", direct: true }, { dep: "06:02", arr: "06:24", direct: false }, { dep: "06:11", arr: "06:34", direct: false },
+            { dep: "06:23", arr: "06:46", direct: false }, { dep: "06:34", arr: "06:56", direct: false }, { dep: "06:41", arr: "07:05", direct: false },
+            { dep: "06:45", arr: "07:01", direct: true }, { dep: "06:48", arr: "07:10", direct: false }, { dep: "06:54", arr: "07:16", direct: false },
+            { dep: "07:00", arr: "07:23", direct: false }, { dep: "07:05", arr: "07:28", direct: false }, { dep: "07:09", arr: "07:32", direct: false },
+            { dep: "07:16", arr: "07:40", direct: false }, { dep: "07:20", arr: "07:36", direct: true }, { dep: "07:22", arr: "07:45", direct: false },
+            { dep: "07:27", arr: "07:50", direct: false }, { dep: "07:32", arr: "07:55", direct: false }, { dep: "07:37", arr: "08:00", direct: false },
+            { dep: "07:43", arr: "08:05", direct: false }, { dep: "07:47", arr: "08:10", direct: false }, { dep: "07:51", arr: "08:14", direct: false },
+            { dep: "07:55", arr: "08:18", direct: false }, { dep: "08:02", arr: "08:26", direct: false }, { dep: "08:06", arr: "08:22", direct: true },
+            { dep: "08:08", arr: "08:30", direct: false }, { dep: "08:13", arr: "08:35", direct: false }, { dep: "08:16", arr: "08:39", direct: false },
+            { dep: "08:20", arr: "08:43", direct: false }, { dep: "08:23", arr: "08:46", direct: false }, { dep: "08:26", arr: "08:49", direct: false },
+            { dep: "08:30", arr: "08:52", direct: false }, { dep: "08:33", arr: "08:55", direct: false }, { dep: "08:36", arr: "08:59", direct: false },
+            { dep: "08:41", arr: "09:03", direct: false }, { dep: "08:44", arr: "09:07", direct: false }, { dep: "08:51", arr: "09:15", direct: false },
+            { dep: "08:55", arr: "09:11", direct: true }, { dep: "08:57", arr: "09:19", direct: false }, { dep: "09:01", arr: "09:23", direct: false },
+            { dep: "09:04", arr: "09:27", direct: false }, { dep: "09:09", arr: "09:32", direct: false }, { dep: "09:14", arr: "09:37", direct: false },
+            { dep: "09:18", arr: "09:41", direct: false }, { dep: "09:24", arr: "09:46", direct: false }, { dep: "09:30", arr: "09:53", direct: false },
+            { dep: "09:34", arr: "09:57", direct: false }, { dep: "09:41", arr: "10:05", direct: false }, { dep: "09:45", arr: "10:01", direct: true },
+            { dep: "09:47", arr: "10:09", direct: false }, { dep: "09:52", arr: "10:14", direct: false }, { dep: "09:58", arr: "10:21", direct: false },
+            { dep: "10:04", arr: "10:26", direct: false }, { dep: "10:09", arr: "10:31", direct: false }, { dep: "10:15", arr: "10:39", direct: false },
+            { dep: "10:20", arr: "10:36", direct: true }, { dep: "10:22", arr: "10:44", direct: false }, { dep: "10:27", arr: "10:50", direct: false },
+            { dep: "10:32", arr: "10:55", direct: false }, { dep: "10:37", arr: "11:00", direct: false }, { dep: "10:45", arr: "11:07", direct: false },
+            { dep: "10:52", arr: "11:16", direct: false }, { dep: "10:56", arr: "11:12", direct: true }, { dep: "10:58", arr: "11:20", direct: false },
+            { dep: "11:03", arr: "11:25", direct: false }, { dep: "11:08", arr: "11:31", direct: false }, { dep: "11:14", arr: "11:36", direct: false },
+            { dep: "11:20", arr: "11:43", direct: false }, { dep: "11:24", arr: "11:47", direct: false }, { dep: "11:31", arr: "11:55", direct: false },
+            { dep: "11:35", arr: "11:51", direct: true }, { dep: "11:38", arr: "12:01", direct: false }, { dep: "11:43", arr: "12:06", direct: false },
+            { dep: "11:49", arr: "12:11", direct: false }, { dep: "11:55", arr: "12:18", direct: false }, { dep: "11:59", arr: "12:22", direct: false },
+            { dep: "12:06", arr: "12:30", direct: false }, { dep: "12:10", arr: "12:26", direct: true }, { dep: "12:14", arr: "12:37", direct: false },
+            { dep: "12:20", arr: "12:42", direct: false }, { dep: "12:25", arr: "12:47", direct: false }, { dep: "12:31", arr: "12:54", direct: false },
+            { dep: "12:39", arr: "13:01", direct: false }, { dep: "12:45", arr: "13:09", direct: false }, { dep: "12:50", arr: "13:06", direct: true },
+            { dep: "12:52", arr: "13:14", direct: false }, { dep: "12:58", arr: "13:21", direct: false }, { dep: "13:04", arr: "13:27", direct: false },
+            { dep: "13:11", arr: "13:34", direct: false }, { dep: "13:19", arr: "13:42", direct: false }, { dep: "13:25", arr: "13:49", direct: false },
+            { dep: "13:30", arr: "13:46", direct: true }, { dep: "13:31", arr: "13:54", direct: false }, { dep: "13:38", arr: "14:01", direct: false },
+            { dep: "13:44", arr: "14:06", direct: false }, { dep: "13:50", arr: "14:12", direct: false }, { dep: "13:59", arr: "14:21", direct: false },
+            { dep: "14:06", arr: "14:30", direct: false }, { dep: "14:10", arr: "14:26", direct: true }, { dep: "14:15", arr: "14:37", direct: false },
+            { dep: "14:22", arr: "14:44", direct: false }, { dep: "14:28", arr: "14:51", direct: false }, { dep: "14:36", arr: "14:58", direct: false },
+            { dep: "14:45", arr: "15:09", direct: false }, { dep: "14:50", arr: "15:06", direct: true }, { dep: "14:53", arr: "15:15", direct: false },
+            { dep: "14:59", arr: "15:21", direct: false }, { dep: "15:04", arr: "15:27", direct: false }, { dep: "15:10", arr: "15:32", direct: false },
+            { dep: "15:16", arr: "15:38", direct: false }, { dep: "15:19", arr: "15:42", direct: false }, { dep: "15:26", arr: "15:50", direct: false },
+            { dep: "15:30", arr: "15:46", direct: true }, { dep: "15:36", arr: "15:58", direct: false }, { dep: "15:42", arr: "16:04", direct: false },
+            { dep: "15:48", arr: "16:10", direct: false }, { dep: "15:56", arr: "16:18", direct: false }, { dep: "15:59", arr: "16:22", direct: false },
+            { dep: "16:06", arr: "16:30", direct: false }, { dep: "16:10", arr: "16:26", direct: true }, { dep: "16:13", arr: "16:35", direct: false },
+            { dep: "16:19", arr: "16:41", direct: false }, { dep: "16:24", arr: "16:47", direct: false }, { dep: "16:29", arr: "16:52", direct: false },
+            { dep: "16:36", arr: "16:58", direct: false }, { dep: "16:39", arr: "17:02", direct: false }, { dep: "16:45", arr: "17:09", direct: false },
+            { dep: "16:50", arr: "17:06", direct: true }, { dep: "16:53", arr: "17:15", direct: false }, { dep: "16:58", arr: "17:21", direct: false },
+            { dep: "17:04", arr: "17:26", direct: false }, { dep: "17:10", arr: "17:33", direct: false }, { dep: "17:14", arr: "17:37", direct: false },
+            { dep: "17:21", arr: "17:45", direct: false }, { dep: "17:25", arr: "17:41", direct: true }, { dep: "17:27", arr: "17:50", direct: false },
+            { dep: "17:33", arr: "17:56", direct: false }, { dep: "17:39", arr: "18:02", direct: false }, { dep: "17:45", arr: "18:08", direct: false },
+            { dep: "17:49", arr: "18:11", direct: false }, { dep: "17:56", arr: "18:20", direct: false }, { dep: "18:00", arr: "18:16", direct: true },
+            { dep: "18:01", arr: "18:24", direct: false }, { dep: "18:05", arr: "18:28", direct: false }, { dep: "18:09", arr: "18:31", direct: false },
+            { dep: "18:13", arr: "18:35", direct: false }, { dep: "18:18", arr: "18:40", direct: false }, { dep: "18:22", arr: "18:44", direct: false },
+            { dep: "18:27", arr: "18:50", direct: false }, { dep: "18:32", arr: "18:54", direct: false }, { dep: "18:36", arr: "18:59", direct: false },
+            { dep: "18:41", arr: "19:03", direct: false }, { dep: "18:44", arr: "19:06", direct: false }, { dep: "18:51", arr: "19:15", direct: false },
+            { dep: "18:55", arr: "19:11", direct: true }, { dep: "18:57", arr: "19:19", direct: false }, { dep: "19:01", arr: "19:24", direct: false },
+            { dep: "19:06", arr: "19:28", direct: false }, { dep: "19:11", arr: "19:34", direct: false }, { dep: "19:17", arr: "19:39", direct: false },
+            { dep: "19:21", arr: "19:44", direct: false }, { dep: "19:25", arr: "19:48", direct: false }, { dep: "19:32", arr: "19:56", direct: false },
+            { dep: "19:36", arr: "19:52", direct: true }, { dep: "19:38", arr: "20:00", direct: false }, { dep: "19:42", arr: "20:05", direct: false },
+            { dep: "19:47", arr: "20:09", direct: false }, { dep: "19:51", arr: "20:14", direct: false }, { dep: "19:55", arr: "20:18", direct: false },
+            { dep: "19:59", arr: "20:22", direct: false }, { dep: "20:06", arr: "20:30", direct: false }, { dep: "20:10", arr: "20:26", direct: true },
+            { dep: "20:14", arr: "20:36", direct: false }, { dep: "20:20", arr: "20:42", direct: false }, { dep: "20:26", arr: "20:49", direct: false },
+            { dep: "20:34", arr: "20:57", direct: false }, { dep: "20:41", arr: "21:05", direct: false }, { dep: "20:45", arr: "21:01", direct: true },
+            { dep: "20:48", arr: "21:10", direct: false }, { dep: "20:53", arr: "21:15", direct: false }, { dep: "20:59", arr: "21:21", direct: false },
+            { dep: "21:06", arr: "21:28", direct: false }, { dep: "21:12", arr: "21:34", direct: false }, { dep: "21:19", arr: "21:42", direct: false },
+            { dep: "21:26", arr: "21:50", direct: false }, { dep: "21:30", arr: "21:46", direct: true }, { dep: "21:34", arr: "21:56", direct: false },
+            { dep: "21:40", arr: "22:03", direct: false }, { dep: "21:47", arr: "22:09", direct: false }, { dep: "21:54", arr: "22:16", direct: false },
+            { dep: "22:01", arr: "22:23", direct: false }, { dep: "22:09", arr: "22:32", direct: false }, { dep: "22:16", arr: "22:40", direct: false },
+            { dep: "22:20", arr: "22:36", direct: true }, { dep: "22:22", arr: "22:45", direct: false }, { dep: "22:32", arr: "22:54", direct: false },
+            { dep: "22:40", arr: "23:02", direct: false }, { dep: "22:49", arr: "23:12", direct: false }, { dep: "23:00", arr: "23:16", direct: true },
+            { dep: "23:01", arr: "23:24", direct: false }, { dep: "23:10", arr: "23:32", direct: false }, { dep: "23:17", arr: "23:40", direct: false },
+            { dep: "23:26", arr: "23:48", direct: false }, { dep: "23:40", arr: "00:02", direct: false }, { dep: "23:50", arr: "00:12", direct: false },
+            { dep: "00:00", arr: "00:22", direct: false }
+        ];
+
+        // 9호선 데이터 (데이터 수가 너무 많아서 급행 정차역만 집계
+
+        // 역 순서 (개화  > 중앙보훈병원)
+        const subway9Order = [
+            "개화", "김포공항", "마곡나루", "당산", "여의도", "노량진",
+            "동작", "고속터미널", "봉은사", "종합운동장", "올림픽공원", "중앙보훈병원"
+        ];
+
+        // 역 간 소요시간 (분) - 급행 기준
+        const subway9Express = {
+            "개화-김포공항": 3, "김포공항-마곡나루": 7, "마곡나루-당산": 12,
+            "당산-여의도": 4, "여의도-노량진": 4, "노량진-동작": 4,
+            "동작-고속터미널": 5, "고속터미널-봉은사": 5, "봉은사-종합운동장": 3,
+            "종합운동장-올림픽공원": 6, "올림픽공원-중앙보훈병원": 5
+        };
+
+        // 각 역 출발 시간표 (중앙보훈병원 방향)
+        // 서울교통공사 사이트 참조
+        const subway9Timetable = {
+            "개화": ["05:30", "05:42", "05:54", "06:06", "06:14", "06:24", "06:36", "06:42", "06:49", "06:55", "07:01", "07:08", "07:14", "07:20", "07:27", "07:33", "07:39", "07:46", "07:52", "07:58", "08:05", "08:11", "08:17", "08:24", "08:32", "08:42", "08:53", "09:04", "09:15", "09:26", "09:37", "09:48", "09:59", "10:10", "10:21", "10:32", "10:44", "10:56", "11:07", "11:18", "11:29", "11:40", "11:51", "12:02", "12:13", "12:24", "12:35", "12:46", "12:57", "13:09", "13:21", "13:32", "13:43", "13:54", "14:05", "14:16", "14:27", "14:38", "14:49", "15:00", "15:11", "15:22", "15:33", "15:41", "15:45", "15:57", "16:06", "16:19", "16:30", "16:43", "16:50", "16:57", "17:04", "17:10", "17:17", "17:24", "17:31", "17:38", "17:45", "17:52", "17:58", "18:05", "18:12", "18:19", "18:26", "18:33", "18:39", "18:46", "18:53", "19:02", "19:11", "19:20", "19:28", "19:38", "19:49", "20:00", "20:11", "20:22", "20:33", "20:44", "20:55", "21:06", "21:17", "21:28", "21:39", "21:50", "22:01", "22:12", "22:23", "22:34", "22:45", "22:56", "23:07", "23:18", "23:32", "23:40", "23:51", "00:04", "00:17", "00:30", "00:43"],
+            "김포공항": ["05:35", "05:47", "05:59", "06:11", "06:19", "06:29", "06:34", "06:41", "06:47", "06:54", "07:06", "07:13", "07:19", "07:25", "07:32", "07:38", "07:44", "07:51", "07:57", "08:11", "08:19", "08:31", "08:43", "08:51", "08:59", "09:08", "09:17", "09:26", "09:33", "09:40", "09:46", "09:53", "09:59", "10:05", "10:12", "10:18", "10:24", "10:31", "10:37", "10:43", "10:50", "10:56", "11:02", "11:13", "11:19", "11:26", "11:34", "11:42", "11:52", "12:03", "12:14", "12:25", "12:36", "12:47", "12:59", "13:11", "13:22", "13:33", "13:44", "13:55", "14:06", "14:17", "14:28", "14:39", "14:50", "15:01", "15:12", "15:23", "15:34", "15:45", "15:58", "16:11", "16:22", "16:33", "16:44", "16:55", "17:07", "17:17", "17:28", "17:39", "17:50", "18:01", "18:12", "18:23", "18:34", "18:45", "18:53", "19:01", "19:09", "19:17", "19:26", "19:33", "19:40", "19:47", "19:54", "20:01", "20:08", "20:14", "20:21", "20:28", "20:35", "20:42", "20:49", "20:55", "21:02", "21:09", "21:16", "21:23", "21:30", "21:37", "21:44", "21:57", "22:05", "22:16", "22:26", "22:32", "22:48", "22:59", "23:10", "23:21", "23:32", "23:43", "23:54", "00:05", "00:16", "00:27", "00:38", "00:49"],
+            "마곡나루": ["05:30", "05:41", "05:53", "06:05", "06:17", "06:25", "06:35", "06:40", "06:47", "06:53", "07:00", "07:06", "07:12", "07:19", "07:25", "07:31", "07:38", "07:44", "07:50", "07:57", "08:03", "08:09", "08:16", "08:22", "08:28", "08:35", "08:43", "08:53", "09:04", "09:15", "09:26", "09:37", "09:48", "09:59", "10:10", "10:21", "10:32", "10:43", "10:55", "11:07", "11:18", "11:29", "11:40", "11:51", "12:02", "12:13", "12:24", "12:35", "12:46", "12:57", "13:08", "13:20", "13:32", "13:43", "13:54", "14:05", "14:16", "14:27", "14:38", "14:49", "15:00", "15:11", "15:22", "15:33", "15:44", "15:52", "15:56", "15:58", "16:08", "16:18", "16:23", "16:30", "16:41", "16:47", "16:50", "16:54", "16:57", "17:01", "17:08", "17:15", "17:18", "17:21", "17:24", "17:28", "17:31", "17:38", "17:42", "17:45", "17:49", "17:52", "18:03", "18:09", "18:16", "18:19", "18:23", "18:26", "18:30", "18:33", "18:37", "18:40", "18:44", "18:46", "18:50", "18:53", "18:57", "19:00", "19:07", "19:13", "19:22", "19:25", "19:31", "19:34", "19:40", "19:43", "19:49", "19:52", "20:00", "20:11", "20:22", "20:33", "20:44", "20:55", "21:06", "21:17", "21:28", "21:39", "21:50", "22:01", "22:12", "22:23", "22:34", "22:45", "22:56", "23:07", "23:18", "23:29", "23:40", "23:51", "00:02", "00:15", "00:28", "00:41", "00:54"],
+            "당산": ["05:40", "05:53", "06:01", "06:13", "06:25", "06:37", "06:45", "06:53", "07:01", "07:13", "07:22", "07:28", "07:35", "07:41", "07:47", "07:54", "08:00", "08:06", "08:13", "08:19", "08:25", "08:32", "08:38", "08:44", "08:51", "08:58", "09:06", "09:15", "09:26", "09:37", "09:48", "09:59", "10:10", "10:21", "10:32", "10:43", "10:54", "11:06", "11:18", "11:29", "11:40", "11:51", "12:02", "12:13", "12:24", "12:35", "12:46", "12:57", "13:08", "13:19", "13:30", "13:42", "13:54", "14:05", "14:16", "14:27", "14:38", "14:49", "15:00", "15:11", "15:22", "15:33", "15:44", "15:55", "16:06", "16:15", "16:30", "16:41", "16:44", "16:54", "17:03", "17:10", "17:17", "17:24", "17:31", "17:37", "17:44", "17:51", "17:58", "18:05", "18:12", "18:18", "18:25", "18:32", "18:39", "18:46", "18:53", "18:59", "19:06", "19:13", "19:20", "19:27", "19:36", "19:45", "19:54", "20:00", "20:11", "20:22", "20:33", "20:44", "20:55", "21:06", "21:17", "21:28", "21:39", "21:50", "22:01", "22:12", "22:23", "22:34", "22:45", "22:56", "23:07", "23:18", "23:29", "23:40", "23:51", "00:09", "00:20", "00:33", "00:46"],
+            "여의도": ["05:30", "05:42", "05:55", "06:03", "06:15", "06:27", "06:39", "06:48", "06:55", "07:06", "07:12", "07:18", "07:24", "07:30", "07:37", "07:43", "07:49", "07:56", "08:02", "08:13", "08:25", "08:32", "08:44", "08:51", "08:58", "09:00", "09:09", "09:17", "09:28", "09:33", "09:39", "09:44", "09:50", "09:55", "10:01", "10:06", "10:12", "10:17", "10:23", "10:28", "10:34", "10:39", "10:45", "10:50", "10:56", "11:01", "11:13", "11:20", "11:25", "11:31", "11:36", "11:42", "11:47", "11:53", "11:58", "12:04", "12:09", "12:15", "12:20", "12:26", "12:31", "12:37", "12:42", "12:48", "12:53", "12:59", "13:04", "13:10", "13:15", "13:21", "13:26", "13:32", "13:38", "13:44", "13:50", "13:56", "14:01", "14:07", "14:12", "14:18", "14:23", "14:29", "14:34", "14:40", "14:45", "14:51", "14:56", "15:02", "15:07", "15:13", "15:18", "15:24", "15:29", "15:35", "15:40", "15:46", "15:51", "15:57", "16:02", "16:08", "16:14", "16:20", "16:26", "16:32", "16:37", "16:43", "16:52", "16:57", "17:05", "17:12", "17:18", "17:23", "17:30", "17:41", "17:46", "17:48", "17:53", "17:55", "18:00", "18:07", "18:14", "18:21", "18:27", "18:34", "18:36", "18:41", "18:47", "18:49", "18:54", "18:56", "19:02", "19:08", "19:15", "19:22", "19:29", "19:38", "19:40", "19:47", "19:49", "20:05", "20:14", "20:25", "20:29", "20:36", "20:40", "20:47", "20:51", "20:58", "21:02", "21:09", "21:13", "21:20", "21:24", "21:31", "21:35", "21:42", "21:46", "21:53", "21:57", "22:04", "22:08", "22:15", "22:19", "22:26", "22:30", "22:37", "22:41", "22:48", "22:52", "22:59", "23:03", "23:10", "23:14", "23:21", "23:25", "23:32", "23:36", "23:43", "23:47", "23:54", "00:03", "00:14", "00:25", "00:37", "00:50"],
+            "노량진": ["05:34", "05:47", "05:59", "06:10", "06:22", "06:34", "06:46", "06:55", "07:01", "07:10", "07:16", "07:22", "07:28", "07:35", "07:41", "07:47", "07:54", "08:00", "08:06", "08:13", "08:19", "08:25", "08:32", "08:38", "08:44", "08:51", "08:57", "09:06", "09:13", "09:19", "09:30", "09:41", "09:52", "10:03", "10:14", "10:25", "10:36", "10:47", "10:58", "11:10", "11:22", "11:33", "11:44", "11:55", "12:06", "12:17", "12:28", "12:39", "12:50", "13:01", "13:12", "13:23", "13:34", "13:46", "13:58", "14:09", "14:20", "14:31", "14:42", "14:54", "15:00", "15:07", "15:18", "15:26", "15:37", "15:48", "15:59", "16:10", "16:19", "16:23", "16:34", "16:45", "16:53", "17:01", "17:09", "17:16", "17:23", "17:30", "17:37", "17:44", "17:51", "17:57", "18:04", "18:11", "18:18", "18:25", "18:32", "18:38", "18:45", "18:52", "18:59", "19:06", "19:13", "19:19", "19:26", "19:34", "19:43", "19:51", "20:00", "20:09", "20:16", "20:27", "20:38", "20:49", "21:00", "21:11", "21:22", "21:33", "21:44", "22:00", "22:11", "22:19", "22:30", "22:41", "22:52", "23:01", "23:12", "23:23", "23:34", "23:45", "00:07", "00:18", "00:29", "00:42", "00:55"],
+            "동작": ["05:30", "05:43", "05:57", "06:09", "06:19", "06:31", "06:43", "06:55", "07:02", "07:10", "07:19", "07:25", "07:31", "07:38", "07:44", "07:50", "07:57", "08:00", "08:09", "08:16", "08:22", "08:28", "08:35", "08:41", "08:47", "08:54", "09:00", "09:06", "09:13", "09:22", "09:31", "09:42", "09:53", "10:04", "10:15", "10:26", "10:37", "10:48", "10:59", "11:10", "11:22", "11:34", "11:45", "11:56", "12:06", "12:17", "12:28", "12:39", "12:50", "13:01", "13:12", "13:23", "13:35", "13:46", "13:57", "14:09", "14:20", "14:31", "14:42", "14:53", "15:04", "15:15", "15:26", "15:37", "15:48", "15:59", "16:00", "16:10", "16:22", "16:33", "16:45", "16:56", "17:00", "17:10", "17:19", "17:29", "17:36", "17:39", "17:42", "17:46", "17:49", "17:53", "17:56", "18:00", "18:07", "18:10", "18:13", "18:17", "18:23", "18:27", "18:30", "18:34", "18:37", "18:41", "18:44", "18:48", "18:54", "18:58", "19:01", "19:08", "19:11", "19:15", "19:18", "19:25", "19:29", "19:35", "19:43", "19:52", "19:56", "20:01", "20:10", "20:14", "20:19", "20:26", "20:37", "20:48", "20:59", "21:10", "21:21", "21:32", "21:43", "21:54", "22:05", "22:16", "22:27", "22:38", "22:49", "23:00", "23:11", "23:22", "23:33", "23:44", "23:55", "00:05", "00:13", "00:24", "00:36", "00:48"],
+            "고속터미널": ["05:36", "05:46", "05:50", "06:03", "06:15", "06:25", "06:37", "06:49", "07:01", "07:08", "07:16", "07:25", "07:31", "07:37", "07:44", "07:50", "07:56", "07:58", "08:03", "08:09", "08:22", "08:28", "08:34", "08:41", "08:47", "08:53", "08:55", "09:00", "09:06", "09:12", "09:20", "09:28", "09:33", "09:44", "09:55", "10:06", "10:17", "10:28", "10:39", "10:50", "11:01", "11:12", "11:24", "11:36", "11:47", "11:58", "12:09", "12:20", "12:31", "12:42", "12:53", "13:04", "13:15", "13:26", "13:37", "13:41", "13:49", "14:01", "14:12", "14:23", "14:34", "14:45", "14:56", "15:08", "15:18", "15:29", "15:40", "15:51", "16:02", "16:13", "16:25", "16:37", "16:48", "16:59", "17:10", "17:18", "17:26", "17:33", "17:38", "17:45", "17:47", "17:52", "17:53", "17:59", "18:00", "18:07", "18:14", "18:21", "18:28", "18:34", "18:41", "18:48", "18:55", "19:02", "19:09", "19:15", "19:22", "19:29", "19:36", "19:43", "19:51", "20:00", "20:09", "20:18", "20:25", "20:41", "20:52", "21:03", "21:14", "21:25", "21:36", "21:47", "21:58", "22:09", "22:20", "22:31", "22:42", "22:53", "23:04", "23:15", "23:26", "23:37", "23:48", "23:59", "00:02", "00:11", "00:19", "00:30", "00:42", "00:54"],
+            "봉은사": ["05:38", "05:50", "06:04", "06:16", "06:27", "06:42", "06:50", "06:54", "07:02", "07:06", "07:14", "07:23", "07:31", "07:36", "07:40", "07:46", "07:52", "07:55", "07:58", "08:02", "08:05", "08:11", "08:17", "08:21", "08:24", "08:27", "08:30", "08:33", "08:36", "08:40", "08:43", "08:46", "08:49", "08:52", "08:55", "08:59", "09:02", "09:05", "09:08", "09:11", "09:18", "09:24", "09:28", "09:41", "09:53", "10:04", "10:15", "10:26", "10:37", "10:48", "10:59", "11:10", "11:21", "11:33", "11:45", "11:56", "12:07", "12:18", "12:29", "12:40", "12:51", "13:02", "13:13", "13:24", "13:35", "13:46", "13:57", "14:08", "14:21", "14:32", "14:43", "14:54", "15:05", "15:17", "15:27", "15:38", "15:49", "16:00", "16:11", "16:22", "16:33", "16:44", "16:55", "17:06", "17:19", "17:27", "17:35", "17:42", "17:46", "17:49", "17:53", "17:56", "18:00", "18:03", "18:07", "18:14", "18:20", "18:23", "18:27", "18:30", "18:34", "18:37", "18:41", "18:44", "18:48", "18:51", "18:55", "18:58", "19:01", "19:08", "19:15", "19:22", "19:29", "19:36", "19:42", "19:45", "19:49", "19:52", "19:56", "20:00", "20:09", "20:18", "20:27", "20:36", "20:45", "20:56", "21:07", "21:18", "21:29", "21:40", "21:51", "22:02", "22:13", "22:24", "22:35", "22:46", "22:57", "23:08", "23:19", "23:30", "23:41", "23:52", "00:03", "00:14", "00:23", "00:30", "00:42", "00:54"],
+            "종합운동장": ["05:40", "05:52", "06:06", "06:19", "06:23", "06:30", "06:34", "06:40", "06:45", "06:52", "06:57", "07:04", "07:09", "07:16", "07:21", "07:26", "07:30", "07:34", "07:38", "07:42", "07:46", "07:52", "07:55", "07:58", "08:01", "08:04", "08:07", "08:11", "08:14", "08:17", "08:20", "08:23", "08:26", "08:30", "08:33", "08:36", "08:39", "08:42", "08:45", "08:49", "08:52", "08:55", "08:58", "09:01", "09:04", "09:08", "09:11", "09:14", "09:17", "09:23", "09:33", "09:37", "09:45", "09:56", "10:07", "10:18", "10:29", "10:40", "10:51", "11:02", "11:13", "11:25", "11:36", "11:47", "11:58", "12:09", "12:20", "12:31", "12:42", "12:53", "13:04", "13:15", "13:27", "13:38", "13:49", "14:00", "14:12", "14:23", "14:34", "14:45", "14:57", "15:08", "15:19", "15:30", "15:41", "15:52", "16:03", "16:14", "16:25", "16:36", "16:48", "16:55", "17:00", "17:11", "17:21", "17:25", "17:29", "17:33", "17:38", "17:42", "17:45", "17:49", "17:52", "17:56", "17:59", "18:02", "18:06", "18:09", "18:13", "18:16", "18:19", "18:22", "18:26", "18:29", "18:33", "18:37", "18:40", "18:43", "18:47", "18:50", "18:54", "18:57", "19:00", "19:07", "19:14", "19:21", "19:28", "19:35", "19:41", "19:45", "19:48", "19:52", "19:55", "19:59", "20:03", "20:11", "20:20", "20:29", "20:33", "20:40", "20:52", "21:03", "21:14", "21:25", "21:36", "21:47", "21:58", "22:09", "22:20", "22:31", "22:42", "22:53", "23:04", "23:15", "23:26", "23:37", "23:48", "23:59", "00:06", "00:17", "00:26", "00:33", "00:45", "00:57"],
+            "올림픽공원": ["05:40", "05:53", "06:08", "06:22", "06:32", "06:35", "06:42", "06:45", "06:53", "06:56", "07:05", "07:08", "07:17", "07:20", "07:29", "07:32", "07:38", "07:41", "07:46", "07:49", "07:55", "07:58", "08:02", "08:03", "08:07", "08:10", "08:13", "08:16", "08:20", "08:22", "08:26", "08:29", "08:32", "08:35", "08:39", "08:41", "08:45", "08:48", "08:51", "08:54", "08:58", "09:00", "09:04", "09:07", "09:10", "09:13", "09:17", "09:23", "09:35", "09:41", "09:53", "10:05", "10:18", "10:29", "10:40", "10:51", "11:02", "11:13", "11:24", "11:35", "11:47", "11:59", "12:10", "12:21", "12:32", "12:43", "12:54", "13:05", "13:16", "13:27", "13:38", "13:49", "14:00", "14:11", "14:23", "14:35", "14:46", "14:57", "15:08", "15:19", "15:30", "15:41", "15:52", "16:03", "16:14", "16:25", "16:36", "16:44", "16:47", "16:56", "16:59", "17:05", "17:08", "17:17", "17:22", "17:30", "17:33", "17:37", "17:40", "17:46", "17:49", "17:54", "17:57", "18:01", "18:04", "18:08", "18:11", "18:15", "18:18", "18:22", "18:24", "18:28", "18:31", "18:35", "18:38", "18:42", "18:45", "18:49", "18:52", "18:56", "18:59", "19:03", "19:05", "19:09", "19:12", "19:16", "19:19", "19:23", "19:30", "19:37", "19:44", "19:46", "19:50", "19:53", "19:57", "20:00", "20:04", "20:07", "20:11", "20:14", "20:22", "20:31", "20:37", "20:40", "20:44", "20:47", "20:50", "20:55", "21:00", "21:11", "21:22", "21:33", "21:44", "21:55", "22:06", "22:17", "22:28", "22:39", "22:50", "23:01", "23:12", "23:23", "23:34", "23:45", "23:56", "23:59", "00:07", "00:10", "00:18", "00:21", "00:30", "00:39", "00:47", "00:58"],
+            "중앙보훈병원": [] // 종점
+        };
+
+        // ===== 역산 함수 =====
+        // mustArriveBy: 마감 시간에 딱 맞지 않으면 아예 결과를 출력하지 않는 오류 발생>이전 도착 중 가장 마감에 가까운 차편을 반환하도록 재설정
+
+        function revBusAnseong(dep, arr, mustArriveBy) {
+            const depOff = busAnseong[dep], arrOff = busAnseong[arr];
+            if (depOff === undefined || arrOff === undefined || depOff >= arrOff) return null;
+            const all = busAnseongTimes.map(t => { const b = timeToMin(t); return { myDep: b + depOff, myArr: b + arrOff }; });
+            const valid = all.filter(r => r.myArr <= mustArriveBy);
+            if (!valid.length) return null;
+            const best = valid[valid.length - 1];
+            return { mode: "고속버스", line: "안성↔서울 고속버스", dep: minToTime(best.myDep), arr: minToTime(best.myArr), duration: best.myArr - best.myDep, depMin: best.myDep, arrMin: best.myArr };
+        }
+
+        function revBus380(dep, arr, mustArriveBy) {
+            const dOff = bus380Offsets[dep], aOff = bus380Offsets[arr];
+            if (dOff === undefined || aOff === undefined || dOff >= aOff) return null;
+            const all = bus380Times.map(t => { const b = timeToMin(t); return { myDep: b + dOff, myArr: b + aOff }; });
+            const valid = all.filter(r => r.myArr <= mustArriveBy);
+            if (!valid.length) return null;
+            const best = valid[valid.length - 1];
+            return { mode: "버스", line: "380번 버스", dep: minToTime(best.myDep), arr: minToTime(best.myArr), duration: best.myArr - best.myDep, depMin: best.myDep, arrMin: best.myArr };
+        }
+
+        function revTrain(pairs, mustArriveBy) {
+            const valid = pairs.filter(p => timeToMin(p.arr) <= mustArriveBy);
+            if (!valid.length) return null;
+            const best = valid[valid.length - 1];
+            return { mode: "기차", line: best.type, dep: best.dep, arr: best.arr, duration: timeToMin(best.arr) - timeToMin(best.dep), depMin: timeToMin(best.dep), arrMin: timeToMin(best.arr) };
+        }
+
+        function revArex(mustArriveBy) {
+            const valid = arexPairs.filter(p => timeToMin(p.arr) <= mustArriveBy);
+            if (!valid.length) return null;
+            const best = valid[valid.length - 1];
+            return { mode: "공항철도", line: best.direct ? "직통" : "일반", dep: best.dep, arr: best.arr, duration: timeToMin(best.arr) - timeToMin(best.dep), depMin: timeToMin(best.dep), arrMin: timeToMin(best.arr) };
+        }
+
+        function revSubway9(dep, arr, mustArriveBy) {
+            const dIdx = subway9Order.indexOf(dep), aIdx = subway9Order.indexOf(arr);
+            if (dIdx === -1 || aIdx === -1 || dIdx === aIdx) return null;
+            let duration = 0;
+            if (dIdx < aIdx) { for (let i = dIdx; i < aIdx; i++) duration += subway9Express[subway9Order[i] + "-" + subway9Order[i + 1]] || 2; }
+            else { for (let i = dIdx; i > aIdx; i--) duration += subway9Express[subway9Order[i - 1] + "-" + subway9Order[i]] || 2; }
+            const times = subway9Timetable[dep] || [];
+            const valid = times.filter(t => timeToMin(t) + duration <= mustArriveBy);
+            if (!valid.length) return null;
+            const best = valid[valid.length - 1];
+            return { mode: "지하철", line: "9호선", dep: best, arr: minToTime(timeToMin(best) + duration), duration, depMin: timeToMin(best), arrMin: timeToMin(best) + duration };
+        }
+
+        function detectRoute(dep, arr) {
+            const busAnseongStops = Object.keys(busAnseong);
+            const busSeoulStops = Object.keys(busSeoulToAnseong);
+            const subwayStops = subway9Order;
+            if ((dep === "대학9길" || dep === "안성중대") && arr === "김포공항") return "route_380_gimpo";
+            if (busAnseongStops.includes(dep) && arr === "김포공항") return "route_anseong_gimpo";
+            if (busAnseongStops.includes(dep) && busAnseongStops.includes(arr)) return "bus_anseong";
+            if (busSeoulStops.includes(dep) && busSeoulStops.includes(arr)) return "bus_seoul_anseong";
+            if (["대학9길", "스타필드.용이푸르지오2차앞", "평택시외버스터미널", "평택역"].includes(dep) &&
+                ["스타필드.용이푸르지오2차앞", "평택시외버스터미널", "평택역"].includes(arr)) return "bus380";
+            if (dep === "평택역" && arr === "서울역") return "train_to_seoul";
+            if (dep === "서울역" && arr === "평택역") return "train_to_pyeongtaek";
+            if (dep === "서울역" && arr === "김포공항") return "arex";
+            if (subwayStops.includes(dep) && subwayStops.includes(arr)) return "subway9";
+            if (subwayStops.includes(dep) && arr === "김포공항") return "subway9_arex";
+            return null;
+        }
+
+        // ===== 메인 =====
+        function calcReverse() {
+            const dep = document.getElementById("r-dep").value.trim();
+            const arr = document.getElementById("r-arr").value.trim();
+            const deadline = document.getElementById("r-deadline").value;
+            const buf = getBuf();
+            const errEl = document.getElementById("r-error");
+
+            if (!dep || !arr || !deadline) { errEl.textContent = "출발지, 도착지, 마감 시각을 모두 입력해주세요."; errEl.classList.remove("d-none"); return; }
+            errEl.classList.add("d-none");
+
+            const deadlineMin = timeToMin(deadline);
+            const mustArriveBy = deadlineMin - buf;
+            const routeType = detectRoute(dep, arr);
+
+            if (!routeType) {
+                showRErr(`"${dep}" → "${arr}" 구간 데이터가 없습니다.`); return;
+            }
+
+            let segments = [];
+            const NO_ROUTE = "해당 마감 시각 이전에 도착하는 차량이 없습니다.";
+
+            if (routeType === "route_380_gimpo") {
+                const t2 = 10, t1 = 5;
+                const seg3 = revArex(mustArriveBy);
+                if (!seg3) { showRErr(NO_ROUTE); return; }
+                const seg2 = revTrain(trainPyeongtaekToSeoul, seg3.depMin - t2);
+                if (!seg2) { showRErr(NO_ROUTE); return; }
+                const depStop = dep === "안성중대" ? "대학9길" : dep;
+                const seg1 = revBus380(depStop, "평택역", seg2.depMin - t1);
+                if (!seg1) { showRErr(NO_ROUTE); return; }
+                segments = [
+                    { ...seg1, label: "1구간" },
+                    { type: "transfer", desc: "평택역 도착 후 기차 환승", time: t1 },
+                    { ...seg2, label: "2구간" },
+                    { type: "transfer", desc: "서울역 도착 후 공항철도 환승", time: t2 },
+                    { ...seg3, label: "3구간" }
+                ];
+            }
+            else if (routeType === "route_anseong_gimpo") {
+                const t1 = 10;
+                const seg2 = revSubway9("고속터미널", "김포공항", mustArriveBy);
+                if (!seg2) { showRErr(NO_ROUTE); return; }
+                const seg1 = revBusAnseong(dep, "서울고속버스터미널", seg2.depMin - t1);
+                if (!seg1) { showRErr(NO_ROUTE); return; }
+                segments = [
+                    { ...seg1, label: "1구간" },
+                    { type: "transfer", desc: "서울고속버스터미널 → 9호선 고속터미널역 환승", time: t1 },
+                    { ...seg2, label: "2구간" }
+                ];
+            }
+            else if (routeType === "bus_anseong") { const r = revBusAnseong(dep, arr, mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r]; }
+            else if (routeType === "bus380") { const r = revBus380(dep, arr, mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r]; }
+            else if (routeType === "train_to_seoul") { const r = revTrain(trainPyeongtaekToSeoul, mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r]; }
+            else if (routeType === "train_to_pyeongtaek") { const r = revTrain(trainSeoulToPyeongtaek, mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r]; }
+            else if (routeType === "arex") { const r = revArex(mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r]; }
+            else if (routeType === "subway9" || routeType === "subway9_arex") {
+                const toArr = routeType === "subway9_arex" ? "김포공항" : arr;
+                const r = revSubway9(dep, toArr, mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r];
+            }
+
+            renderResult(dep, arr, deadline, buf, segments, deadlineMin);
+        }
+
+        function renderResult(dep, arr, deadline, buf, segments, deadlineMin) {
+            const modeIcon = { "고속버스": "bi-bus-front", "버스": "bi-car-front", "기차": "bi-train-front", "공항철도": "bi-airplane", "지하철": "bi-train-lightrail-front" };
+            const modeColor = { "고속버스": "#00bf63", "버스": "#00a855", "기차": "#e67e22", "공항철도": "#3498db", "지하철": "#9b59b6" };
+
+            const transportSegs = segments.filter(s => !s.type);
+            const transferSegs = segments.filter(s => s.type === "transfer");
+            const totalDuration = transportSegs.reduce((a, s) => a + (s.duration || 0), 0) + transferSegs.reduce((a, s) => a + (s.time || 0), 0);
+            const recDep = transportSegs[0]?.dep || "-";
+            const lastArr = transportSegs[transportSegs.length - 1]?.arr || "-";
+            const lastArrMin = transportSegs[transportSegs.length - 1]?.arrMin || 0;
+            const bufLabel = buf > 0 ? ` · 여유 ${buf}분 포함` : "";
+            const diffMin = deadlineMin - lastArrMin;
+            const diffLabel = `<span class="fw-semibold" style="color:#00bf63;">마감 ${diffMin}분 전 도착</span>`;
+
+            let html = `<div class="card border-0 shadow-sm p-4">
+    <div class="mb-3">
+      <div class="text-muted small">${dep} → ${arr} · 마감 ${deadline}${bufLabel}</div>
+      <div style="font-size:1.8rem;font-weight:700;color:#00bf63;">${recDep} 출발 권장</div>
+      <div class="small text-muted">${recDep} 출발 → ${lastArr} 도착 · 총 ${totalDuration}분 · ${diffLabel}</div>
+    </div>
+    <div class="p-3 rounded mb-3" style="background:#f2fbf6;border-left:3px solid #00bf63;">
+      <div class="small fw-semibold mb-1" style="color:#1a3a2a;">⏱ 역산 흐름</div>
+      <div class="small" style="color:#2d6a4f;">
+        마감 ${deadline}${buf > 0 ? ` → 여유 ${buf}분 제외 → 실질 마감 ${minToTime(timeToMin(deadline) - buf)}` : ""}
+        → <strong>${recDep} 출발</strong> → ${lastArr} 도착
+      </div>
+    </div>
+    <hr class="my-3"><div>`;
+
+            segments.forEach(seg => {
+                if (seg.type === "transfer") {
+                    html += `<div class="d-flex align-items-center gap-2 my-2 text-muted small">
+        <i class="bi bi-arrow-down-circle" style="color:#ccc;font-size:18px;"></i>
+        <span>${seg.desc} <span class="badge bg-light text-dark ms-1">${seg.time}분</span></span>
+      </div>`;
+                } else {
+                    const icon = modeIcon[seg.mode] || "bi-geo-alt";
+                    const color = modeColor[seg.mode] || "#00bf63";
+                    html += `<div class="card mb-2 border-0" style="background:#f8f9fa;">
+        <div class="card-body py-2 px-3">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <i class="bi ${icon}" style="color:${color};font-size:18px;"></i>
+            <span class="fw-semibold">${seg.mode}</span>
+            <span class="badge rounded-pill" style="background:${color}20;color:${color};">${seg.line}</span>
+            ${seg.label ? `<span class="text-muted small ms-auto">${seg.label}</span>` : ""}
+          </div>
+          <div class="d-flex gap-4 small">
+            <div><span class="text-muted">출발</span> <strong>${seg.dep}</strong></div>
+            <div><span class="text-muted">도착</span> <strong>${seg.arr}</strong></div>
+            <div><span class="text-muted">소요</span> <strong>${seg.duration}분</strong></div>
+          </div>
+        </div>
+      </div>`;
+                }
+            });
+
+            html += `</div><div class="mt-3 text-muted" style="font-size:12px;">※ 시간표 기반 가상 데이터입니다. 실제 운행 상황과 다를 수 있습니다.</div></div>`;
+            document.getElementById("r-result").innerHTML = html;
+        }
+
+        function showRErr(msg) {
+            document.getElementById("r-result").innerHTML = `
+    <div class="card border-0 shadow-sm p-4 text-center text-muted">
+      <i class="bi bi-exclamation-circle" style="font-size:40px;color:#e74c3c;"></i>
+      <p class="mt-3">${msg}</p>
+    </div>`;
+        }
+    </script>
+</body>
+
+</html>

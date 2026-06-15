@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>버스 안내 — 다음차</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- =======================================================
+  * Template Name: FlexStart
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+    <header class="header fixed-top" id="header">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <a class="logo d-flex align-items-center" href="index_v1.html">
+                <img src="assets/img/icon.svg" style="height:30px; width:auto; margin-right:14px;" />
+                <img src="assets/img/logo.svg" style="height:30px; width:auto;" />
+            </a>
+            <nav class="navbar" id="navbar">
+                <ul>
+                    <li><a href="index_v1.html">홈</a></li>
+                    <li><a href="service_v1.html">서비스 소개</a></li>
+                    <li><a href="forward_v1.html">순방향 길찾기</a></li>
+                    <li><a href="reverse_v1.html">역방향 길찾기</a></li>
+                    <li class="dropdown"><a class="active" href="#"><span>수단별 안내</span> </a>
+                        <ul>
+                            <li><a class="active" href="bus_v1.html">버스 안내</a></li>
+                            <li><a href="subway_v1.html">지하철 안내</a></li>
+                            <li><a href="train_v1.html">기차 안내</a></li>
+                            <li><a href="route-detail_v1.html">노선 상세</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="tips_v1.html">이용 팁</a></li>
+                    <li><a href="faq_v1.html">FAQ</a></li>
+                </ul>
+
+            </nav>
+        </div>
+    </header>
+    <main id="main">
+        <section class="breadcrumbs">
+            <div class="container">
+                <ol>
+                    <li><a href="index_v1.html">홈</a></li>
+                    <li>수단별 안내</li>
+                    <li>버스 안내</li>
+                </ol>
+                <h2>버스 안내</h2>
+            </div>
+        </section>
+        <section class="inner-page py-5">
+            <div class="container">
+                <!--고속버스 / 380번 버스 탭 -->
+                <ul class="nav nav-pills mb-4 gap-2" id="busTab">
+                    <li class="nav-item">
+                        <button class="nav-link active px-4" onclick="showTab('express',this)">
+                            고속버스
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link px-4" onclick="showTab('local380',this)">
+                            380번 버스
+                        </button>
+                    </li>
+                </ul>
+                <!-- 고속버스 탭 -->
+                <div id="tab-express">
+                    <div class="row g-4 mb-4">
+                        <div class="col-12">
+                            <div class="card p-4">
+                                <div class="d-flex align-items-center gap-3 mb-3">
+
+                                    <div>
+                                        <h5 class="mb-0 fw-bold">안성 ↔ 서울고속버스터미널</h5>
+                                        <span class="text-muted small">고속버스 · 약 70분</span>
+                                    </div>
+                                </div>
+                                <div class="row g-2 mb-3">
+                                    <div class="col-auto"><span class="badge bg-light text-dark border">안성터미널 출발</span>
+                                    </div>
+                                    <div class="col-auto"><span class="badge bg-light text-dark border">안성회관 +10분</span>
+                                    </div>
+                                    <div class="col-auto"><span class="badge bg-light text-dark border">안성한경 +13분</span>
+                                    </div>
+                                    <div class="col-auto"><span class="badge bg-light text-dark border">안성중대 +17분</span>
+                                    </div>
+                                    <div class="col-auto"><span class="badge bg-light text-dark border">안성대림 +20분</span>
+                                    </div>
+                                    <div class="col-auto"><span class="badge bg-light text-dark border">안성공도 +23분</span>
+                                    </div>
+                                    <div class="col-auto"><span class="badge bg-light text-dark border">안성풍림 +25분</span>
+                                    </div>
+                                </div>
+                                <div class="p-3" style="background:#f8f9fa">
+                                    <div class="small fw-semibold mb-2">안성터미널 출발 시각</div>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-white border text-dark">06:10</span><span
+                                            class="badge bg-white border text-dark">06:35</span>
+                                        <span class="badge bg-white border text-dark">07:00</span><span
+                                            class="badge bg-white border text-dark">07:20</span>
+                                        <span class="badge bg-white border text-dark">07:30</span><span
+                                            class="badge bg-white border text-dark">07:50</span>
+                                        <span class="badge bg-white border text-dark">08:30</span><span
+                                            class="badge bg-white border text-dark">09:00</span>
+                                        <span class="badge bg-white border text-dark">09:40</span><span
+                                            class="badge bg-white border text-dark">10:30</span>
+                                        <span class="badge bg-white border text-dark">10:50</span><span
+                                            class="badge bg-white border text-dark">11:30</span>
+                                        <span class="badge bg-white border text-dark">11:50</span><span
+                                            class="badge bg-white border text-dark">12:30</span>
+                                        <span class="badge bg-white border text-dark">13:10</span><span
+                                            class="badge bg-white border text-dark">13:40</span>
+                                        <span class="badge bg-white border text-dark">14:10</span><span
+                                            class="badge bg-white border text-dark">14:30</span>
+                                        <span class="badge bg-white border text-dark">15:10</span><span
+                                            class="badge bg-white border text-dark">15:40</span>
+                                        <span class="badge bg-white border text-dark">16:10</span><span
+                                            class="badge bg-white border text-dark">16:30</span>
+                                        <span class="badge bg-white border text-dark">16:50</span><span
+                                            class="badge bg-white border text-dark">17:10</span>
+                                        <span class="badge bg-white border text-dark">17:50</span><span
+                                            class="badge bg-white border text-dark">18:40</span>
+                                        <span class="badge bg-white border text-dark">19:10</span><span
+                                            class="badge bg-white border text-dark">19:40</span>
+                                        <span class="badge bg-white border text-dark">20:00</span><span
+                                            class="badge bg-white border text-dark">20:20</span>
+                                        <span class="badge bg-white border text-dark">20:40</span><span
+                                            class="badge bg-white border text-dark">21:40</span>
+                                        <span class="badge bg-white border text-dark">22:50</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 요금 소요시간 환승 안내 -->
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card p-4 text-center">
+
+                                <div class="fw-bold mt-2 mb-1">요금</div>
+                                <div class="text-muted small">일반 약 <strong>4,000~5,000원</strong></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-4 text-center">
+
+                                <div class="fw-bold mt-2 mb-1">소요시간</div>
+                                <div class="text-muted small">안성터미널 기준 약 <strong>70분</strong></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-4 text-center">
+
+                                <div class="fw-bold mt-2 mb-1">환승 안내</div>
+                                <div class="text-muted small">서울고속버스터미널 → <strong>9호선 고속터미널역</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 380번버스 탭 -->
+                <div id="tab-local380" style="display:none">
+                    <div class="row g-4 mb-4">
+                        <div class="col-12">
+                            <div class="card p-4">
+                                <div class="d-flex align-items-center gap-3 mb-3">
+
+                                    <div>
+                                        <h5 class="mb-0 fw-bold">대학9길 → 평택역 방면</h5>
+                                        <span class="text-muted small">380번 일반버스 · 약 45분</span>
+                                    </div>
+                                </div>
+                                <!-- 정류장 순서 -->
+                                <div class="d-flex align-items-center flex-wrap gap-1 mb-3">
+                                    <span class="badge bg-light text-dark border">대학9길 출발</span>
+
+                                    <span class="badge bg-light text-dark border">스타필드 +20분</span>
+
+                                    <span class="badge bg-light text-dark border">평택시외버스터미널 +40분</span>
+                                </div>
+                                <div class="p-3" style="background:#f8f9fa">
+                                    <div class="small fw-semibold mb-2">대학9길 출발 시각</div>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge bg-white border text-dark">05:51</span><span
+                                            class="badge bg-white border text-dark">06:21</span>
+                                        <span class="badge bg-white border text-dark">06:58</span><span
+                                            class="badge bg-white border text-dark">07:38</span>
+                                        <span class="badge bg-white border text-dark">08:10</span><span
+                                            class="badge bg-white border text-dark">08:41</span>
+                                        <span class="badge bg-white border text-dark">09:02</span><span
+                                            class="badge bg-white border text-dark">09:25</span>
+                                        <span class="badge bg-white border text-dark">09:55</span><span
+                                            class="badge bg-white border text-dark">10:35</span>
+                                        <span class="badge bg-white border text-dark">11:21</span><span
+                                            class="badge bg-white border text-dark">11:41</span>
+                                        <span class="badge bg-white border text-dark">12:13</span><span
+                                            class="badge bg-white border text-dark">12:53</span>
+                                        <span class="badge bg-white border text-dark">13:17</span><span
+                                            class="badge bg-white border text-dark">13:51</span>
+                                        <span class="badge bg-white border text-dark">14:29</span><span
+                                            class="badge bg-white border text-dark">15:06</span>
+                                        <span class="badge bg-white border text-dark">15:33</span><span
+                                            class="badge bg-white border text-dark">15:59</span>
+                                        <span class="badge bg-white border text-dark">16:32</span><span
+                                            class="badge bg-white border text-dark">17:02</span>
+                                        <span class="badge bg-white border text-dark">17:34</span><span
+                                            class="badge bg-white border text-dark">18:57</span>
+                                        <span class="badge bg-white border text-dark">19:18</span><span
+                                            class="badge bg-white border text-dark">19:46</span>
+                                        <span class="badge bg-white border text-dark">20:14</span><span
+                                            class="badge bg-white border text-dark">20:45</span>
+                                        <span class="badge bg-white border text-dark">21:22</span><span
+                                            class="badge bg-white border text-dark">21:53</span>
+                                        <span class="badge bg-white border text-dark">22:31</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card p-4 text-center">
+
+                                <div class="fw-bold mt-2 mb-1">요금</div>
+                                <div class="text-muted small">교통카드 기준 <strong>약 1,500원</strong></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-4 text-center">
+
+                                <div class="fw-bold mt-2 mb-1">소요시간</div>
+                                <div class="text-muted small">대학9길 → 평택역 약 <strong>45분</strong></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card p-4 text-center">
+
+                                <div class="fw-bold mt-2 mb-1">환승 안내</div>
+                                <div class="text-muted small">평택역 → <strong>KTX·무궁화·ITX</strong> 탑승</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            // 탭 전환 함수 
+            function showTab(id, btn) { // showTab(보여줄 탭, 클릭된 버튼)
+                document.getElementById("tab-express").style.display = "none"; // 두 탭 다 끄기
+                document.getElementById("tab-local380").style.display = "none"; // 두 탭 다 끄기
+                document.getElementById("tab-" + id).style.display = "block"; // 클릭된 탭만 다시 보여주기 
+                document.querySelectorAll("#busTab .nav-link").forEach(b => { b.classList.remove("active"); }); // 클릭된 버튼에만 active 추가>어떤 탭이 선택되어있는지 시각적으로 표시함 
+                btn.classList.add("active");
+            }
+        </script>
+    </main>
+    <footer class="footer" id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row gy-4">
+                    <div class="col-lg-5 col-md-12 footer-info">
+                        <a class="logo d-flex align-items-center" href="index_v1.html">
+                            <img src="assets/img/icon.svg" style="height:25px; width:auto; margin-right:12px;" />
+                            <img src="assets/img/logo.svg" style="height:25px; width:auto;" />
+                        </a>
+                        <p>시간표 기반으로 대기시간과 최적 출발 시각을 안내하는 교통 정보 서비스</p>
+                        <div class="mt-2">
+                            <a class="me-2" href="https://www.letskorail.com" target="_blank">코레일</a>
+                            <a class="me-2" href="https://www.kobus.co.kr" target="_blank">고속버스</a>
+                            <a class="me-2" href="https://www.bustago.or.kr" target="_blank">시외버스</a>
+                            <a href="https://www.seoulmetro.co.kr" target="_blank">서울교통공사</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>바로가기</h4>
+                        <ul>
+                            <li> <a href="index_v1.html">홈</a></li>
+                            <li> <a href="service_v1.html">서비스 소개</a></li>
+                            <li> <a href="forward_v1.html">순방향 길찾기</a></li>
+                            <li> <a href="reverse_v1.html">역방향 길찾기</a></li>
+                            <li> <a href="faq_v1.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-6 footer-links">
+                        <h4>서비스</h4>
+                        <ul>
+                            <li> <a href="bus_v1.html">버스 안내</a></li>
+                            <li> <a href="subway_v1.html">지하철 안내</a></li>
+                            <li> <a href="train_v1.html">기차 안내</a></li>
+                            <li> <a href="tips_v1.html">이용 팁</a></li>
+                            <li> <a href="route-detail_v1.html">노선 상세</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+                        <h4>문의</h4>
+                        <p>표준웹테크놀로지 수업<br />기말 프로젝트<br /><br />
+                            <strong>학번:</strong> 20255274<br /><strong>이름:</strong> 강윤서
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">© Copyright <strong><span>다음차</span></strong>. All Rights Reserved</div>
+            <div class="credits">표준웹테크놀로지 프로젝트 · 강윤서</div>
+        </div>
+    </footer>
+    <a class="back-to-top d-flex align-items-center justify-content-center" href="#"></a>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
