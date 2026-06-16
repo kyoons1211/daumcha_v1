@@ -2,37 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>FAQ — 다음차</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+  <title>FAQ — 다음차</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
+  <!-- =======================================================
   * Template Name: FlexStart
   * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
   * Updated: Mar 17 2024 with Bootstrap v5.3.3
@@ -43,190 +43,255 @@
 
 <body>
 
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top">
-        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/icon.svg" style="height:30px; width:auto; margin-right:14px;">
+        <img src="assets/img/logo.svg" style="height:30px; width:auto;">
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html">홈</a></li>
+          <li><a href="service.html">서비스 소개</a></li>
+          <li><a href="forward.html">순방향 길찾기</a></li>
+          <li><a href="reverse.html">역방향 길찾기</a></li>
+          <li class="dropdown"><a href="#"><span>수단별 안내</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="bus.html">버스 안내</a></li>
+              <li><a href="subway.html">지하철 안내</a></li>
+              <li><a href="train.html">기차 안내</a></li>
+              <li><a href="route-detail.html">노선 상세</a></li>
+            </ul>
+          </li>
+          <li><a href="tips.html">이용 팁</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+    <section class="breadcrumbs">
+      <div class="container">
+        <ol>
+          <li><a href="index.html">홈</a></li>
+          <li>FAQ</li>
+        </ol>
+        <h2>자주 묻는 질문</h2>
+      </div>
+    </section>
+
+    <section class="inner-page py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <!--- 기본 이용 QnA --->
+            <div class="fw-bold mb-3" style="color:#1a3a2a; font-size:15px;">
+              <i class="bi bi-grid me-2" style="color:#00bf63;"></i>기본 이용
+            </div>
+            <div class="accordion mb-4" id="faq-basic">
+
+              <div class="accordion-item border-0 shadow-sm mb-2">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq1">
+                    순방향과 역방향의 차이가 뭔가요?
+                  </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faq-basic">
+                  <div class="accordion-body text-muted small">
+                    <strong>순방향</strong>은 "지금 출발하면 환승할 때 얼마나 기다려야 해?"를 물어볼 때, <strong>역방향</strong>은 "오전 10시까지 도착해야 하는데
+                    언제 출발해야 해?"처럼 마감 시각이 정해진 경우에 사용됩니다.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item border-0 shadow-sm mb-2">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq2">
+                    검색이 안 되는 구간이 있어요
+                  </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse">
+                  <div class="accordion-body text-muted small">
+                    다음차는 특정 구간의 시간표만 지원합니다. 지원 구간은 고속버스(안성↔서울), 380번 버스(대학9길↔평택역), 기차(평택역↔서울역), 공항철도(서울역→김포공항), 9호선
+                    급행(12개 역)입니다.<br><br>
+                    입력한 출발지·도착지가 지원 구간 내에 있는지 확인해주세요. 자동완성에 나오는 역명을 사용하면 정확히 검색됩니다.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item border-0 shadow-sm mb-2">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq3">
+                    여유 시간은 어떤 경우에 설정하나요?
+                  </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse">
+                  <div class="accordion-body text-muted small">
+                    역방향 길찾기에서 설정할 수 있습니다. 도착 시간 10분 전, 20분 전, 30분 전까지 도착하는 루트를 검색할 수 있습니다.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!--- 데이터 QnA --->
+            <div class="fw-bold mb-3" style="color:#1a3a2a; font-size:15px;">
+              <i class="bi bi-database me-2" style="color:#00bf63;"></i>데이터 및 정확도
+            </div>
+            <div class="accordion mb-4" id="faq-data">
+
+              <div class="accordion-item border-0 shadow-sm mb-2">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq7">
+                    시간표가 실제와 다를 수 있나요?
+                  </button>
+                </h2>
+                <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faq-data">
+                  <div class="accordion-body text-muted small">
+                    네, 다음차의 시간표는 실제 운행 데이터를 기반으로 한 <strong>가상 데이터</strong>로 정기 개정이나 임시 변경 사항이 반영되지 않을 수 있습니다. 실제 탑승 전에는
+                    반드시 코레일 앱, 고속버스 앱, 카카오맵 등 공식 서비스에서 최신 시간표를 확인하세요.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item border-0 shadow-sm mb-2">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq8">
+                    주말·공휴일 시간표도 지원하나요?
+                  </button>
+                </h2>
+                <div id="faq8" class="accordion-collapse collapse">
+                  <div class="accordion-body text-muted small">
+                    현재 다음차는 <strong>평일 시간표</strong>를 기준으로 합니다. 주말·공휴일에는 운행 편수나 시각이 달라질 수 있으니, 실제 이용 시에는 공식 앱에서 해당 날짜의
+                    시간표를 확인해 주세요.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item border-0 shadow-sm mb-2">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq9">
+                    환승 시간은 얼마나 반영되나요?
+                  </button>
+                </h2>
+                <div id="faq9" class="accordion-collapse collapse">
+                  <div class="accordion-body text-muted small">
+                    복합 루트의 환승 시간은 다음과 같이 반영됩니다.<br><br>
+                    평택역 환승(버스→기차): <strong>5분</strong><br>
+                    서울역 환승(기차→공항철도): <strong>10분</strong><br>
+                    서울고속버스터미널 환승(버스→9호선): <strong>10분</strong><br><br>
+                    실제 환승 시간은 역 구조나 혼잡도에 따라 달라질 수 있습니다.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-5 col-md-12 footer-info">
             <a href="index.html" class="logo d-flex align-items-center">
-                <img src="assets/img/icon.svg" style="height:30px; width:auto; margin-right:14px;">
-                <img src="assets/img/logo.svg" style="height:30px; width:auto;">
+              <img src="assets/img/icon.svg" style="height:25px; width:auto; margin-right:12px;">
+              <img src="assets/img/logo.svg" style="height:25px; width:auto;">
             </a>
+            <p>시간표 기반으로 대기시간과 최적 출발 시각을 안내하는 교통 정보 서비스</p>
+            <div class="mt-2">
+              <a href="https://www.letskorail.com" target="_blank" class="me-2">코레일</a>
+              <a href="https://www.kobus.co.kr" target="_blank" class="me-2">고속버스</a>
+              <a href="https://www.bustago.or.kr" target="_blank" class="me-2">시외버스</a>
+              <a href="https://www.seoulmetro.co.kr" target="_blank">서울교통공사</a>
+            </div>
 
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a href="index.html">홈</a></li>
-                    <li><a href="service.html">서비스 소개</a></li>
-                    <li><a href="forward.html">순방향 길찾기</a></li>
-                    <li><a href="reverse.html">역방향 길찾기</a></li>
-                    <li class="dropdown"><a href="#"><span>수단별 안내</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="bus.html">버스 안내</a></li>
-                            <li><a href="subway.html">지하철 안내</a></li>
-                            <li><a href="train.html">기차 안내</a></li>
-                            <li><a href="route-detail.html">노선 상세</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="tips.html">이용 팁</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>바로가기</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="index.html">홈</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="service.html">서비스 소개</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="forward.html">순방향 길찾기</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="reverse.html">역방향 길찾기</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="faq.html">FAQ</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-2 col-6 footer-links">
+            <h4>서비스</h4>
+            <ul>
+              <li><i class="bi bi-chevron-right"></i> <a href="bus.html">버스 안내</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="subway.html">지하철 안내</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="train.html">기차 안내</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="tips.html">이용 팁</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="#">노선 상세</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+            <h4>문의</h4>
+            <p>
+              표준웹테크놀로지 수업<br>
+              기말 프로젝트<br><br>
+              <strong>학번:</strong> 20255274<br>
+              <strong>이름:</strong> 강윤서<br>
+            </p>
+
+
+          </div>
 
         </div>
-    </header><!-- End Header -->
+      </div>
+    </div>
 
-    <main id="main">
-        <section class="breadcrumbs">
-            <div class="container">
-                <ol>
-                    <li><a href="index.html">홈</a></li>
-                    <li>FAQ</li>
-                </ol>
-                <h2>자주 묻는 질문</h2>
-            </div>
-        </section>
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>다음차</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
 
-        <section class="inner-page py-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
-                        <h5 style="margin-bottom:20px;">기본 이용</h5>
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
 
-                        <p><strong>Q. 순방향과 역방향의 차이가 뭔가요?</strong></p>
-                        <p>순방향은 "지금 출발하면 환승할 때 얼마나 기다려야 해?"를 물어볼 때, 역방향은 "오전 10시까지 도착해야 하는데 언제 출발해야 해?"처럼 마감 시각이 정해진 경우에
-                            사용됩니다.</p>
-
-                        <hr>
-
-                        <p><strong>Q. 검색이 안 되는 구간이 있어요</strong></p>
-                        <p>다음차는 특정 구간의 시간표만 지원합니다. 지원 구간은 고속버스(안성↔서울), 380번 버스(대학9길↔평택역), 기차(평택역↔서울역), 공항철도(서울역→김포공항),
-                            9호선 급행(11개 역)입니다.<br>
-                            입력한 출발지·도착지가 지원 구간 내에 있는지 확인해주세요. 자동완성에 나오는 역명을 사용하면 정확히 검색됩니다.</p>
-
-                        <hr>
-
-                        <p><strong>Q. 여유 시간은 어떤 경우에 설정하나요?</strong></p>
-                        <p>역방향 길찾기에서 설정할 수 있습니다. 도착 시간 10분 전, 20분 전, 30분 전까지 도착하는 루트를 검색할 수 있습니다.</p>
-
-                        <hr>
-
-                        <h5 style="margin-top:30px; margin-bottom:20px;">데이터 및 정확도</h5>
-
-                        <p><strong>Q. 시간표가 실제와 다를 수 있나요?</strong></p>
-                        <p>네, 다음차의 시간표는 실제 운행 데이터를 기반으로 한 가상 데이터로 정기 개정이나 임시 변경 사항이 반영되지 않을 수 있습니다. 실제 탑승 전에는 반드시 코레일 앱,
-                            고속버스 앱, 카카오맵 등 공식 서비스에서 최신 시간표를 확인하세요.</p>
-
-                        <hr>
-
-                        <p><strong>Q. 주말·공휴일 시간표도 지원하나요?</strong></p>
-                        <p>현재 다음차는 평일 시간표를 기준으로 합니다. 주말·공휴일에는 운행 편수나 시각이 달라질 수 있으니, 실제 이용 시에는 공식 앱에서 해당 날짜의 시간표를 확인해
-                            주세요.</p>
-
-                        <hr>
-
-                        <p><strong>Q. 환승 시간은 얼마나 반영되나요?</strong></p>
-                        <p>복합 루트의 환승 시간은 다음과 같이 반영됩니다.<br>
-                            평택역 환승(버스→기차): 5분<br>
-                            서울역 환승(기차→공항철도): 10분<br>
-                            서울고속버스터미널 환승(버스→9호선): 10분<br>
-                            실제 환승 시간은 역 구조나 혼잡도에 따라 달라질 수 있습니다.</p>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-
-
-
-        <div class="footer-top">
-            <div class="container">
-                <div class="row gy-4">
-                    <div class="col-lg-5 col-md-12 footer-info">
-                        <a href="index.html" class="logo d-flex align-items-center">
-                            <img src="assets/img/icon.svg" style="height:25px; width:auto; margin-right:12px;">
-                            <img src="assets/img/logo.svg" style="height:25px; width:auto;">
-                        </a>
-                        <p>시간표 기반으로 대기시간과 최적 출발 시각을 안내하는 교통 정보 서비스</p>
-                        <div class="mt-2">
-                            <a href="https://www.letskorail.com" target="_blank" class="me-2">코레일</a>
-                            <a href="https://www.kobus.co.kr" target="_blank" class="me-2">고속버스</a>
-                            <a href="https://www.bustago.or.kr" target="_blank" class="me-2">시외버스</a>
-                            <a href="https://www.seoulmetro.co.kr" target="_blank">서울교통공사</a>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-2 col-6 footer-links">
-                        <h4>바로가기</h4>
-                        <ul>
-                            <li><i class="bi bi-chevron-right"></i> <a href="index.html">홈</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="service.html">서비스 소개</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="forward.html">순방향 길찾기</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="reverse.html">역방향 길찾기</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="faq.html">FAQ</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-2 col-6 footer-links">
-                        <h4>서비스</h4>
-                        <ul>
-                            <li><i class="bi bi-chevron-right"></i> <a href="bus.html">버스 안내</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="subway.html">지하철 안내</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="train.html">기차 안내</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="tips.html">이용 팁</a></li>
-                            <li><i class="bi bi-chevron-right"></i> <a href="#">노선 상세</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                        <h4>문의</h4>
-                        <p>
-                            표준웹테크놀로지 수업<br>
-                            기말 프로젝트<br><br>
-                            <strong>학번:</strong> 20255274<br>
-                            <strong>이름:</strong> 강윤서<br>
-                        </p>
-
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="copyright">
-                &copy; Copyright <strong><span>다음차</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-        </div>
-    </footer><!-- End Footer -->
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
 
 </body>
 
