@@ -308,13 +308,6 @@
             return String(h).padStart(2, "0") + ":" + String(min).padStart(2, "0");
         }
 
-        // 추천경로 뱃지 클릭하면 자동 입력
-        function setRoute(dep, arr) {
-            document.getElementById('f-dep').value = dep;
-            document.getElementById('f-arr').value = arr;
-            calcForward();
-        }
-
 
         // 고속버스 데이터 (안성 <-> 서울고속버스터미널)
         // 안성터미널 출발 기준으로 각 정류장간 도착 차이? 기록함 (안성터미널에서 출발해서 안성회관~안성중대 등등 중간정류소로 갈 때 시간 차이 기록해 반영)
