@@ -66,71 +66,63 @@
             </nav><!-- .navbar -->
         </div>
     </header><!-- End Header -->
+
     <!-- ======= Hero ======= -->
-      <section id="hero" class="hero d-flex align-items-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">다음 차, 언제 와?</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">출발 시각을 입력하면 환승 대기시간을,<br>도착 시각을 입력하면 최적 출발 시각을 알려드립니다.</h2>
-          <div data-aos="fade-up" data-aos-delay="600">
-            <div class="d-flex gap-3 flex-wrap">
-              <a href="forward.html" class="btn-get-started d-inline-flex align-items-center justify-content-center">
-                <span>순방향 길찾기</span>
-                <i class="bi bi-arrow-right"></i>
-              </a>
-              <a href="reverse.html" class="btn-get-started d-inline-flex align-items-center justify-content-center"
-                style="background:#ffffff;border:2px solid #ffffff;color:#00bf63;">
-                <span>역방향 길찾기</span>
-                <i class="bi bi-arrow-right"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-    <main id="main">
-        <!-- ======= 핵심 기능 ======= -->
-        <section class="py-5">
-            <div class="container">
-                <div class="row g-4 mb-5">
-                    <!-- 순방향 -->
-                    <div class="col-lg-6">
-                        <div class="card p-4">
-                            <div class="d-flex align-items-center gap-3 mb-3">
-
-                                <div>
-                                    <div class="fw-bold">순방향 길찾기</div>
-                                    <div class="text-muted small">출발 시각 → 다음 차량 · 대기시간</div>
-                                </div>
-                            </div>
-                            <p class="text-muted small mb-3">지금 몇 시인지 입력하면 다음에 오는 차량과 대기시간을 알려드립니다.</p>
-                            <a class="btn btn-success" href="forward.html">바로가기 </a>
-                        </div>
-                    </div>
-                    <!-- 역방향 -->
-                    <div class="col-lg-6">
-                        <div class="card p-4">
-                            <div class="d-flex align-items-center gap-3 mb-3">
-
-                                <div>
-                                    <div class="fw-bold">역방향 길찾기</div>
-                                    <div class="text-muted small">도착 마감 시각 → 출발 시각 역산</div>
-                                </div>
-                            </div>
-                            <p class="text-muted small mb-3">언제까지 도착해야 하는지 입력하면 몇 시에 출발해야 하는지 역산합니다.</p>
-                            <a class="btn btn-primary" href="reverse.html">바로가기 </a>
+    <section id="hero" class="hero d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 d-flex flex-column justify-content-center">
+                    <h1 data-aos="fade-up">다음 차, 언제 와?</h1>
+                    <h2 data-aos="fade-up" data-aos-delay="400">출발 시각을 입력하면 환승 대기시간을,<br>도착 시각을 입력하면 최적 출발 시각을 알려드립니다.</h2>
+                    <div data-aos="fade-up" data-aos-delay="600">
+                        <div class="d-flex gap-3 flex-wrap">
+                            <a href="forward.html" class="btn-get-started d-inline-flex align-items-center justify-content-center">
+                                <span>순방향 길찾기</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <a href="reverse.html" class="btn-get-started d-inline-flex align-items-center justify-content-center"
+                                style="background:#ffffff;border:2px solid #ffffff;color:#00bf63;">
+                                <span>역방향 길찾기</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <main id="main">
+        <!-- ======= 핵심 기능 ======= -->
+        <section class="services py-5">
+            <div class="container">
+                <div class="row g-4 mb-5">
+                    <!-- 순방향: service-box green -->
+                    <div class="col-lg-6">
+                        <div class="service-box green">
+                            <i class="ri-bus-line icon"></i>
+                            <h3>순방향 길찾기</h3>
+                            <p>출발 시각을 입력하면 다음에 오는 차량과 대기시간을 알려드립니다.</p>
+                            <a href="forward.html" class="read-more"><span>바로가기</span> <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- 역방향: service-box blue -->
+                    <div class="col-lg-6">
+                        <div class="service-box blue">
+                            <i class="ri-time-line icon"></i>
+                            <h3>역방향 길찾기</h3>
+                            <p>언제까지 도착해야 하는지 입력하면 몇 시에 출발해야 하는지 역산합니다.</p>
+                            <a href="reverse.html" class="read-more"><span>바로가기</span> <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- 수단별 안내 -->
                 <div class="fw-semibold mb-3">수단별 안내</div>
                 <div class="row g-3">
                     <div class="col-lg-3 col-md-6">
                         <a class="text-decoration-none" href="bus.html">
                             <div class="card p-3 d-flex flex-row align-items-center gap-3">
-
                                 <div>
                                     <div class="fw-semibold small">버스 안내</div>
                                     <div class="text-muted" style="font-size:12px">고속버스 · 380번</div>
@@ -141,7 +133,6 @@
                     <div class="col-lg-3 col-md-6">
                         <a class="text-decoration-none" href="subway.html">
                             <div class="card p-3 d-flex flex-row align-items-center gap-3">
-
                                 <div>
                                     <div class="fw-semibold small">지하철 안내</div>
                                     <div class="text-muted" style="font-size:12px">9호선 급행</div>
@@ -152,7 +143,6 @@
                     <div class="col-lg-3 col-md-6">
                         <a class="text-decoration-none" href="train.html">
                             <div class="card p-3 d-flex flex-row align-items-center gap-3">
-
                                 <div>
                                     <div class="fw-semibold small">기차 안내</div>
                                     <div class="text-muted" style="font-size:12px">평택역 ↔ 서울역</div>
@@ -163,7 +153,6 @@
                     <div class="col-lg-3 col-md-6">
                         <a class="text-decoration-none" href="route-detail.html">
                             <div class="card p-3 d-flex flex-row align-items-center gap-3">
-
                                 <div>
                                     <div class="fw-semibold small">노선 상세</div>
                                     <div class="text-muted" style="font-size:12px">전체 시간표</div>
@@ -174,6 +163,7 @@
                 </div>
             </div>
         </section>
+
         <!-- ======= 서비스 소개 바로가기 ======= -->
         <section class="py-4" style="background:#f8f9fa">
             <div class="container">
@@ -191,6 +181,7 @@
             </div>
         </section>
     </main>
+
     <!-- ======= Footer ======= -->
     <footer class="footer" id="footer">
         <div class="footer-top">
@@ -254,6 +245,7 @@
             </div>
         </div>
     </footer><!-- End Footer -->
+
     <a class="back-to-top d-flex align-items-center justify-content-center" href="#"></a>
     <!-- Vendor JS Files -->
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -265,10 +257,10 @@
     <script src="assets/vendor/php-email-form/validate.js"></script>
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
 </body>
 
-<script>
-  AOS.init();
-</script>
-    
 </html>
