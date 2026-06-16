@@ -538,38 +538,38 @@
 
         // 출발지 도착지 확인으로 어떤 경로인지 판단
         function detectRoute(dep, arr) {
-            var busAnseongStops = Object.keys(busAnseong); // 안성 > 서울 버스 정류장의 키(정류장 이름)만 뽑아서 배열화
-            var bus380StopList = ["대학9길", "스타필드.용이푸르지오2차앞", "평택시외버스터미널", "평택역"];
-            var subwayStops = subway9Order; // 9호선 역 배열화 
-            var busSeoulStops = Object.keys(busSeoulToAnseongStops); // 서울 > 안성 버스 정류장의 키(정류장 이름)만 뽑아서 배열화
+            var busAnseongStops = Object.keys(busAnseong); // 안성>서울 버스 정류장 키(이름)만 배열로 추출
+            var bus380StopList = ["대학9길", "스타필드.용이푸르지오2차앞", "평택시외버스터미널", "평택역"]; // 380번 정류장 목록 직접 정의
+            var subwayStops = subway9Order; // 9호선 역 배열 그대로 참조
+            var busSeoulStops = Object.keys(busSeoulToAnseongStops); // 서울>안성 버스 정류장 키 배열로 추출
 
-            if (busAnseongStops.includes(dep) && arr === "김포공항") return "route_anseong_gimpo"; // 출발지 안성 정류장이고 도착지가 김포공항이면 고속버스+9호선 루트로 안내
+            if (busAnseongStops.includes(dep) && arr === "김포공항") return "route_anseong_gimpo"; // 출발이 안성계열이고 도착이 김포면 고속버스+9호선 복합노선으로 분기
 
             // 단일경로
-            if (busAnseongStops.includes(dep) && busAnseongStops.includes(arr)) return "bus_anseong"; // 출발지, 도착지 모두 안성-서울 정류장 > 고속버스 단일 루트
-            if (busSeoulStops.includes(dep) && busSeoulStops.includes(arr)) return "bus_seoul_anseong"; // 출발지, 도착지 모두 서울-안성 정류장 > 고속버스 단일 루트
-            if (bus380StopList.includes(dep) && bus380StopList.includes(arr)) return "bus380"; // 출발지, 도착지 모두 380번 정류장 > 380번 단일 루트
-            if (dep === "평택역" && arr === "서울역") return "train_to_seoul"; // 평택-서울 기차 
-            if (dep === "서울역" && arr === "평택역") return "train_to_pyeongtaek"; // 서울-평택 기차
-            if (dep === "서울역" && arr === "김포공항") return "arex"; // 공항철도 
-            if (subwayStops.includes(dep) && subwayStops.includes(arr)) return "subway9"; // 9호선
-            if (subwayStops.includes(dep) && arr === "김포공항") return "subway9_arex"; // 9호선-김포공항
+            if (busAnseongStops.includes(dep) && busAnseongStops.includes(arr)) return "bus_anseong"; // 둘 다 안성-서울 정류장이면 고속버스 단일
+            if (busSeoulStops.includes(dep) && busSeoulStops.includes(arr)) return "bus_seoul_anseong"; // 둘 다 서울-안성 정류장이면 역방향 고속버스
+            if (bus380StopList.includes(dep) && bus380StopList.includes(arr)) return "bus380"; // 둘 다 380번 정류장이면 380번 단일
+            if (dep === "평택역" && arr === "서울역") return "train_to_seoul"; // 평택→서울 기차
+            if (dep === "서울역" && arr === "평택역") return "train_to_pyeongtaek"; // 서울→평택 기차
+            if (dep === "서울역" && arr === "김포공항") return "arex"; // 공항철도 서울역→김포
+            if (subwayStops.includes(dep) && subwayStops.includes(arr)) return "subway9"; // 둘 다 9호선 역이면 9호선 단일
+            if (subwayStops.includes(dep) && arr === "김포공항") return "subway9_arex"; // 9호선 역에서 김포공항 연계
 
-            return null; // 구간 없으면 return null
+            return null; // 해당 구간 데이터 없으면 null 반환
         }
 
 
-        // 고속버스
+        // 고속버스 (안성 > 서울)
         function calcBusAnseong(dep, arr, nowMin) { // 출발지, 도착지, 현재시간 받아서 다음 버스 찾는 함수 
-            var depOffset = busAnseong[dep] ? busAnseong[dep].offset : undefined; // busAnseong 객체에서 출발지, 도착지 offset 꺼냄 
-            var arrOffset = busAnseong[arr] ? busAnseong[arr].offset : undefined; // 정류장이 없으면 undefined 
-            if (depOffset === undefined || arrOffset === undefined || depOffset >= arrOffset) return null; 
-            // ^ 출발지&도착지가 데이터에 없거나 출발 offset이 도착 offset보다 크거나 같으면 (거꾸로 가는 경우) null 
+            var depOffset = busAnseong[dep] ? busAnseong[dep].offset : undefined; // busAnseong 객체에서 출발지 offset 꺼냄
+            var arrOffset = busAnseong[arr] ? busAnseong[arr].offset : undefined; // 도착지 offset 꺼냄, 정류장 없으면 undefined
+            if (depOffset === undefined || arrOffset === undefined || depOffset >= arrOffset) return null;
+            // ^ 정류장이 데이터에 없거나 출발 offset이 도착보다 크거나 같으면 (역방향) null
             var next = null;
             for (var i = 0; i < busAnseongTimes.length; i++) {
-                var baseMin = timeToMin(busAnseongTimes[i]);
-                var myDep = baseMin + depOffset;
-                if (myDep >= nowMin) {
+                var baseMin = timeToMin(busAnseongTimes[i]); // 안성터미널 출발시각 → 분으로 변환
+                var myDep = baseMin + depOffset; // 해당 정류장 실제 출발 분 계산
+                if (myDep >= nowMin) { // 현재 시각 이후 첫 차 찾으면 저장하고 break
                     next = { myDep: myDep, myArr: baseMin + arrOffset };
                     break;
                 }
@@ -585,17 +585,17 @@
 
         // 380번 버스
         function calcBus380(dep, arr, nowMin) {
-            var stops = {
+            var stops = { // 대학9길 기준 각 정류장 offset 정의 (분)
                 "대학9길": 0, "스타필드.용이푸르지오2차앞": 20,
                 "평택시외버스터미널": 40, "평택역": 45
             };
-            var dOff = stops[dep], aOff = stops[arr];
-            if (dOff === undefined || aOff === undefined || dOff >= aOff) return null;
+            var dOff = stops[dep], aOff = stops[arr]; // 출발, 도착 offset 꺼냄
+            if (dOff === undefined || aOff === undefined || dOff >= aOff) return null; // 정류장 없거나 역방향이면 null
 
             var next = null;
             for (var i = 0; i < bus380Times.length; i++) {
-                var myDep = timeToMin(bus380Times[i]) + dOff;
-                if (myDep >= nowMin) {
+                var myDep = timeToMin(bus380Times[i]) + dOff; // 해당 정류장 실제 출발 분 계산
+                if (myDep >= nowMin) { // 현재 시각 이후 첫 차 찾으면 저장
                     next = { myDep: myDep, myArr: timeToMin(bus380Times[i]) + aOff };
                     break;
                 }
@@ -613,14 +613,14 @@
         function calcTrain(pairs, dep, arr, nowMin) {
             var next = null;
             for (var i = 0; i < pairs.length; i++) {
-                if (timeToMin(pairs[i].dep) >= nowMin) {
+                if (timeToMin(pairs[i].dep) >= nowMin) { // 현재 시각 이후 첫 열차 찾으면 저장
                     next = pairs[i];
                     break;
                 }
             }
             if (!next) return null;
-            var wait = timeToMin(next.dep) - nowMin;
-            var duration = timeToMin(next.arr) - timeToMin(next.dep);
+            var wait = timeToMin(next.dep) - nowMin; // 대기시간 = 출발시각 - 현재시각
+            var duration = timeToMin(next.arr) - timeToMin(next.dep); // 소요시간 = 도착시각 - 출발시각
             return {
                 mode: "기차", line: next.type,
                 dep: next.dep, arr: next.arr,
@@ -633,14 +633,14 @@
         function calcArex(nowMin) {
             var next = null;
             for (var i = 0; i < arexPairs.length; i++) {
-                if (timeToMin(arexPairs[i].dep) >= nowMin) {
+                if (timeToMin(arexPairs[i].dep) >= nowMin) { // 현재 시각 이후 첫 공항철도 찾으면 저장
                     next = arexPairs[i];
                     break;
                 }
             }
             if (!next) return null;
-            var wait = timeToMin(next.dep) - nowMin;
-            var duration = timeToMin(next.arr) - timeToMin(next.dep);
+            var wait = timeToMin(next.dep) - nowMin; // 대기시간 계산
+            var duration = timeToMin(next.arr) - timeToMin(next.dep); // 소요시간 계산
             return {
                 mode: "공항철도", line: next.direct ? "직통" : "일반",
                 dep: next.dep, arr: next.arr,
@@ -651,36 +651,36 @@
 
         // 9호선
         function calcSubway9(dep, arr, nowMin) {
-            var dIdx = subway9Order.indexOf(dep);
-            var aIdx = subway9Order.indexOf(arr);
-            if (dIdx === -1 || aIdx === -1 || dIdx === aIdx) return null;
+            var dIdx = subway9Order.indexOf(dep); // 출발역 인덱스 (역 순서 배열에서 위치)
+            var aIdx = subway9Order.indexOf(arr); // 도착역 인덱스
+            if (dIdx === -1 || aIdx === -1 || dIdx === aIdx) return null; // 역이 없거나 출발=도착이면 null
 
-            var times = subway9Timetable[dep] || [];
+            var times = subway9Timetable[dep] || []; // 출발역 시간표 가져오기, 없으면 빈 배열
             var next = null;
             for (var i = 0; i < times.length; i++) {
-                if (timeToMin(times[i]) >= nowMin) {
+                if (timeToMin(times[i]) >= nowMin) { // 현재 시각 이후 첫 열차
                     next = times[i];
                     break;
                 }
             }
             if (!next) return null;
 
-            // 역간 이동시간
+            // 역간 이동시간 계산
             var duration = 0;
-            var forward = dIdx < aIdx;
+            var forward = dIdx < aIdx; // 순방향(개화→보훈병원) 여부 판단
             if (forward) {
                 for (var i = dIdx; i < aIdx; i++) {
-                    var key = subway9Order[i] + "-" + subway9Order[i + 1];
-                    duration += subway9Express[key] || 2;
+                    var key = subway9Order[i] + "-" + subway9Order[i + 1]; // 역 사이 키 조합 (예: "당산-여의도")
+                    duration += subway9Express[key] || 2; // 해당 구간 소요시간 더하기, 없으면 2분 기본값
                 }
-            } else {
+            } else { // 역방향(보훈병원→개화) 이동
                 for (var i = dIdx; i > aIdx; i--) {
-                    var revKey = subway9Order[i - 1] + "-" + subway9Order[i];
+                    var revKey = subway9Order[i - 1] + "-" + subway9Order[i]; // 역방향이라도 키는 순방향 기준으로 조합
                     duration += subway9Express[revKey] || 2;
                 }
             }
 
-            var wait = timeToMin(next) - nowMin;
+            var wait = timeToMin(next) - nowMin; // 대기시간 계산
             return {
                 mode: "지하철", line: "9호선",
                 dep: next, arr: minToTime(timeToMin(next) + duration),
@@ -691,23 +691,23 @@
 
         // 메인 검색함수
         function calcForward() {
-            var dep = document.getElementById('f-dep').value.trim();
-            var arr = document.getElementById('f-arr').value.trim();
-            var time = document.getElementById('f-time').value;
-            var errEl = document.getElementById('f-error');
+            var dep = document.getElementById('f-dep').value.trim(); // 출발지 입력값 공백 제거
+            var arr = document.getElementById('f-arr').value.trim(); // 도착지 입력값 공백 제거
+            var time = document.getElementById('f-time').value; // 출발 예정 시각
+            var errEl = document.getElementById('f-error'); // 에러 메시지 표시 엘리먼트
 
             // 입력값 없는 경우 에러
             if (!dep || !arr || !time) {
                 errEl.textContent = "출발지, 도착지, 시각을 모두 입력해주세요.";
-                errEl.classList.remove('d-none');
+                errEl.classList.remove('d-none'); // d-none 제거해서 에러 메시지 보이게
                 return;
             }
-            errEl.classList.add('d-none');
+            errEl.classList.add('d-none'); // 입력 다 됐으면 에러 숨기기
 
-            var nowMin = timeToMin(time);
-            var routeType = detectRoute(dep, arr);
+            var nowMin = timeToMin(time); // 입력 시각을 분으로 변환
+            var routeType = detectRoute(dep, arr); // 출발지-도착지로 어떤 노선인지 판단
 
-            if (!routeType) {
+            if (!routeType) { // null이면 해당 구간 데이터 없다는 뜻
                 showError('"' + dep + '" → "' + arr + '" 구간 데이터가 없습니다.');
                 return;
             }
@@ -719,7 +719,7 @@
                 var seg1 = calcBusAnseong(dep, "서울고속버스터미널", nowMin);
                 if (!seg1) { showError("해당 시각 이후 버스가 없습니다."); return; }
 
-                var transfer1 = 10;
+                var transfer1 = 10; // 고속터미널에서 9호선역까지 환승 여유 시간
                 var seg2 = calcSubway9("고속터미널", "김포공항", seg1.endMin + transfer1);
                 if (!seg2) { showError("해당 시각 이후 열차가 없습니다."); return; }
 
@@ -753,7 +753,7 @@
                 ];
             }
 
-            // 운행종료 경우
+            // 단일 노선 분기 (운행종료 포함)
             else if (routeType === "bus_anseong") {
                 var r = calcBusAnseong(dep, arr, nowMin);
                 if (!r) { showError("해당 시각 이후 버스가 없습니다."); return; }
@@ -795,7 +795,7 @@
 
         // 결과카드 출력
         function renderResult(dep, arr, time, segments) {
-            // 수단별 아이콘/색상
+            // 수단별 부트스트랩 아이콘 클래스 매핑
             var modeIcon = {
                 "고속버스": "bi-bus-front",
                 "버스": "bi-car-front",
@@ -803,6 +803,7 @@
                 "공항철도": "bi-airplane",
                 "지하철": "bi-train-lightrail-front"
             };
+            // 수단별 색상 (카드 배지에 사용)
             var modeColor = {
                 "고속버스": "#00bf63",
                 "버스": "#00a855",
@@ -811,17 +812,17 @@
                 "지하철": "#9b59b6"
             };
 
-            // 전체 소요시간계산
-            var transportSegs = segments.filter(function (s) { return !s.type; });
-            var transferSegs = segments.filter(function (s) { return s.type === "transfer"; });
+            // 전체 소요시간 계산
+            var transportSegs = segments.filter(function (s) { return !s.type; }); // 이동 구간만 필터 (환승 제외)
+            var transferSegs = segments.filter(function (s) { return s.type === "transfer"; }); // 환승 구간만 필터
 
             var totalDuration = 0;
-            transportSegs.forEach(function (s) { totalDuration += s.duration || 0; });
-            transferSegs.forEach(function (s) { totalDuration += s.time || 0; });
+            transportSegs.forEach(function (s) { totalDuration += s.duration || 0; }); // 이동 소요시간 합산
+            transferSegs.forEach(function (s) { totalDuration += s.time || 0; }); // 환승 시간도 합산
 
-            var firstDep = transportSegs.length > 0 ? transportSegs[0].dep : "-";
-            var lastArr = transportSegs.length > 0 ? transportSegs[transportSegs.length - 1].arr : "-";
-            var firstWait = transportSegs.length > 0 ? (transportSegs[0].wait || 0) : 0;
+            var firstDep = transportSegs.length > 0 ? transportSegs[0].dep : "-"; // 첫 구간 출발시각
+            var lastArr = transportSegs.length > 0 ? transportSegs[transportSegs.length - 1].arr : "-"; // 마지막 구간 도착시각
+            var firstWait = transportSegs.length > 0 ? (transportSegs[0].wait || 0) : 0; // 첫 차 대기시간
 
             var html = '<div class="card border-0 shadow-sm p-4">';
             html += '<div class="d-flex align-items-center gap-3 mb-3">';
@@ -833,17 +834,17 @@
             html += '<hr class="my-3">';
             html += '<div class="timeline">';
 
-            // 구간별 분류
+            // 구간별 분류해서 HTML 생성
             segments.forEach(function (seg) {
                 if (seg.type === "transfer") {
-                    // 환승구간
+                    // 환승 구간: 설명 텍스트 + 소요시간 배지
                     html += '<div class="d-flex align-items-center gap-2 my-2 text-muted small">';
                     html += '<span>' + seg.desc + ' <span class="badge bg-light text-dark ms-1">' + seg.time + '분</span></span>';
                     html += '</div>';
                 } else {
-                    // 이동구간
-                    var icon = modeIcon[seg.mode] || "bi-geo-alt";
-                    var color = modeColor[seg.mode] || "#00bf63";
+                    // 이동 구간: 수단 아이콘, 노선명, 출발/도착/소요시간 표시
+                    var icon = modeIcon[seg.mode] || "bi-geo-alt"; // 수단 아이콘, 없으면 기본 위치핀
+                    var color = modeColor[seg.mode] || "#00bf63"; // 수단 색상, 없으면 초록 기본값
                     html += '<div class="card mb-2 border-0" style="background:#f8f9fa;">';
                     html += '<div class="card-body py-2 px-3">';
                     html += '<div class="d-flex align-items-center gap-2 mb-1">';
@@ -863,7 +864,7 @@
             html += '<div class="mt-3 text-muted" style="font-size:12px;">※ 시간표 기반 데이터입니다. 실제 운행과 다릅니다.</div>';
             html += '</div>';
 
-            document.getElementById('f-result').innerHTML = html;
+            document.getElementById('f-result').innerHTML = html; // 결과 영역에 생성한 HTML 넣기
         }
 
         // 에러메시지
