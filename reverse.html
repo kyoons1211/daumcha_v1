@@ -713,9 +713,8 @@ const busSeoulToAnseong = {
       <div class="small text-muted">${recDep} 출발 → ${lastArr} 도착 · 총 ${totalDuration}분 · ${diffLabel}</div>
     </div>
     <div class="p-3 rounded mb-3" style="background:#f2fbf6;border-left:3px solid #00bf63;">
-      <div class="small fw-semibold mb-1" style="color:#1a3a2a;">⏱ 역산 흐름</div>
       <div class="small" style="color:#2d6a4f;">
-        마감 ${deadline}${buf > 0 ? ` → 여유 ${buf}분 제외 → 실질 마감 ${minToTime(timeToMin(deadline) - buf)}` : ""}
+        도착 ${deadline}${buf > 0 ? ` → 여유 ${buf}분 제외 → 실질 도착 ${minToTime(timeToMin(deadline) - buf)}` : ""}
         → <strong>${recDep} 출발</strong> → ${lastArr} 도착
       </div>
     </div>
@@ -733,7 +732,6 @@ const busSeoulToAnseong = {
                     html += `<div class="card mb-2 border-0" style="background:#f8f9fa;">
         <div class="card-body py-2 px-3">
           <div class="d-flex align-items-center gap-2 mb-1">
-            <i class="bi ${icon}" style="color:${color};font-size:18px;"></i>
             <span class="fw-semibold">${seg.mode}</span>
             <span class="badge rounded-pill" style="background:${color}20;color:${color};">${seg.line}</span>
             ${seg.label ? `<span class="text-muted small ms-auto">${seg.label}</span>` : ""}
