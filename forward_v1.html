@@ -296,24 +296,24 @@
     <script>
         // 시간 변환 함수: 00:00을 분 단위 숫자로 변환
         function timeToMin(t) {
-            var parts = t.split(":");
-            return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+            var parts = t.split(":"); // : 기준으로 쪼개서 배열로 만들기 
+            return parseInt(parts[0]) * 60 + parseInt(parts[1]); // 시에 60 곱하고 분을 더한다 (parseInt: 문자열 숫자로 변환)
         }
 
         // 시간 변환 함수: 분 단위 숫자를 00:00으로 변환
         function minToTime(m) {
             var t = ((m % 1440) + 1440) % 1440; // 자정 넘을시
-            var h = Math.floor(t / 60);
-            var min = t % 60;
-            return String(h).padStart(2, "0") + ":" + String(min).padStart(2, "0");
+            var h = Math.floor(t / 60); // 총 분을 60으로 나눠서 시 구하기 
+            var min = t % 60; // 나머지 구하기 
+            return String(h).padStart(2, "0") + ":" + String(min).padStart(2, "0"); // padStart(2, "0") 한 자리 숫자 앞에 0을 붙이겠다 두 개 문자열 결합하기 
         }
 
 
         // 고속버스 데이터 (안성 <-> 서울고속버스터미널)
         // 안성터미널 출발 기준으로 각 정류장간 도착 차이? 기록함 (안성터미널에서 출발해서 안성회관~안성중대 등등 중간정류소로 갈 때 시간 차이 기록해 반영)
 
-        const busAnseong = {
-            "안성터미널": { offset: 0 },
+        const busAnseong = { // 고속버스 정류장 데이터 객체 선언 
+            "안성터미널": { offset: 0 }, // offset: 각 정류장별 안성터미널 출발 기준 몇 분 후에 도착하는지 기재함
             "안성회관": { offset: 10 },
             "안성한경": { offset: 13 },
             "안성중대": { offset: 17 },
@@ -324,15 +324,15 @@
         };
 
         // 안성터미널 출발 시간표
-        const busAnseongTimes = [
+        const busAnseongTimes = [ // 안성터미널 출발시간 데이터 객체 선언 
             "06:10", "06:35", "07:00", "07:20", "07:30", "07:50", "08:30", "09:00", "09:40",
             "10:30", "10:50", "11:30", "11:50", "12:30", "13:10", "13:40", "14:10", "14:30",
             "15:10", "15:40", "16:10", "16:30", "16:50", "17:10", "17:50", "18:40", "19:10",
             "19:40", "20:00", "20:20", "20:40", "21:40", "22:50"
         ];
 
-        // 서울 > 안성 방향 시간표 (역방향)
-        const busSeoulTimes = [
+        // 고속터미널(서울) 출발 시간표
+        const busSeoulTimes = [ // 고속버스터미널 출발시간 데이터 객체 선언 
             "06:05", "06:35", "07:00", "07:40", "08:20", "09:00", "09:20", "10:00", "10:30",
             "11:00", "11:35", "11:55", "12:30", "13:00", "13:30", "14:00", "14:30", "14:40",
             "15:20", "16:10", "16:40", "17:00", "17:40", "18:00", "18:40", "19:10", "19:20",
@@ -360,7 +360,7 @@
         };
 
         // 380: 대학9길 기준 출발 시간표 (중앙대학로 방향) 
-        const bus380Times = [
+        const bus380Times = [ // 
             "05:51", "06:21", "06:58", "07:38", "08:10", "08:41", "09:02", "09:25", "09:55",
             "10:35", "11:21", "11:41", "12:13", "12:53", "13:17", "13:51", "14:29", "15:06",
             "15:33", "15:59", "16:32", "17:02", "17:34", "18:57", "19:18", "19:46", "20:14",
@@ -377,7 +377,7 @@
 
         // 기차 시간표 (평택역 <-> 서울역)
         // 코레일 사이트 참조후 직접 입력
-        const trainPyeongtaekToSeoul = [
+        const trainPyeongtaekToSeoul = [ // dep: 평택역 출발시각 arr: 서울역 도착시각 type: 열차종류로 지정
             { dep: "06:39", arr: "07:40", type: "무궁화" },
             { dep: "07:15", arr: "08:19", type: "ITX-새마을" },
             { dep: "07:39", arr: "08:47", type: "무궁화" },
@@ -430,8 +430,8 @@
         ];
 
         // 공항철도 시간표 (서울역 > 김포공항)
-        // direct: true면 직통열차 / false면 일반열차로 분류하도록 데이터 집계됨 확인 
-        const arexPairs = [
+        // direct: true면 직통열차, false면 일반열차로 분류 
+        const arexPairs = [ // dep: 서울역 출발시각 arr: 김포공항 도착시각 direct: 직통 여부
             { dep: "05:20", arr: "05:43", direct: false }, { dep: "05:40", arr: "06:02", direct: false }, { dep: "05:49", arr: "06:12", direct: false },
             { dep: "06:00", arr: "06:16", direct: true }, { dep: "06:02", arr: "06:24", direct: false }, { dep: "06:11", arr: "06:34", direct: false },
             { dep: "06:23", arr: "06:46", direct: false }, { dep: "06:34", arr: "06:56", direct: false }, { dep: "06:41", arr: "07:05", direct: false },
@@ -538,33 +538,33 @@
 
         // 출발지 도착지 확인으로 어떤 경로인지 판단
         function detectRoute(dep, arr) {
-            var busAnseongStops = Object.keys(busAnseong);
+            var busAnseongStops = Object.keys(busAnseong); // 안성 > 서울 버스 정류장의 키(정류장 이름)만 뽑아서 배열화
             var bus380StopList = ["대학9길", "스타필드.용이푸르지오2차앞", "평택시외버스터미널", "평택역"];
-            var subwayStops = subway9Order;
-            var busSeoulStops = Object.keys(busSeoulToAnseongStops);
+            var subwayStops = subway9Order; // 9호선 역 배열화 
+            var busSeoulStops = Object.keys(busSeoulToAnseongStops); // 서울 > 안성 버스 정류장의 키(정류장 이름)만 뽑아서 배열화
 
-            if (busAnseongStops.includes(dep) && arr === "김포공항") return "route_anseong_gimpo";
+            if (busAnseongStops.includes(dep) && arr === "김포공항") return "route_anseong_gimpo"; // 출발지 안성 정류장이고 도착지가 김포공항이면 고속버스+9호선 루트로 안내
 
             // 단일경로
-            if (busAnseongStops.includes(dep) && busAnseongStops.includes(arr)) return "bus_anseong";
-            if (busSeoulStops.includes(dep) && busSeoulStops.includes(arr)) return "bus_seoul_anseong";
-            if (bus380StopList.includes(dep) && bus380StopList.includes(arr)) return "bus380";
-            if (dep === "평택역" && arr === "서울역") return "train_to_seoul";
-            if (dep === "서울역" && arr === "평택역") return "train_to_pyeongtaek";
-            if (dep === "서울역" && arr === "김포공항") return "arex";
-            if (subwayStops.includes(dep) && subwayStops.includes(arr)) return "subway9";
-            if (subwayStops.includes(dep) && arr === "김포공항") return "subway9_arex";
+            if (busAnseongStops.includes(dep) && busAnseongStops.includes(arr)) return "bus_anseong"; // 출발지, 도착지 모두 안성-서울 정류장 > 고속버스 단일 루트
+            if (busSeoulStops.includes(dep) && busSeoulStops.includes(arr)) return "bus_seoul_anseong"; // 출발지, 도착지 모두 서울-안성 정류장 > 고속버스 단일 루트
+            if (bus380StopList.includes(dep) && bus380StopList.includes(arr)) return "bus380"; // 출발지, 도착지 모두 380번 정류장 > 380번 단일 루트
+            if (dep === "평택역" && arr === "서울역") return "train_to_seoul"; // 평택-서울 기차 
+            if (dep === "서울역" && arr === "평택역") return "train_to_pyeongtaek"; // 서울-평택 기차
+            if (dep === "서울역" && arr === "김포공항") return "arex"; // 공항철도 
+            if (subwayStops.includes(dep) && subwayStops.includes(arr)) return "subway9"; // 9호선
+            if (subwayStops.includes(dep) && arr === "김포공항") return "subway9_arex"; // 9호선-김포공항
 
             return null; // 구간 없으면 return null
         }
 
 
         // 고속버스
-        function calcBusAnseong(dep, arr, nowMin) {
-            var depOffset = busAnseong[dep] ? busAnseong[dep].offset : undefined;
-            var arrOffset = busAnseong[arr] ? busAnseong[arr].offset : undefined;
-            if (depOffset === undefined || arrOffset === undefined || depOffset >= arrOffset) return null;
-
+        function calcBusAnseong(dep, arr, nowMin) { // 출발지, 도착지, 현재시간 받아서 다음 버스 찾는 함수 
+            var depOffset = busAnseong[dep] ? busAnseong[dep].offset : undefined; // busAnseong 객체에서 출발지, 도착지 offset 꺼냄 
+            var arrOffset = busAnseong[arr] ? busAnseong[arr].offset : undefined; // 정류장이 없으면 undefined 
+            if (depOffset === undefined || arrOffset === undefined || depOffset >= arrOffset) return null; 
+            // ^ 출발지&도착지가 데이터에 없거나 출발 offset이 도착 offset보다 크거나 같으면 (거꾸로 가는 경우) null 
             var next = null;
             for (var i = 0; i < busAnseongTimes.length; i++) {
                 var baseMin = timeToMin(busAnseongTimes[i]);
@@ -867,10 +867,10 @@
         }
 
         // 에러메시지
-        function showError(msg) {
-            document.getElementById('f-result').innerHTML =
-                '<div class="card border-0 shadow-sm p-4 text-center text-muted">' +
-                '<p class="mt-3">' + msg + '</p>' +
+        function showError(msg) { 
+            document.getElementById('f-result').innerHTML = // 결과 표시 영역에 에러 메시지 넣겠다  
+                '<div class="card border-0 shadow-sm p-4 text-center text-muted">' + // 에러 메시지 넣을 칸 작성 
+                '<p class="mt-3">' + msg + '</p>' + // margin-top 추가해서 메시지 넣음 
                 '</div>';
         }
     </script>
