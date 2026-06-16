@@ -276,22 +276,27 @@
             </div>
         </section>
         <script>
+            // 시간 + 분 offset 더해서 HH:MM 형식으로 반환 (표 셀 시각 계산용)
             function addMin(t, m) {
-                const [h, n] = t.split(":").map(Number);
-                const total = h * 60 + n + m;
-                return String(Math.floor(total / 60) % 24).padStart(2, "0") + ":" + String(total % 60).padStart(2, "0");
-            }
-            function diffMin(a, b) {
-                const [ah, am] = a.split(":").map(Number);
-                const [bh, bm] = b.split(":").map(Number);
-                return (bh * 60 + bm) - (ah * 60 + am);
-            }
-            function trainBadge(type) {
-                const c = type === "무궁화" ? "#8e44ad" : type === "ITX-새마을" ? "#2980b9" : "#27ae60";
-                return `<span class="box" style="background:${c};color:#fff;">${type}</span>`;
+                const [h, n] = t.split(":").map(Number); // 시:분 쪼개서 숫자로
+                const total = h * 60 + n + m; // 분으로 합산 후 offset 더하기
+                return String(Math.floor(total / 60) % 24).padStart(2, "0") + ":" + String(total % 60).padStart(2, "0"); // HH:MM으로 변환 (24시 넘으면 % 24로 보정)
             }
 
-            // 데이터
+            // 두 시각의 차이(분) 반환 (소요시간 계산용)
+            function diffMin(a, b) {
+                const [ah, am] = a.split(":").map(Number); // 출발시각 쪼개기
+                const [bh, bm] = b.split(":").map(Number); // 도착시각 쪼개기
+                return (bh * 60 + bm) - (ah * 60 + am); // 도착 - 출발 = 소요시간(분)
+            }
+
+            // 열차 종류별 색상 배지 HTML 반환
+            function trainBadge(type) {
+                const c = type === "무궁화" ? "#8e44ad" : type === "ITX-새마을" ? "#2980b9" : "#27ae60"; // 종류별 색상 지정
+                return `<span class="box" style="background:${c};color:#fff;">${type}</span>`; // 배지 HTML 조합
+            }
+
+            // 데이터 (forward/reverse와 동일)
             const expressTimes = ["06:10", "06:35", "07:00", "07:20", "07:30", "07:50", "08:30", "09:00", "09:40", "10:30", "10:50", "11:30", "11:50", "12:30", "13:10", "13:40", "14:10", "14:30", "15:10", "15:40", "16:10", "16:30", "16:50", "17:10", "17:50", "18:40", "19:10", "19:40", "20:00", "20:20", "20:40", "21:40", "22:50"];
             const bus380Times = ["05:51", "06:21", "06:58", "07:38", "08:10", "08:41", "09:02", "09:25", "09:55", "10:35", "11:21", "11:41", "12:13", "12:53", "13:17", "13:51", "14:29", "15:06", "15:33", "15:59", "16:32", "17:02", "17:34", "18:57", "19:18", "19:46", "20:14", "20:45", "21:22", "21:53", "22:31"];
             const trainUp = [
@@ -394,74 +399,76 @@
                 { dep: "00:00", arr: "00:22", direct: false }
             ];
 
-            // 표 JS로 구현
+            // 표 JS로 구현 (페이지 로드 완료 후 실행)
             window.onload = function () {
-                // 고속버스
-                const expTb = document.getElementById("express-table");
-                expressTimes.forEach(t => {
-                    const offsets = [0, 10, 13, 17, 20, 23, 25, 70];
-                    const cells = offsets.map((o, i) => {
-                        const [h, m] = t.split(":").map(Number);
-                        const tot = h * 60 + m + o;
-                        const time = String(Math.floor(tot / 60) % 24).padStart(2, "0") + ":" + String(tot % 60).padStart(2, "0");
-                        return i === 7 ? `<td style="background:#f2fbf6;font-weight:600;">${time}</td>` : `<td>${time}</td>`;
+
+                // 고속버스 표 생성
+                const expTb = document.getElementById("express-table"); // tbody 엘리먼트 가져오기
+                expressTimes.forEach(t => { // 안성터미널 출발 시각 하나씩 순회
+                    const offsets = [0, 10, 13, 17, 20, 23, 25, 70]; // 각 정류장 offset (안성터미널 기준 몇 분 후)
+                    const cells = offsets.map((o, i) => { // offset마다 셀 하나씩 생성
+                        const [h, m] = t.split(":").map(Number); // 출발 시각 시:분 분리
+                        const tot = h * 60 + m + o; // 분으로 변환 후 offset 더하기
+                        const time = String(Math.floor(tot / 60) % 24).padStart(2, "0") + ":" + String(tot % 60).padStart(2, "0"); // HH:MM 형식으로 변환
+                        return i === 7 ? `<td style="background:#f2fbf6;font-weight:600;">${time}</td>` : `<td>${time}</td>`; // 마지막 열(서울고속)은 배경색+굵게 강조
                     });
-                    expTb.innerHTML += `<tr>${cells.join("")}</tr>`;
+                    expTb.innerHTML += `<tr>${cells.join("")}</tr>`; // 셀 합쳐서 행으로 추가
                 });
 
-                // 380번
-                const b380Tb = document.getElementById("bus380-table");
-                bus380Times.forEach(t => {
-                    const offsets = [0, 20, 40, 45];
-                    const cells = offsets.map((o, i) => {
-                        const [h, m] = t.split(":").map(Number);
-                        const tot = h * 60 + m + o;
-                        const time = String(Math.floor(tot / 60) % 24).padStart(2, "0") + ":" + String(tot % 60).padStart(2, "0");
-                        return i === 3 ? `<td style="background:#f2fbf6;font-weight:600;">${time}</td>` : `<td>${time}</td>`;
+                // 380번 버스 표 생성
+                const b380Tb = document.getElementById("bus380-table"); // tbody 엘리먼트 가져오기
+                bus380Times.forEach(t => { // 대학9길 출발 시각 하나씩 순회
+                    const offsets = [0, 20, 40, 45]; // 각 정류장 offset (대학9길 기준 몇 분 후)
+                    const cells = offsets.map((o, i) => { // offset마다 셀 하나씩 생성
+                        const [h, m] = t.split(":").map(Number); // 출발 시각 시:분 분리
+                        const tot = h * 60 + m + o; // 분으로 변환 후 offset 더하기
+                        const time = String(Math.floor(tot / 60) % 24).padStart(2, "0") + ":" + String(tot % 60).padStart(2, "0"); // HH:MM 형식으로 변환
+                        return i === 3 ? `<td style="background:#f2fbf6;font-weight:600;">${time}</td>` : `<td>${time}</td>`; // 마지막 열(평택역)은 배경색+굵게 강조
                     });
-                    b380Tb.innerHTML += `<tr>${cells.join("")}</tr>`;
+                    b380Tb.innerHTML += `<tr>${cells.join("")}</tr>`; // 셀 합쳐서 행으로 추가
                 });
 
-                // 기차 상행
-                const tuTb = document.getElementById("train-up-table");
-                trainUp.forEach(p => {
-                    const [ah, am] = p.dep.split(":").map(Number);
-                    const [bh, bm] = p.arr.split(":").map(Number);
-                    const dur = (bh * 60 + bm) - (ah * 60 + am);
-                    tuTb.innerHTML += `<tr><td>${trainBadge(p.type)}</td><td>${p.dep}</td><td>${p.arr}</td><td>${dur}분</td></tr>`;
+                // 기차 상행 표 생성 (평택→서울)
+                const tuTb = document.getElementById("train-up-table"); // tbody 엘리먼트 가져오기
+                trainUp.forEach(p => { // 열차 데이터 하나씩 순회
+                    const [ah, am] = p.dep.split(":").map(Number); // 출발시각 시:분 분리
+                    const [bh, bm] = p.arr.split(":").map(Number); // 도착시각 시:분 분리
+                    const dur = (bh * 60 + bm) - (ah * 60 + am); // 소요시간 = 도착 - 출발 (분)
+                    tuTb.innerHTML += `<tr><td>${trainBadge(p.type)}</td><td>${p.dep}</td><td>${p.arr}</td><td>${dur}분</td></tr>`; // 열차종류 배지 + 출발/도착/소요 행 추가
                 });
 
-                // 기차 하행
-                const tdTb = document.getElementById("train-down-table");
-                trainDown.forEach(p => {
-                    const [ah, am] = p.dep.split(":").map(Number);
-                    const [bh, bm] = p.arr.split(":").map(Number);
-                    const dur = (bh * 60 + bm) - (ah * 60 + am);
-                    tdTb.innerHTML += `<tr><td>${trainBadge(p.type)}</td><td>${p.dep}</td><td>${p.arr}</td><td>${dur}분</td></tr>`;
+                // 기차 하행 표 생성 (서울→평택)
+                const tdTb = document.getElementById("train-down-table"); // tbody 엘리먼트 가져오기
+                trainDown.forEach(p => { // 열차 데이터 하나씩 순회
+                    const [ah, am] = p.dep.split(":").map(Number); // 출발시각 시:분 분리
+                    const [bh, bm] = p.arr.split(":").map(Number); // 도착시각 시:분 분리
+                    const dur = (bh * 60 + bm) - (ah * 60 + am); // 소요시간 계산
+                    tdTb.innerHTML += `<tr><td>${trainBadge(p.type)}</td><td>${p.dep}</td><td>${p.arr}</td><td>${dur}분</td></tr>`; // 행 추가
                 });
 
-                // 공항철도
-                const arexTb = document.getElementById("arex-table");
-                arexPairs.forEach(p => {
-                    const [ah, am] = p.dep.split(":").map(Number);
-                    const [bh, bm] = p.arr.split(":").map(Number);
+                // 공항철도 표 생성 (서울역→김포공항)
+                const arexTb = document.getElementById("arex-table"); // tbody 엘리먼트 가져오기
+                arexPairs.forEach(p => { // 편 데이터 하나씩 순회
+                    const [ah, am] = p.dep.split(":").map(Number); // 출발시각 분리
+                    const [bh, bm] = p.arr.split(":").map(Number); // 도착시각 분리
                     let dur = (bh * 60 + bm) - (ah * 60 + am);
-                    if (dur < 0) dur += 1440;
+                    if (dur < 0) dur += 1440; // 자정 넘는 경우(00:xx 도착) 하루치 분 더해서 보정
                     const badge = p.direct
-                        ? `<span class="box" style="background:#3498db;color:#fff;">직통</span>`
-                        : `<span class="box bg-light text-dark border">일반</span>`;
-                    const row = p.direct ? `style="background:#f0f8ff;"` : "";
-                    arexTb.innerHTML += `<tr ${row}><td>${p.dep}</td><td>${p.arr}</td><td>${dur}분</td><td>${badge}</td></tr>`;
+                        ? `<span class="box" style="background:#3498db;color:#fff;">직통</span>` // 직통이면 파란 배지
+                        : `<span class="box bg-light text-dark border">일반</span>`; // 일반이면 회색 배지
+                    const row = p.direct ? `style="background:#f0f8ff;"` : ""; // 직통 행은 배경색으로 구분
+                    arexTb.innerHTML += `<tr ${row}><td>${p.dep}</td><td>${p.arr}</td><td>${dur}분</td><td>${badge}</td></tr>`; // 행 추가
                 });
             };
 
+            // 탭 전환 함수: 선택한 노선만 보이고 나머지 숨기기
             function showRoute(id, btn) {
                 ["express", "bus380", "train_up", "train_down", "arex"].forEach(r => {
-                    document.getElementById("route-" + r).style.display = "none";
+                    document.getElementById("route-" + r).style.display = "none"; // 전체 탭 영역 숨기기
                 });
-                document.getElementById("route-" + id).style.display = "block";
-                document.querySelectorAll("#routeTab .nav-link").forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
+                document.getElementById("route-" + id).style.display = "block"; // 선택한 탭만 보이게
+                document.querySelectorAll("#routeTab .nav-link").forEach(b => b.classList.remove("active")); // 모든 탭 버튼 active 제거
+                btn.classList.add("active"); // 클릭한 버튼만 active
             }
         </script>
     </main>
