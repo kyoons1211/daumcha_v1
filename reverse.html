@@ -202,6 +202,7 @@
                                     onclick="selectBuf(this)">30분</button>
                             </div>
                         </div>
+                        <div id="r-error" class="alert alert-danger d-none py-2 small"></div>
                         <div class="col-md-1">
                             <button class="btn btn-success w-100 py-2" onclick="calcReverse()">
                                 검색
@@ -374,6 +375,12 @@
             "평택시외버스터미널": { offset: 40 },
             "평택역": { offset: 45 } // 터미널에서 도보 약 5분 잡음
         };
+
+        const bus380Offsets = {"대학9길":0,"스타필드.용이푸르지오2차앞":20,"평택시외버스터미널":40,"평택역":45};
+const busSeoulToAnseong = {
+    "서울고속버스터미널":0,"안성풍림":45,"안성공도":47,"안성대림":50,
+    "안성중대":53,"안성한경":57,"안성회관":60,"안성터미널":70
+};
 
         // 대학9길 기준 출발 시간표 (평일)
         const bus380Times = [
