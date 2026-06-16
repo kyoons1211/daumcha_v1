@@ -299,38 +299,49 @@
     <script src="assets/js/main.js"></script>
     <script>
 
+        // 시간 변환 함수: 00:00을 분 단위 숫자로 변환
         function timeToMin(t) {
-            const [h, m] = t.split(":").map(Number);
-            const base = h * 60 + m;
-            // 00~03시는 다음날 새벽임
+            const [h, m] = t.split(":").map(Number); // : 기준으로 쪼개서 숫자 배열로 만들기
+            const base = h * 60 + m; // 시에 60 곱하고 분 더하기
+            // 00~03시는 다음날 새벽임 (1440분 = 하루) → 자정 넘긴 시각 보정
             return (h < 4) ? base + 1440 : base;
         }
+
+        // 시간 변환 함수: 분 단위 숫자를 00:00으로 변환
         function minToTime(m) {
-            const t = ((m % 1440) + 1440) % 1440;
-            return String(Math.floor(t / 60)).padStart(2, "0") + ":" + String(t % 60).padStart(2, "0");
+            const t = ((m % 1440) + 1440) % 1440; // 자정 넘을 때 보정
+            return String(Math.floor(t / 60)).padStart(2, "0") + ":" + String(t % 60).padStart(2, "0"); // 시:분 형식으로 조합
         }
+
+        // 여유시간 버튼 선택 처리
         function selectBuf(el) {
+            // 모든 버튼에서 active/btn-success 제거하고 outline으로 초기화
             document.querySelectorAll(".buf-btn").forEach(b => { b.classList.remove("btn-success", "active"); b.classList.add("btn-outline-success"); });
+            // 클릭한 버튼만 active로 지정
             el.classList.remove("btn-outline-success"); el.classList.add("btn-success", "active");
         }
+
+        // 현재 선택된 여유시간(분) 반환
         function getBuf() {
-            const btn = document.querySelector(".buf-btn.active");
-            return btn ? parseInt(btn.dataset.min) : 0;
+            const btn = document.querySelector(".buf-btn.active"); // active 버튼 찾기
+            return btn ? parseInt(btn.dataset.min) : 0; // data-min 값 반환, 없으면 0
         }
+
+        // 외부에서 입력값 세팅하고 바로 검색 실행하는 함수 (링크 연동용)
         function setRevRoute(dep, arr, deadline, buf) {
-            document.getElementById("r-dep").value = dep;
-            document.getElementById("r-arr").value = arr;
-            document.getElementById("r-deadline").value = deadline;
+            document.getElementById("r-dep").value = dep; // 출발지 세팅
+            document.getElementById("r-arr").value = arr; // 도착지 세팅
+            document.getElementById("r-deadline").value = deadline; // 마감 시각 세팅
             document.querySelectorAll(".buf-btn").forEach(b => {
                 b.classList.remove("btn-success", "active"); b.classList.add("btn-outline-success");
-                if (parseInt(b.dataset.min) === buf) { b.classList.remove("btn-outline-success"); b.classList.add("btn-success", "active"); }
+                if (parseInt(b.dataset.min) === buf) { b.classList.remove("btn-outline-success"); b.classList.add("btn-success", "active"); } // buf값과 일치하는 버튼 active로
             });
-            calcReverse();
+            calcReverse(); // 값 다 세팅됐으니 바로 검색 실행
         }
 
         // ===== 데이터, 순방향 길찾기와 같은 데이터 입력함 =====
         const busAnseong = {
-            "안성터미널": { offset: 0 },
+            "안성터미널": { offset: 0 }, // offset: 안성터미널 출발 기준 각 정류장 몇 분 후 도착
             "안성회관": { offset: 10 },
             "안성한경": { offset: 13 },
             "안성중대": { offset: 17 },
@@ -376,11 +387,12 @@
             "평택역": { offset: 45 } // 터미널에서 도보 약 5분 잡음
         };
 
+        // 역산 함수에서 쓰는 offset 객체 (객체 형식 대신 숫자 값으로 바로 접근하게 재정의)
         const bus380Offsets = {"대학9길":0,"스타필드.용이푸르지오2차앞":20,"평택시외버스터미널":40,"평택역":45};
-const busSeoulToAnseong = {
-    "서울고속버스터미널":0,"안성풍림":45,"안성공도":47,"안성대림":50,
-    "안성중대":53,"안성한경":57,"안성회관":60,"안성터미널":70
-};
+        const busSeoulToAnseong = { // 역산 함수용: 서울>안성 각 정류장 offset 숫자로 바로 접근
+            "서울고속버스터미널":0,"안성풍림":45,"안성공도":47,"안성대림":50,
+            "안성중대":53,"안성한경":57,"안성회관":60,"안성터미널":70
+        };
 
         // 대학9길 기준 출발 시간표 (평일)
         const bus380Times = [
@@ -563,101 +575,111 @@ const busSeoulToAnseong = {
         // ===== 역산 함수 =====
         // mustArriveBy: 마감 시간에 딱 맞지 않으면 아예 결과를 출력하지 않는 오류 발생>이전 도착 중 가장 마감에 가까운 차편을 반환하도록 재설정
 
+        // 고속버스 역산 (안성 > 서울): 마감 시각 이전에 도착하는 차편 중 가장 늦은 것 반환
         function revBusAnseong(dep, arr, mustArriveBy) {
-            const depOff = busAnseong[dep], arrOff = busAnseong[arr];
-            if (depOff === undefined || arrOff === undefined || depOff >= arrOff) return null;
-            const all = busAnseongTimes.map(t => { const b = timeToMin(t); return { myDep: b + depOff, myArr: b + arrOff }; });
-            const valid = all.filter(r => r.myArr <= mustArriveBy);
-            if (!valid.length) return null;
-            const best = valid[valid.length - 1];
+            const depOff = busAnseong[dep], arrOff = busAnseong[arr]; // 출발, 도착 offset 꺼냄
+            if (depOff === undefined || arrOff === undefined || depOff >= arrOff) return null; // 없거나 역방향이면 null
+            const all = busAnseongTimes.map(t => { const b = timeToMin(t); return { myDep: b + depOff, myArr: b + arrOff }; }); // 전체 시간표에서 각 정류장 출발/도착 분 계산
+            const valid = all.filter(r => r.myArr <= mustArriveBy); // 마감 이전에 도착하는 차편만 필터
+            if (!valid.length) return null; // 해당 차편 없으면 null
+            const best = valid[valid.length - 1]; // 마감에 가장 가까운 마지막 차편 선택
             return { mode: "고속버스", line: "안성↔서울 고속버스", dep: minToTime(best.myDep), arr: minToTime(best.myArr), duration: best.myArr - best.myDep, depMin: best.myDep, arrMin: best.myArr };
         }
 
+        // 380번 버스 역산: 마감 이전 도착하는 차편 중 가장 늦은 것 반환
         function revBus380(dep, arr, mustArriveBy) {
-            const dOff = bus380Offsets[dep], aOff = bus380Offsets[arr];
-            if (dOff === undefined || aOff === undefined || dOff >= aOff) return null;
-            const all = bus380Times.map(t => { const b = timeToMin(t); return { myDep: b + dOff, myArr: b + aOff }; });
-            const valid = all.filter(r => r.myArr <= mustArriveBy);
+            const dOff = bus380Offsets[dep], aOff = bus380Offsets[arr]; // 출발, 도착 offset 꺼냄
+            if (dOff === undefined || aOff === undefined || dOff >= aOff) return null; // 없거나 역방향이면 null
+            const all = bus380Times.map(t => { const b = timeToMin(t); return { myDep: b + dOff, myArr: b + aOff }; }); // 전체 시간표에서 각 정류장 출발/도착 분 계산
+            const valid = all.filter(r => r.myArr <= mustArriveBy); // 마감 이전 차편만 필터
             if (!valid.length) return null;
-            const best = valid[valid.length - 1];
+            const best = valid[valid.length - 1]; // 가장 늦은 차편 선택
             return { mode: "버스", line: "380번 버스", dep: minToTime(best.myDep), arr: minToTime(best.myArr), duration: best.myArr - best.myDep, depMin: best.myDep, arrMin: best.myArr };
         }
 
+        // 기차 역산: 마감 이전 도착하는 열차 중 가장 늦은 것 반환
         function revTrain(pairs, mustArriveBy) {
-            const valid = pairs.filter(p => timeToMin(p.arr) <= mustArriveBy);
+            const valid = pairs.filter(p => timeToMin(p.arr) <= mustArriveBy); // 도착시각이 마감 이전인 열차만 필터
             if (!valid.length) return null;
-            const best = valid[valid.length - 1];
+            const best = valid[valid.length - 1]; // 가장 늦게 도착하는 열차 선택
             return { mode: "기차", line: best.type, dep: best.dep, arr: best.arr, duration: timeToMin(best.arr) - timeToMin(best.dep), depMin: timeToMin(best.dep), arrMin: timeToMin(best.arr) };
         }
 
+        // 공항철도 역산: 마감 이전 도착하는 편 중 가장 늦은 것 반환
         function revArex(mustArriveBy) {
-            const valid = arexPairs.filter(p => timeToMin(p.arr) <= mustArriveBy);
+            const valid = arexPairs.filter(p => timeToMin(p.arr) <= mustArriveBy); // 도착시각 마감 이전 편만 필터
             if (!valid.length) return null;
-            const best = valid[valid.length - 1];
+            const best = valid[valid.length - 1]; // 가장 늦은 편 선택
             return { mode: "공항철도", line: best.direct ? "직통" : "일반", dep: best.dep, arr: best.arr, duration: timeToMin(best.arr) - timeToMin(best.dep), depMin: timeToMin(best.dep), arrMin: timeToMin(best.arr) };
         }
 
+        // 9호선 역산: 마감 이전 도착하는 열차 중 가장 늦은 것 반환
         function revSubway9(dep, arr, mustArriveBy) {
-            const dIdx = subway9Order.indexOf(dep), aIdx = subway9Order.indexOf(arr);
-            if (dIdx === -1 || aIdx === -1 || dIdx === aIdx) return null;
+            const dIdx = subway9Order.indexOf(dep), aIdx = subway9Order.indexOf(arr); // 출발, 도착 역 인덱스
+            if (dIdx === -1 || aIdx === -1 || dIdx === aIdx) return null; // 역 없거나 같으면 null
             let duration = 0;
-            if (dIdx < aIdx) { for (let i = dIdx; i < aIdx; i++) duration += subway9Express[subway9Order[i] + "-" + subway9Order[i + 1]] || 2; }
-            else { for (let i = dIdx; i > aIdx; i--) duration += subway9Express[subway9Order[i - 1] + "-" + subway9Order[i]] || 2; }
-            const times = subway9Timetable[dep] || [];
-            const valid = times.filter(t => timeToMin(t) + duration <= mustArriveBy);
+            if (dIdx < aIdx) { // 순방향: 각 구간 소요시간 합산
+                for (let i = dIdx; i < aIdx; i++) duration += subway9Express[subway9Order[i] + "-" + subway9Order[i + 1]] || 2;
+            } else { // 역방향: 반대로 합산
+                for (let i = dIdx; i > aIdx; i--) duration += subway9Express[subway9Order[i - 1] + "-" + subway9Order[i]] || 2;
+            }
+            const times = subway9Timetable[dep] || []; // 출발역 시간표 가져오기
+            const valid = times.filter(t => timeToMin(t) + duration <= mustArriveBy); // 도착시각이 마감 이전인 열차만 필터
             if (!valid.length) return null;
-            const best = valid[valid.length - 1];
+            const best = valid[valid.length - 1]; // 가장 늦은 열차 선택
             return { mode: "지하철", line: "9호선", dep: best, arr: minToTime(timeToMin(best) + duration), duration, depMin: timeToMin(best), arrMin: timeToMin(best) + duration };
         }
 
+        // 출발지-도착지로 어떤 노선인지 판단
         function detectRoute(dep, arr) {
-            const busAnseongStops = Object.keys(busAnseong);
-            const busSeoulStops = Object.keys(busSeoulToAnseong);
-            const subwayStops = subway9Order;
-            if ((dep === "대학9길" || dep === "안성중대") && arr === "김포공항") return "route_380_gimpo";
-            if (busAnseongStops.includes(dep) && arr === "김포공항") return "route_anseong_gimpo";
-            if (busAnseongStops.includes(dep) && busAnseongStops.includes(arr)) return "bus_anseong";
-            if (busSeoulStops.includes(dep) && busSeoulStops.includes(arr)) return "bus_seoul_anseong";
+            const busAnseongStops = Object.keys(busAnseong); // 안성>서울 버스 정류장 키 배열
+            const busSeoulStops = Object.keys(busSeoulToAnseong); // 서울>안성 버스 정류장 키 배열
+            const subwayStops = subway9Order; // 9호선 역 배열
+            if ((dep === "대학9길" || dep === "안성중대") && arr === "김포공항") return "route_380_gimpo"; // 380+기차+공항철도 복합노선
+            if (busAnseongStops.includes(dep) && arr === "김포공항") return "route_anseong_gimpo"; // 고속버스+9호선 복합노선
+            if (busAnseongStops.includes(dep) && busAnseongStops.includes(arr)) return "bus_anseong"; // 고속버스 단일
+            if (busSeoulStops.includes(dep) && busSeoulStops.includes(arr)) return "bus_seoul_anseong"; // 역방향 고속버스 단일
             if (["대학9길", "스타필드.용이푸르지오2차앞", "평택시외버스터미널", "평택역"].includes(dep) &&
-                ["스타필드.용이푸르지오2차앞", "평택시외버스터미널", "평택역"].includes(arr)) return "bus380";
-            if (dep === "평택역" && arr === "서울역") return "train_to_seoul";
-            if (dep === "서울역" && arr === "평택역") return "train_to_pyeongtaek";
-            if (dep === "서울역" && arr === "김포공항") return "arex";
-            if (subwayStops.includes(dep) && subwayStops.includes(arr)) return "subway9";
-            if (subwayStops.includes(dep) && arr === "김포공항") return "subway9_arex";
-            return null;
+                ["스타필드.용이푸르지오2차앞", "평택시외버스터미널", "평택역"].includes(arr)) return "bus380"; // 380번 단일
+            if (dep === "평택역" && arr === "서울역") return "train_to_seoul"; // 평택→서울 기차
+            if (dep === "서울역" && arr === "평택역") return "train_to_pyeongtaek"; // 서울→평택 기차
+            if (dep === "서울역" && arr === "김포공항") return "arex"; // 공항철도
+            if (subwayStops.includes(dep) && subwayStops.includes(arr)) return "subway9"; // 9호선 단일
+            if (subwayStops.includes(dep) && arr === "김포공항") return "subway9_arex"; // 9호선+김포공항 연계
+            return null; // 해당 구간 없으면 null
         }
 
-        // ===== 메인 =====
+        // ===== 메인 검색 함수 =====
         function calcReverse() {
-            const dep = document.getElementById("r-dep").value.trim();
-            const arr = document.getElementById("r-arr").value.trim();
-            const deadline = document.getElementById("r-deadline").value;
-            const buf = getBuf();
-            const errEl = document.getElementById("r-error");
+            const dep = document.getElementById("r-dep").value.trim(); // 출발지 입력값 공백 제거
+            const arr = document.getElementById("r-arr").value.trim(); // 도착지 입력값 공백 제거
+            const deadline = document.getElementById("r-deadline").value; // 도착 마감 시각
+            const buf = getBuf(); // 선택된 여유시간(분)
+            const errEl = document.getElementById("r-error"); // 에러 메시지 엘리먼트
 
-            if (!dep || !arr || !deadline) { errEl.textContent = "출발지, 도착지, 마감 시각을 모두 입력해주세요."; errEl.classList.remove("d-none"); return; }
-            errEl.classList.add("d-none");
+            if (!dep || !arr || !deadline) { errEl.textContent = "출발지, 도착지, 마감 시각을 모두 입력해주세요."; errEl.classList.remove("d-none"); return; } // 하나라도 비어있으면 에러 표시
+            errEl.classList.add("d-none"); // 입력 다 됐으면 에러 숨기기
 
-            const deadlineMin = timeToMin(deadline);
-            const mustArriveBy = deadlineMin - buf;
-            const routeType = detectRoute(dep, arr);
+            const deadlineMin = timeToMin(deadline); // 마감 시각을 분으로 변환
+            const mustArriveBy = deadlineMin - buf; // 여유시간 빼서 실질 마감 계산
+            const routeType = detectRoute(dep, arr); // 노선 타입 판단
 
             if (!routeType) {
-                showRErr(`"${dep}" → "${arr}" 구간 데이터가 없습니다.`); return;
+                showRErr(`"${dep}" → "${arr}" 구간 데이터가 없습니다.`); return; // 해당 구간 없으면 에러
             }
 
             let segments = [];
-            const NO_ROUTE = "해당 마감 시각 이전에 도착하는 차량이 없습니다.";
+            const NO_ROUTE = "해당 마감 시각 이전에 도착하는 차량이 없습니다."; // 공통 에러 메시지 변수로 빼둠
 
+            // 380+기차+공항철도 복합노선: 뒤에서부터 역산
             if (routeType === "route_380_gimpo") {
-                const t2 = 10, t1 = 5;
-                const seg3 = revArex(mustArriveBy);
+                const t2 = 10, t1 = 5; // t2: 서울역 환승 여유, t1: 평택역 환승 여유
+                const seg3 = revArex(mustArriveBy); // 공항철도 먼저 역산
                 if (!seg3) { showRErr(NO_ROUTE); return; }
-                const seg2 = revTrain(trainPyeongtaekToSeoul, seg3.depMin - t2);
+                const seg2 = revTrain(trainPyeongtaekToSeoul, seg3.depMin - t2); // 공항철도 출발 전 기차 역산
                 if (!seg2) { showRErr(NO_ROUTE); return; }
-                const depStop = dep === "안성중대" ? "대학9길" : dep;
-                const seg1 = revBus380(depStop, "평택역", seg2.depMin - t1);
+                const depStop = dep === "안성중대" ? "대학9길" : dep; // 안성중대면 대학9길로 출발 정류장 보정
+                const seg1 = revBus380(depStop, "평택역", seg2.depMin - t1); // 기차 출발 전 380번 버스 역산
                 if (!seg1) { showRErr(NO_ROUTE); return; }
                 segments = [
                     { ...seg1, label: "1구간" },
@@ -667,11 +689,12 @@ const busSeoulToAnseong = {
                     { ...seg3, label: "3구간" }
                 ];
             }
+            // 고속버스+9호선 복합노선: 뒤에서부터 역산
             else if (routeType === "route_anseong_gimpo") {
-                const t1 = 10;
-                const seg2 = revSubway9("고속터미널", "김포공항", mustArriveBy);
+                const t1 = 10; // 고속터미널에서 9호선역까지 환승 여유
+                const seg2 = revSubway9("고속터미널", "김포공항", mustArriveBy); // 9호선 먼저 역산
                 if (!seg2) { showRErr(NO_ROUTE); return; }
-                const seg1 = revBusAnseong(dep, "서울고속버스터미널", seg2.depMin - t1);
+                const seg1 = revBusAnseong(dep, "서울고속버스터미널", seg2.depMin - t1); // 9호선 출발 전 버스 역산
                 if (!seg1) { showRErr(NO_ROUTE); return; }
                 segments = [
                     { ...seg1, label: "1구간" },
@@ -679,32 +702,36 @@ const busSeoulToAnseong = {
                     { ...seg2, label: "2구간" }
                 ];
             }
+            // 단일 노선 분기
             else if (routeType === "bus_anseong") { const r = revBusAnseong(dep, arr, mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r]; }
             else if (routeType === "bus380") { const r = revBus380(dep, arr, mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r]; }
             else if (routeType === "train_to_seoul") { const r = revTrain(trainPyeongtaekToSeoul, mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r]; }
             else if (routeType === "train_to_pyeongtaek") { const r = revTrain(trainSeoulToPyeongtaek, mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r]; }
             else if (routeType === "arex") { const r = revArex(mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r]; }
             else if (routeType === "subway9" || routeType === "subway9_arex") {
-                const toArr = routeType === "subway9_arex" ? "김포공항" : arr;
+                const toArr = routeType === "subway9_arex" ? "김포공항" : arr; // subway9_arex면 도착지 김포공항으로 고정
                 const r = revSubway9(dep, toArr, mustArriveBy); if (!r) { showRErr(NO_ROUTE); return; } segments = [r];
             }
 
-            renderResult(dep, arr, deadline, buf, segments, deadlineMin);
+            renderResult(dep, arr, deadline, buf, segments, deadlineMin); // 결과 카드 출력
         }
 
+        // 결과 카드 출력
         function renderResult(dep, arr, deadline, buf, segments, deadlineMin) {
+            // 수단별 부트스트랩 아이콘 클래스 매핑
             const modeIcon = { "고속버스": "bi-bus-front", "버스": "bi-car-front", "기차": "bi-train-front", "공항철도": "bi-airplane", "지하철": "bi-train-lightrail-front" };
+            // 수단별 색상 (카드 배지에 사용)
             const modeColor = { "고속버스": "#00bf63", "버스": "#00a855", "기차": "#e67e22", "공항철도": "#3498db", "지하철": "#9b59b6" };
 
-            const transportSegs = segments.filter(s => !s.type);
-            const transferSegs = segments.filter(s => s.type === "transfer");
-            const totalDuration = transportSegs.reduce((a, s) => a + (s.duration || 0), 0) + transferSegs.reduce((a, s) => a + (s.time || 0), 0);
-            const recDep = transportSegs[0]?.dep || "-";
-            const lastArr = transportSegs[transportSegs.length - 1]?.arr || "-";
-            const lastArrMin = transportSegs[transportSegs.length - 1]?.arrMin || 0;
-            const bufLabel = buf > 0 ? ` · 여유 ${buf}분 포함` : "";
-            const diffMin = deadlineMin - lastArrMin;
-            const diffLabel = `<span class="fw-semibold" style="color:#00bf63;">마감 ${diffMin}분 전 도착</span>`;
+            const transportSegs = segments.filter(s => !s.type); // 이동 구간만 필터 (환승 제외)
+            const transferSegs = segments.filter(s => s.type === "transfer"); // 환승 구간만 필터
+            const totalDuration = transportSegs.reduce((a, s) => a + (s.duration || 0), 0) + transferSegs.reduce((a, s) => a + (s.time || 0), 0); // 이동 + 환승 시간 합산
+            const recDep = transportSegs[0]?.dep || "-"; // 첫 구간 출발시각 (권장 출발 시각)
+            const lastArr = transportSegs[transportSegs.length - 1]?.arr || "-"; // 마지막 구간 도착시각
+            const lastArrMin = transportSegs[transportSegs.length - 1]?.arrMin || 0; // 마지막 도착시각 (분)
+            const bufLabel = buf > 0 ? ` · 여유 ${buf}분 포함` : ""; // 여유시간 있으면 표시 문자열
+            const diffMin = deadlineMin - lastArrMin; // 마감까지 얼마나 여유있는지 계산
+            const diffLabel = `<span class="fw-semibold" style="color:#00bf63;">마감 ${diffMin}분 전 도착</span>`; // 여유 분 표시 HTML
 
             let html = `<div class="card border-0 shadow-sm p-4">
     <div class="mb-3">
@@ -720,15 +747,18 @@ const busSeoulToAnseong = {
     </div>
     <hr class="my-3"><div>`;
 
+            // 구간별 분류해서 HTML 생성
             segments.forEach(seg => {
                 if (seg.type === "transfer") {
+                    // 환승 구간: 아이콘 + 설명 + 소요시간 배지
                     html += `<div class="d-flex align-items-center gap-2 my-2 text-muted small">
         <i class="bi bi-arrow-down-circle" style="color:#ccc;font-size:18px;"></i>
         <span>${seg.desc} <span class="badge bg-light text-dark ms-1">${seg.time}분</span></span>
       </div>`;
                 } else {
-                    const icon = modeIcon[seg.mode] || "bi-geo-alt";
-                    const color = modeColor[seg.mode] || "#00bf63";
+                    // 이동 구간: 수단 아이콘, 노선명, 출발/도착/소요시간 표시
+                    const icon = modeIcon[seg.mode] || "bi-geo-alt"; // 수단 아이콘, 없으면 기본 위치핀
+                    const color = modeColor[seg.mode] || "#00bf63"; // 수단 색상, 없으면 초록 기본값
                     html += `<div class="card mb-2 border-0" style="background:#f8f9fa;">
         <div class="card-body py-2 px-3">
           <div class="d-flex align-items-center gap-2 mb-1">
@@ -747,15 +777,16 @@ const busSeoulToAnseong = {
             });
 
             html += `</div><div class="mt-3 text-muted" style="font-size:12px;">※ 시간표 기반 가상 데이터입니다. 실제 운행과 다릅니다.</div></div>`;
-            document.getElementById("r-result").innerHTML = html;
+            document.getElementById("r-result").innerHTML = html; // 결과 영역에 생성한 HTML 넣기
         }
 
+        // 에러 메시지 출력
         function showRErr(msg) {
             document.getElementById("r-result").innerHTML = `
     <div class="card border-0 shadow-sm p-4 text-center text-muted">
       <i class="bi bi-exclamation-circle" style="font-size:40px;color:#e74c3c;"></i>
       <p class="mt-3">${msg}</p>
-    </div>`;
+    </div>`; // 결과 영역에 에러 아이콘이랑 메시지 넣기
         }
     </script>
 </body>
